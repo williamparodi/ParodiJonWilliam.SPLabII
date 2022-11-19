@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Willy\\source\\repos\\TpUtiles\\TpUtiles\\TpUtiles.csproj",
-      "projectName": "TpUtiles",
-      "projectPath": "C:\\Users\\Willy\\source\\repos\\TpUtiles\\TpUtiles\\TpUtiles.csproj",
+      "projectUniqueName": "C:\\Users\\Willy\\source\\repos\\TpUtiles\\TpUtiles\\Entidades.csproj",
+      "projectName": "Entidades",
+      "projectPath": "C:\\Users\\Willy\\source\\repos\\TpUtiles\\TpUtiles\\Entidades.csproj",
       "packagesPath": "C:\\Users\\Willy\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Willy\\source\\repos\\TpUtiles\\TpUtiles\\obj\\",
       "projectStyle": "PackageReference",

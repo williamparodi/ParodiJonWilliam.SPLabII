@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using Entidades;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 
 namespace TpUtiles
 {
+    public delegate void DelegadoPrecio(string mensaje);
     public class Cartuchera<T> where T : Util
     {
         private int capacidad;
         private List<T> listaUtiles;
+        
+        public static event DelegadoPrecio EventoPrecio;//lo hice estatic por que lo utilizo en el operador static
 
         public Cartuchera()
         {
@@ -25,6 +31,12 @@ namespace TpUtiles
             set { capacidad = value; }
         }
 
+        public List<T> ListaUtiles
+        {
+            get { return listaUtiles; }
+            set { listaUtiles = value; }
+        }
+
 
         public double PrecioTotal
         {
@@ -38,13 +50,21 @@ namespace TpUtiles
         public static bool operator +(Cartuchera<T> cartuchera, T util)
         {
             bool retorno = false;
-
+            
             if (cartuchera is not null && util is not null)
             {
-                if (cartuchera.Capacidad < 50)
+                if (cartuchera.Capacidad < 10)
                 {
                     cartuchera.listaUtiles.Add(util);
+                    if(cartuchera.PrecioTotal > 500)
+                    {
+                        EventoPrecio($"Se supero el precio total de $500! Total :$ {cartuchera.PrecioTotal}");
+                    }
                     retorno = true;
+                }
+                else
+                {
+                    throw new CartucheraLLenaException("La cartuchera esta llena");
                 }
             }
 
@@ -55,15 +75,32 @@ namespace TpUtiles
         {
             double precioTotal = 0;
 
-            foreach (T item in listaUtiles)
+            if (listaUtiles is not null)
             {
-                precioTotal += item.Precio;
+                foreach (T item in listaUtiles)
+                {
+                    precioTotal += item.Precio;
+                }
             }
 
             return precioTotal;
         }
+        /*
+        public bool NotificacionPrecio(List<T> listaUtilies)
+        {
+            bool retorno = false;
 
+            if(listaUtiles is not null)
+            {
+                if(AcumulaPrecio(listaUtiles) > 500)
+                {
+                    retorno = false;
+                }
+            }
 
+            return retorno;
+        }
+        */
     }
 
 }

@@ -36,7 +36,12 @@ namespace TpUtiles
             set { this.tipoDeLapiz = value; }
         }
 
-
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Precio :{this.precio},Marca : {this.marca},Color : {this.color},Tipo de Lapiz: {this.tipoDeLapiz}");
+            return sb.ToString();
+        }
 
     }
 }

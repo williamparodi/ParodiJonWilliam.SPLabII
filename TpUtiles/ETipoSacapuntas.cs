@@ -1,6 +1,6 @@
 ﻿public enum ETipoSacapuntas
 {
     Portatil,
-    Elelctrico,
+    Electrico,
     SinTipo
 }
