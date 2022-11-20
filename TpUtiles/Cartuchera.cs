@@ -85,22 +85,10 @@ namespace TpUtiles
 
             return precioTotal;
         }
-        /*
-        public bool NotificacionPrecio(List<T> listaUtilies)
-        {
-            bool retorno = false;
 
-            if(listaUtiles is not null)
-            {
-                if(AcumulaPrecio(listaUtiles) > 500)
-                {
-                    retorno = false;
-                }
-            }
 
-            return retorno;
-        }
-        */
+        
+       
     }
 
 }

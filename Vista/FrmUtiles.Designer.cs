@@ -1,0 +1,214 @@
+﻿namespace Vista
+{
+    partial class FrmUtiles
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUtiles));
+            this.btn_Agregar = new System.Windows.Forms.Button();
+            this.lbl_AgregarUtil = new System.Windows.Forms.Label();
+            this.lbl_Util = new System.Windows.Forms.Label();
+            this.cmb_TipoDeUtil = new System.Windows.Forms.ComboBox();
+            this.lbl_Marca = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lbl_Color = new System.Windows.Forms.Label();
+            this.cmb_Color = new System.Windows.Forms.ComboBox();
+            this.lbl_Precio = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.lbl_Tipo = new System.Windows.Forms.Label();
+            this.cmb_Tipo = new System.Windows.Forms.ComboBox();
+            this.lbl_Tamanio = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.SuspendLayout();
+            // 
+            // btn_Agregar
+            // 
+            this.btn_Agregar.Location = new System.Drawing.Point(21, 317);
+            this.btn_Agregar.Name = "btn_Agregar";
+            this.btn_Agregar.Size = new System.Drawing.Size(87, 29);
+            this.btn_Agregar.TabIndex = 0;
+            this.btn_Agregar.Text = "AGREGAR";
+            this.btn_Agregar.UseVisualStyleBackColor = true;
+            // 
+            // lbl_AgregarUtil
+            // 
+            this.lbl_AgregarUtil.AutoSize = true;
+            this.lbl_AgregarUtil.Location = new System.Drawing.Point(53, 24);
+            this.lbl_AgregarUtil.Name = "lbl_AgregarUtil";
+            this.lbl_AgregarUtil.Size = new System.Drawing.Size(70, 15);
+            this.lbl_AgregarUtil.TabIndex = 1;
+            this.lbl_AgregarUtil.Text = "Agregar Util";
+            // 
+            // lbl_Util
+            // 
+            this.lbl_Util.AutoSize = true;
+            this.lbl_Util.Location = new System.Drawing.Point(21, 61);
+            this.lbl_Util.Name = "lbl_Util";
+            this.lbl_Util.Size = new System.Drawing.Size(25, 15);
+            this.lbl_Util.TabIndex = 2;
+            this.lbl_Util.Text = "Util";
+            // 
+            // cmb_TipoDeUtil
+            // 
+            this.cmb_TipoDeUtil.FormattingEnabled = true;
+            this.cmb_TipoDeUtil.Items.AddRange(new object[] {
+            "Lapiz",
+            "Goma",
+            "Sacapuntas"});
+            this.cmb_TipoDeUtil.Location = new System.Drawing.Point(104, 61);
+            this.cmb_TipoDeUtil.Name = "cmb_TipoDeUtil";
+            this.cmb_TipoDeUtil.Size = new System.Drawing.Size(121, 23);
+            this.cmb_TipoDeUtil.TabIndex = 3;
+            // 
+            // lbl_Marca
+            // 
+            this.lbl_Marca.AutoSize = true;
+            this.lbl_Marca.Location = new System.Drawing.Point(21, 109);
+            this.lbl_Marca.Name = "lbl_Marca";
+            this.lbl_Marca.Size = new System.Drawing.Size(40, 15);
+            this.lbl_Marca.TabIndex = 4;
+            this.lbl_Marca.Text = "Marca";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(104, 101);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(120, 23);
+            this.textBox1.TabIndex = 5;
+            // 
+            // lbl_Color
+            // 
+            this.lbl_Color.AutoSize = true;
+            this.lbl_Color.Location = new System.Drawing.Point(20, 154);
+            this.lbl_Color.Name = "lbl_Color";
+            this.lbl_Color.Size = new System.Drawing.Size(36, 15);
+            this.lbl_Color.TabIndex = 6;
+            this.lbl_Color.Text = "Color";
+            // 
+            // cmb_Color
+            // 
+            this.cmb_Color.FormattingEnabled = true;
+            this.cmb_Color.Location = new System.Drawing.Point(104, 146);
+            this.cmb_Color.Name = "cmb_Color";
+            this.cmb_Color.Size = new System.Drawing.Size(120, 23);
+            this.cmb_Color.TabIndex = 7;
+            // 
+            // lbl_Precio
+            // 
+            this.lbl_Precio.AutoSize = true;
+            this.lbl_Precio.Location = new System.Drawing.Point(21, 269);
+            this.lbl_Precio.Name = "lbl_Precio";
+            this.lbl_Precio.Size = new System.Drawing.Size(40, 15);
+            this.lbl_Precio.TabIndex = 8;
+            this.lbl_Precio.Text = "Precio";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(102, 266);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(74, 23);
+            this.textBox2.TabIndex = 9;
+            // 
+            // lbl_Tipo
+            // 
+            this.lbl_Tipo.AutoSize = true;
+            this.lbl_Tipo.Location = new System.Drawing.Point(21, 190);
+            this.lbl_Tipo.Name = "lbl_Tipo";
+            this.lbl_Tipo.Size = new System.Drawing.Size(30, 15);
+            this.lbl_Tipo.TabIndex = 10;
+            this.lbl_Tipo.Text = "Tipo";
+            // 
+            // cmb_Tipo
+            // 
+            this.cmb_Tipo.FormattingEnabled = true;
+            this.cmb_Tipo.Location = new System.Drawing.Point(103, 190);
+            this.cmb_Tipo.Name = "cmb_Tipo";
+            this.cmb_Tipo.Size = new System.Drawing.Size(121, 23);
+            this.cmb_Tipo.TabIndex = 11;
+            // 
+            // lbl_Tamanio
+            // 
+            this.lbl_Tamanio.AutoSize = true;
+            this.lbl_Tamanio.Location = new System.Drawing.Point(21, 228);
+            this.lbl_Tamanio.Name = "lbl_Tamanio";
+            this.lbl_Tamanio.Size = new System.Drawing.Size(49, 15);
+            this.lbl_Tamanio.TabIndex = 12;
+            this.lbl_Tamanio.Text = "Tamaño";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(102, 228);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(122, 23);
+            this.comboBox1.TabIndex = 13;
+            // 
+            // FrmUtiles
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.lbl_Tamanio);
+            this.Controls.Add(this.cmb_Tipo);
+            this.Controls.Add(this.lbl_Tipo);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.lbl_Precio);
+            this.Controls.Add(this.cmb_Color);
+            this.Controls.Add(this.lbl_Color);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lbl_Marca);
+            this.Controls.Add(this.cmb_TipoDeUtil);
+            this.Controls.Add(this.lbl_Util);
+            this.Controls.Add(this.lbl_AgregarUtil);
+            this.Controls.Add(this.btn_Agregar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "FrmUtiles";
+            this.Text = "Menu Utiles";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button btn_Agregar;
+        private System.Windows.Forms.Label lbl_AgregarUtil;
+        private System.Windows.Forms.Label lbl_Util;
+        private System.Windows.Forms.ComboBox cmb_TipoDeUtil;
+        private System.Windows.Forms.Label lbl_Marca;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lbl_Color;
+        private System.Windows.Forms.ComboBox cmb_Color;
+        private System.Windows.Forms.Label lbl_Precio;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label lbl_Tipo;
+        private System.Windows.Forms.ComboBox cmb_Tipo;
+        private System.Windows.Forms.Label lbl_Tamanio;
+        private System.Windows.Forms.ComboBox comboBox1;
+    }
+}
