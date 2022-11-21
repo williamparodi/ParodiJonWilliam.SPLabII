@@ -37,7 +37,6 @@ namespace TpUtiles
             set { listaUtiles = value; }
         }
 
-
         public double PrecioTotal
         {
             get
@@ -45,7 +44,6 @@ namespace TpUtiles
                 return AcumulaPrecio(this.listaUtiles);
             }
         }
-
 
         public static bool operator +(Cartuchera<T> cartuchera, T util)
         {

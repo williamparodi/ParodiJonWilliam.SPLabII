@@ -16,7 +16,7 @@ namespace Vista
         {
             InitializeComponent();
         }
-
+        
 
     }
 }

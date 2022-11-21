@@ -10,9 +10,7 @@ namespace Entidades
     public interface ISerializa
     {
         string SerializaLapizJson(Lapiz lapiz);
-        
 
-        void SerializaLapizXml(string nombreArchivo,Lapiz lapiz);
-
-        
+        void SerializaLapizXml(string nombreArchivo, Lapiz lapiz);
+    }  
 }

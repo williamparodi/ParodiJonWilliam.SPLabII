@@ -28,12 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
+            this.btn_Utiles = new System.Windows.Forms.Button();
+            this.btn_SerealizaDeserealiza = new System.Windows.Forms.Button();
+            this.btn_Base = new System.Windows.Forms.Button();
+            this.btn_Tickets = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btn_Utiles
+            // 
+            this.btn_Utiles.Location = new System.Drawing.Point(148, 81);
+            this.btn_Utiles.Name = "btn_Utiles";
+            this.btn_Utiles.Size = new System.Drawing.Size(122, 50);
+            this.btn_Utiles.TabIndex = 0;
+            this.btn_Utiles.Text = "UTILES";
+            this.btn_Utiles.UseVisualStyleBackColor = true;
+            // 
+            // btn_SerealizaDeserealiza
+            // 
+            this.btn_SerealizaDeserealiza.Location = new System.Drawing.Point(486, 81);
+            this.btn_SerealizaDeserealiza.Name = "btn_SerealizaDeserealiza";
+            this.btn_SerealizaDeserealiza.Size = new System.Drawing.Size(122, 50);
+            this.btn_SerealizaDeserealiza.TabIndex = 1;
+            this.btn_SerealizaDeserealiza.Text = "SEREALIZA Y DESEREALIZA";
+            this.btn_SerealizaDeserealiza.UseVisualStyleBackColor = true;
+            // 
+            // btn_Base
+            // 
+            this.btn_Base.Location = new System.Drawing.Point(148, 267);
+            this.btn_Base.Name = "btn_Base";
+            this.btn_Base.Size = new System.Drawing.Size(122, 50);
+            this.btn_Base.TabIndex = 2;
+            this.btn_Base.Text = "BASE DE DATOS";
+            this.btn_Base.UseVisualStyleBackColor = true;
+            // 
+            // btn_Tickets
+            // 
+            this.btn_Tickets.Location = new System.Drawing.Point(486, 267);
+            this.btn_Tickets.Name = "btn_Tickets";
+            this.btn_Tickets.Size = new System.Drawing.Size(122, 50);
+            this.btn_Tickets.TabIndex = 3;
+            this.btn_Tickets.Text = "TICKETS";
+            this.btn_Tickets.UseVisualStyleBackColor = true;
+            // 
+            // FrmMenuPrincipal
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Controls.Add(this.btn_Tickets);
+            this.Controls.Add(this.btn_Base);
+            this.Controls.Add(this.btn_SerealizaDeserealiza);
+            this.Controls.Add(this.btn_Utiles);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "FrmMenuPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Menu Principal";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btn_Utiles;
+        private System.Windows.Forms.Button btn_SerealizaDeserealiza;
+        private System.Windows.Forms.Button btn_Base;
+        private System.Windows.Forms.Button btn_Tickets;
     }
 }

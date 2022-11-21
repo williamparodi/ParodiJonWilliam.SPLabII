@@ -43,6 +43,10 @@
             this.cmb_Tipo = new System.Windows.Forms.ComboBox();
             this.lbl_Tamanio = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btn_Salir = new System.Windows.Forms.Button();
+            this.dtgv_Cartuchera = new System.Windows.Forms.DataGridView();
+            this.lbl_Cartuchera = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgv_Cartuchera)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_Agregar
@@ -167,11 +171,45 @@
             this.comboBox1.Size = new System.Drawing.Size(122, 23);
             this.comboBox1.TabIndex = 13;
             // 
+            // btn_Salir
+            // 
+            this.btn_Salir.Location = new System.Drawing.Point(612, 401);
+            this.btn_Salir.Name = "btn_Salir";
+            this.btn_Salir.Size = new System.Drawing.Size(138, 34);
+            this.btn_Salir.TabIndex = 14;
+            this.btn_Salir.Text = "SALIR";
+            this.btn_Salir.UseVisualStyleBackColor = true;
+            // 
+            // dtgv_Cartuchera
+            // 
+            this.dtgv_Cartuchera.AllowUserToAddRows = false;
+            this.dtgv_Cartuchera.AllowUserToDeleteRows = false;
+            this.dtgv_Cartuchera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgv_Cartuchera.Location = new System.Drawing.Point(388, 61);
+            this.dtgv_Cartuchera.Name = "dtgv_Cartuchera";
+            this.dtgv_Cartuchera.ReadOnly = true;
+            this.dtgv_Cartuchera.RowTemplate.Height = 25;
+            this.dtgv_Cartuchera.Size = new System.Drawing.Size(362, 228);
+            this.dtgv_Cartuchera.TabIndex = 15;
+            this.dtgv_Cartuchera.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_Cartuchera_CellContentClick);
+            // 
+            // lbl_Cartuchera
+            // 
+            this.lbl_Cartuchera.AutoSize = true;
+            this.lbl_Cartuchera.Location = new System.Drawing.Point(389, 30);
+            this.lbl_Cartuchera.Name = "lbl_Cartuchera";
+            this.lbl_Cartuchera.Size = new System.Drawing.Size(65, 15);
+            this.lbl_Cartuchera.TabIndex = 16;
+            this.lbl_Cartuchera.Text = "Cartuchera";
+            // 
             // FrmUtiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_Cartuchera);
+            this.Controls.Add(this.dtgv_Cartuchera);
+            this.Controls.Add(this.btn_Salir);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lbl_Tamanio);
             this.Controls.Add(this.cmb_Tipo);
@@ -188,7 +226,9 @@
             this.Controls.Add(this.btn_Agregar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmUtiles";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu Utiles";
+            ((System.ComponentModel.ISupportInitialize)(this.dtgv_Cartuchera)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,5 +250,8 @@
         private System.Windows.Forms.ComboBox cmb_Tipo;
         private System.Windows.Forms.Label lbl_Tamanio;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btn_Salir;
+        private System.Windows.Forms.DataGridView dtgv_Cartuchera;
+        private System.Windows.Forms.Label lbl_Cartuchera;
     }
 }
