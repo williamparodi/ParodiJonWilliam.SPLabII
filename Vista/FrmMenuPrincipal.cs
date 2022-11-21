@@ -12,11 +12,17 @@ namespace Vista
 {
     public partial class FrmMenuPrincipal : Form
     {
+        
         public FrmMenuPrincipal()
         {
             InitializeComponent();
         }
-        
 
+        private void btn_Utiles_Click(object sender, EventArgs e)
+        {
+            FrmUtiles frmUtiles = new FrmUtiles();
+            frmUtiles.ShowDialog();
+            this.Close();
+        }
     }
 }

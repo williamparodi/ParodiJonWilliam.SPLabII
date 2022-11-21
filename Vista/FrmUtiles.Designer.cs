@@ -34,19 +34,17 @@
             this.lbl_Util = new System.Windows.Forms.Label();
             this.cmb_TipoDeUtil = new System.Windows.Forms.ComboBox();
             this.lbl_Marca = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_Marca = new System.Windows.Forms.TextBox();
             this.lbl_Color = new System.Windows.Forms.Label();
             this.cmb_Color = new System.Windows.Forms.ComboBox();
             this.lbl_Precio = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_Precio = new System.Windows.Forms.TextBox();
             this.lbl_Tipo = new System.Windows.Forms.Label();
             this.cmb_Tipo = new System.Windows.Forms.ComboBox();
             this.lbl_Tamanio = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btn_Salir = new System.Windows.Forms.Button();
-            this.dtgv_Cartuchera = new System.Windows.Forms.DataGridView();
             this.lbl_Cartuchera = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgv_Cartuchera)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_Agregar
@@ -57,6 +55,7 @@
             this.btn_Agregar.TabIndex = 0;
             this.btn_Agregar.Text = "AGREGAR";
             this.btn_Agregar.UseVisualStyleBackColor = true;
+            this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
             // 
             // lbl_AgregarUtil
             // 
@@ -87,6 +86,7 @@
             this.cmb_TipoDeUtil.Name = "cmb_TipoDeUtil";
             this.cmb_TipoDeUtil.Size = new System.Drawing.Size(121, 23);
             this.cmb_TipoDeUtil.TabIndex = 3;
+            this.cmb_TipoDeUtil.SelectedIndexChanged += new System.EventHandler(this.cmb_TipoDeUtil_SelectedIndexChanged);
             // 
             // lbl_Marca
             // 
@@ -97,12 +97,12 @@
             this.lbl_Marca.TabIndex = 4;
             this.lbl_Marca.Text = "Marca";
             // 
-            // textBox1
+            // txt_Marca
             // 
-            this.textBox1.Location = new System.Drawing.Point(104, 101);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(120, 23);
-            this.textBox1.TabIndex = 5;
+            this.txt_Marca.Location = new System.Drawing.Point(104, 101);
+            this.txt_Marca.Name = "txt_Marca";
+            this.txt_Marca.Size = new System.Drawing.Size(120, 23);
+            this.txt_Marca.TabIndex = 5;
             // 
             // lbl_Color
             // 
@@ -116,6 +116,11 @@
             // cmb_Color
             // 
             this.cmb_Color.FormattingEnabled = true;
+            this.cmb_Color.Items.AddRange(new object[] {
+            "Amarillo",
+            "Negro",
+            "Azul",
+            "Rojo"});
             this.cmb_Color.Location = new System.Drawing.Point(104, 146);
             this.cmb_Color.Name = "cmb_Color";
             this.cmb_Color.Size = new System.Drawing.Size(120, 23);
@@ -130,12 +135,12 @@
             this.lbl_Precio.TabIndex = 8;
             this.lbl_Precio.Text = "Precio";
             // 
-            // textBox2
+            // txt_Precio
             // 
-            this.textBox2.Location = new System.Drawing.Point(102, 266);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(74, 23);
-            this.textBox2.TabIndex = 9;
+            this.txt_Precio.Location = new System.Drawing.Point(102, 266);
+            this.txt_Precio.Name = "txt_Precio";
+            this.txt_Precio.Size = new System.Drawing.Size(74, 23);
+            this.txt_Precio.TabIndex = 9;
             // 
             // lbl_Tipo
             // 
@@ -180,23 +185,10 @@
             this.btn_Salir.Text = "SALIR";
             this.btn_Salir.UseVisualStyleBackColor = true;
             // 
-            // dtgv_Cartuchera
-            // 
-            this.dtgv_Cartuchera.AllowUserToAddRows = false;
-            this.dtgv_Cartuchera.AllowUserToDeleteRows = false;
-            this.dtgv_Cartuchera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgv_Cartuchera.Location = new System.Drawing.Point(388, 61);
-            this.dtgv_Cartuchera.Name = "dtgv_Cartuchera";
-            this.dtgv_Cartuchera.ReadOnly = true;
-            this.dtgv_Cartuchera.RowTemplate.Height = 25;
-            this.dtgv_Cartuchera.Size = new System.Drawing.Size(362, 228);
-            this.dtgv_Cartuchera.TabIndex = 15;
-            this.dtgv_Cartuchera.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_Cartuchera_CellContentClick);
-            // 
             // lbl_Cartuchera
             // 
             this.lbl_Cartuchera.AutoSize = true;
-            this.lbl_Cartuchera.Location = new System.Drawing.Point(389, 30);
+            this.lbl_Cartuchera.Location = new System.Drawing.Point(405, 24);
             this.lbl_Cartuchera.Name = "lbl_Cartuchera";
             this.lbl_Cartuchera.Size = new System.Drawing.Size(65, 15);
             this.lbl_Cartuchera.TabIndex = 16;
@@ -208,17 +200,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lbl_Cartuchera);
-            this.Controls.Add(this.dtgv_Cartuchera);
             this.Controls.Add(this.btn_Salir);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lbl_Tamanio);
             this.Controls.Add(this.cmb_Tipo);
             this.Controls.Add(this.lbl_Tipo);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txt_Precio);
             this.Controls.Add(this.lbl_Precio);
             this.Controls.Add(this.cmb_Color);
             this.Controls.Add(this.lbl_Color);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_Marca);
             this.Controls.Add(this.lbl_Marca);
             this.Controls.Add(this.cmb_TipoDeUtil);
             this.Controls.Add(this.lbl_Util);
@@ -228,7 +219,6 @@
             this.Name = "FrmUtiles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu Utiles";
-            ((System.ComponentModel.ISupportInitialize)(this.dtgv_Cartuchera)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,17 +231,16 @@
         private System.Windows.Forms.Label lbl_Util;
         private System.Windows.Forms.ComboBox cmb_TipoDeUtil;
         private System.Windows.Forms.Label lbl_Marca;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_Marca;
         private System.Windows.Forms.Label lbl_Color;
         private System.Windows.Forms.ComboBox cmb_Color;
         private System.Windows.Forms.Label lbl_Precio;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_Precio;
         private System.Windows.Forms.Label lbl_Tipo;
         private System.Windows.Forms.ComboBox cmb_Tipo;
         private System.Windows.Forms.Label lbl_Tamanio;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btn_Salir;
-        private System.Windows.Forms.DataGridView dtgv_Cartuchera;
         private System.Windows.Forms.Label lbl_Cartuchera;
     }
 }

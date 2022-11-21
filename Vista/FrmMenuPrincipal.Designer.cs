@@ -43,6 +43,7 @@
             this.btn_Utiles.TabIndex = 0;
             this.btn_Utiles.Text = "UTILES";
             this.btn_Utiles.UseVisualStyleBackColor = true;
+            this.btn_Utiles.Click += new System.EventHandler(this.btn_Utiles_Click);
             // 
             // btn_SerealizaDeserealiza
             // 
