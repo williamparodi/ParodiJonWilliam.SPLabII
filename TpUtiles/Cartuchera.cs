@@ -1,7 +1,9 @@
 ﻿using Entidades;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using System.Text;
 
 namespace TpUtiles
 {
@@ -11,8 +13,7 @@ namespace TpUtiles
         private int capacidad;
         private List<T> listaUtiles;
         
-        public static event DelegadoPrecio EventoPrecio;//lo hice estatic por que lo utilizo en el operador static
-
+        public  event DelegadoPrecio EventoPrecio;
         public Cartuchera()
         {
             this.capacidad = 0;
@@ -39,25 +40,32 @@ namespace TpUtiles
 
         public double PrecioTotal
         {
-            get
+            get { return AcumulaPrecio(this.ListaUtiles); }
+            set
             {
-                return AcumulaPrecio(this.listaUtiles);
+                if(EventoPrecio is not null && AcumulaPrecio(this.ListaUtiles) >500)
+                {
+                    EventoPrecio("Se supero");
+                }
             }
         }
 
         public static bool operator +(Cartuchera<T> cartuchera, T util)
         {
             bool retorno = false;
+            string tickets = "";
             
             if (cartuchera is not null && util is not null)
             {
                 if (cartuchera.Capacidad < 10)
                 {
                     cartuchera.listaUtiles.Add(util);
+
                     if(cartuchera.PrecioTotal > 500)
                     {
-                        EventoPrecio($"Se supero el precio total de $500! Total :$ {cartuchera.PrecioTotal}");
+                        tickets = cartuchera.listaUtiles.ToString();
                     }
+
                     retorno = true;
                 }
                 else
@@ -83,8 +91,7 @@ namespace TpUtiles
 
             return precioTotal;
         }
-
-      
+        
 
 
 

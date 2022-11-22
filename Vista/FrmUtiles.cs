@@ -1,5 +1,9 @@
 ﻿using Entidades;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
+using System.Drawing.Printing;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using TpUtiles;
 
@@ -7,10 +11,13 @@ namespace Vista
 {
     public partial class FrmUtiles : Form
     {
-        public Cartuchera<Util> cartuchera;
-        public Lapiz lapiz;
-        public Goma goma;
-        public Sacapunta sacapunta;
+        private Cartuchera<Util> cartuchera;
+        private Lapiz lapiz;
+        private Goma goma;
+        private Sacapunta sacapunta;
+        private SaveFileDialog saveFileDialog;
+        private string path;
+        private string carpetaDefalut;
         public FrmUtiles()
         {
             InitializeComponent();
@@ -18,10 +25,16 @@ namespace Vista
             lapiz = new Lapiz();
             goma = new Goma();
             sacapunta = new Sacapunta();
+            saveFileDialog = new SaveFileDialog();
+            saveFileDialog.InitialDirectory = "Mis Documentos";//mmm
+            saveFileDialog.Filter = "Archivo de texto|*.txt";
+            saveFileDialog.Title = "Save a Text File";
+            path = "tickets.txt";
         }
 
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
+           double precioTotal;
             try
             {
                 Validaciones.ValidarDatosIngresados(txt_Precio.Text, txt_Marca.Text);
@@ -37,9 +50,14 @@ namespace Vista
                 {
                     if (cartuchera + goma)
                     {
-
+                        
                     }
                 }
+                if(cartuchera.PrecioTotal >500)
+                {
+                    GuardarTicket();
+                }
+                //Evento mas de $500
             }
             catch (CartucheraLLenaException ex)
             {
@@ -76,5 +94,71 @@ namespace Vista
                     break;
             }
         }
+
+        static void NotificacionPrecio(string mensaje)
+        {
+            MessageBox.Show(mensaje);
+        }
+
+        private void LeerTicket()
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                try
+                {
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        //obtengo el nombre del archivo
+                        this.path = ofd.FileName;
+
+                        using (StreamReader streamReader = new StreamReader(this.path))
+                        {
+                            this.path = streamReader.ReadToEnd();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MostrarVentanaDeError(ex);
+                }
+            }
+        }
+
+        private void GuardarTicket()
+        {
+            try
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (saveFileDialog.FileName != "")
+                    {
+                        //this.path = saveFileDialog.FileName;
+
+                        using (StreamWriter streamWriter = new StreamWriter(this.path, true))
+                        {
+                            streamWriter.Write(cartuchera.ListaUtiles.ToString());
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MostrarVentanaDeError(ex);
+            }
+        }
+
+        private void MostrarVentanaDeError(Exception ex)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"Error: {ex.Message}");
+            stringBuilder.AppendLine("Detalle:");
+            stringBuilder.AppendLine(ex.StackTrace);
+
+            MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+
+
     }
 }

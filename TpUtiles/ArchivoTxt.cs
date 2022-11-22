@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Entidades
 {
@@ -33,9 +34,9 @@ namespace Entidades
             return text;
         }
 
-        public static void GuardaArchivo()
+        public static void GuardaArchivo(string texto)
         {
-
+              
         }
     }
 }
