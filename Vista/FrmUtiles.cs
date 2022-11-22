@@ -29,12 +29,12 @@ namespace Vista
             saveFileDialog.InitialDirectory = "Mis Documentos";//mmm
             saveFileDialog.Filter = "Archivo de texto|*.txt";
             saveFileDialog.Title = "Save a Text File";
-            path = "tickets.txt";
+            saveFileDialog.FileName = "tickets.txt";
         }
 
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
-           double precioTotal;
+          
             try
             {
                 Validaciones.ValidarDatosIngresados(txt_Precio.Text, txt_Marca.Text);
@@ -132,7 +132,7 @@ namespace Vista
                 {
                     if (saveFileDialog.FileName != "")
                     {
-                        //this.path = saveFileDialog.FileName;
+                        this.path = saveFileDialog.FileName;
 
                         using (StreamWriter streamWriter = new StreamWriter(this.path, true))
                         {
