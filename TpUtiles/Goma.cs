@@ -9,7 +9,7 @@ namespace TpUtiles
     public class Goma : Util
     {
         private ETipoGoma tipoGoma;
-        private int tamanio;
+        private ETamanio tamanio;
 
         public Goma() : base()
         {
@@ -17,7 +17,7 @@ namespace TpUtiles
             this.tamanio = 0;
         }
 
-        public Goma(double precio,string marca,ETipoGoma tipoGoma,int tamanio) : base(precio,marca)
+        public Goma(double precio,string marca,ETipoGoma tipoGoma,ETamanio tamanio) : base(precio,marca)
         {
             this.tipoGoma = tipoGoma;
             this.tamanio = tamanio;
@@ -29,7 +29,7 @@ namespace TpUtiles
             set { this.tipoGoma = value; }
         }
 
-        public int Tamanio
+        public ETamanio Tamanio
         {
             get { return this.tamanio; }
             set { this.tamanio = value; }
@@ -50,8 +50,8 @@ namespace TpUtiles
             precioASumar = double.Parse(precio);
             auxGoma.precio = precioASumar;
             auxGoma.marca = marca;
-            auxGoma.CargaTipoGoma(tipo);
-            auxGoma.CargaTamanio(tamanio);
+            auxGoma.tipoGoma = auxGoma.CargaTipoGoma(tipo);
+            auxGoma.tamanio = auxGoma.CargaTamanio(tamanio);
           
             return auxGoma;   
         }

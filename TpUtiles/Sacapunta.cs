@@ -30,7 +30,7 @@ namespace TpUtiles
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Precio : {this.precio} , Marca : {this.marca} , Tipo de sacapuntas : {this.tipoSacapuntas}");
+            sb.AppendLine($"Precio : {this.precio} , Marca : {this.marca} , Tipo de sacapuntas : {this.TipoSacapuntas}");
             return sb.ToString();
         }
 
@@ -62,7 +62,7 @@ namespace TpUtiles
             precioASumar = double.Parse(precio);
             auxSacapuntas.precio = precioASumar;
             auxSacapuntas.marca = marca;
-            auxSacapuntas.CargaTipoSacapuntas(tipo);
+            auxSacapuntas.tipoSacapuntas = auxSacapuntas.CargaTipoSacapuntas(tipo);
 
             return auxSacapuntas;
         }

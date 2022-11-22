@@ -40,7 +40,7 @@ namespace Vista
                 Validaciones.ValidarDatosIngresados(txt_Precio.Text, txt_Marca.Text);
                 if (cmb_TipoDeUtil.Text == "Lapiz")
                 {
-                    lapiz = lapiz.CargaDatosLapiz(txt_Precio.Text, txt_Marca.Text, cmb_Color.Text, cmb_TipoDeUtil.Text);
+                    lapiz = lapiz.CargaDatosLapiz(txt_Precio.Text, txt_Marca.Text, cmb_Color.Text, cmb_Tipo.Text);
                     if (cartuchera + lapiz)
                     {
                         MessageBox.Show($"Se agrego Lapiz : {lapiz}");
@@ -78,8 +78,6 @@ namespace Vista
             }
 
         }
-
-    
 
         private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -166,7 +164,10 @@ namespace Vista
             MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-
-
+        private void btn_VerCartuchera_Click(object sender, EventArgs e)
+        {
+            rtx_Cartuchera.Text= string.Empty;
+            rtx_Cartuchera.Text = cartuchera.MuestraCartuchera(cartuchera.ListaUtiles);
+        }
     }
 }

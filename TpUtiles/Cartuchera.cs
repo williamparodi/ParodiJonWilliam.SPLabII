@@ -102,14 +102,17 @@ namespace TpUtiles
                 {
                     if(item is Lapiz)
                     {
+                        sb.AppendLine("Util : Lapiz ");
                         sb.AppendLine(item.ToString());
                     }
                     else if(item is Goma)
                     {
+                        sb.AppendLine("Util : Goma ");
                         sb.AppendLine(item.ToString());
                     }
                     else
                     {
+                        sb.AppendLine("Util : Sacapuntas ");
                         sb.AppendLine(item.ToString());
                     }
                 }

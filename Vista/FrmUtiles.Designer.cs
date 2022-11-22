@@ -44,7 +44,8 @@
             this.lbl_Tamanio = new System.Windows.Forms.Label();
             this.cmb_Tamanio = new System.Windows.Forms.ComboBox();
             this.btn_Salir = new System.Windows.Forms.Button();
-            this.lbl_Cartuchera = new System.Windows.Forms.Label();
+            this.btn_VerCartuchera = new System.Windows.Forms.Button();
+            this.rtx_Cartuchera = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // btn_Agregar
@@ -189,21 +190,31 @@
             this.btn_Salir.Text = "SALIR";
             this.btn_Salir.UseVisualStyleBackColor = true;
             // 
-            // lbl_Cartuchera
+            // btn_VerCartuchera
             // 
-            this.lbl_Cartuchera.AutoSize = true;
-            this.lbl_Cartuchera.Location = new System.Drawing.Point(405, 24);
-            this.lbl_Cartuchera.Name = "lbl_Cartuchera";
-            this.lbl_Cartuchera.Size = new System.Drawing.Size(65, 15);
-            this.lbl_Cartuchera.TabIndex = 16;
-            this.lbl_Cartuchera.Text = "Cartuchera";
+            this.btn_VerCartuchera.Location = new System.Drawing.Point(277, 307);
+            this.btn_VerCartuchera.Name = "btn_VerCartuchera";
+            this.btn_VerCartuchera.Size = new System.Drawing.Size(114, 48);
+            this.btn_VerCartuchera.TabIndex = 17;
+            this.btn_VerCartuchera.Text = "Ver Cartuchera";
+            this.btn_VerCartuchera.UseVisualStyleBackColor = true;
+            this.btn_VerCartuchera.Click += new System.EventHandler(this.btn_VerCartuchera_Click);
+            // 
+            // rtx_Cartuchera
+            // 
+            this.rtx_Cartuchera.Location = new System.Drawing.Point(433, 61);
+            this.rtx_Cartuchera.Name = "rtx_Cartuchera";
+            this.rtx_Cartuchera.Size = new System.Drawing.Size(285, 223);
+            this.rtx_Cartuchera.TabIndex = 18;
+            this.rtx_Cartuchera.Text = "";
             // 
             // FrmUtiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lbl_Cartuchera);
+            this.Controls.Add(this.rtx_Cartuchera);
+            this.Controls.Add(this.btn_VerCartuchera);
             this.Controls.Add(this.btn_Salir);
             this.Controls.Add(this.cmb_Tamanio);
             this.Controls.Add(this.lbl_Tamanio);
@@ -245,6 +256,7 @@
         private System.Windows.Forms.Label lbl_Tamanio;
         private System.Windows.Forms.ComboBox cmb_Tamanio;
         private System.Windows.Forms.Button btn_Salir;
-        private System.Windows.Forms.Label lbl_Cartuchera;
+        private System.Windows.Forms.Button btn_VerCartuchera;
+        private System.Windows.Forms.RichTextBox rtx_Cartuchera;
     }
 }
