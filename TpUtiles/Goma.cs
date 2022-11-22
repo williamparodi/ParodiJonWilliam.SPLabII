@@ -35,6 +35,68 @@ namespace TpUtiles
             set { this.tamanio = value; }
         }
 
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Precio : {this.precio}, Marca : {this.marca}, Tipo de goma : {this.tipoGoma}, Tamaño : {this.tamanio}");
+            return sb.ToString();
+        }
+
+        public  Goma CargaDatosGoma(string precio,string marca,string tipo,string tamanio)
+        {
+            Goma auxGoma = new Goma();
+            double precioASumar;
+
+            precioASumar = double.Parse(precio);
+            auxGoma.precio = precioASumar;
+            auxGoma.marca = marca;
+            auxGoma.CargaTipoGoma(tipo);
+            auxGoma.CargaTamanio(tamanio);
+          
+            return auxGoma;   
+        }
+
+        public ETipoGoma CargaTipoGoma(string tipo)
+        {
+            ETipoGoma auxGoma = new ETipoGoma();
+
+            switch (tipo)
+            {
+                case "ParaTinta":
+                    auxGoma = ETipoGoma.ParaTinta;
+                    break;
+                case "ParaLapiz":
+                    auxGoma = ETipoGoma.ParaLapiz;
+                    break;
+                default:
+                    break;
+            }
+
+            return auxGoma;
+        }
+
+        public ETamanio CargaTamanio(string tamanio) 
+        {
+            ETamanio auxGoma = new ETamanio();
+
+            switch(tamanio) 
+            {
+                case "1":
+                    auxGoma = ETamanio.Numero1;
+                    break;
+                case "2":
+                    auxGoma = ETamanio.Numero2;
+                    break;
+                case "3":
+                    auxGoma = ETamanio.Numero3;
+                    break;
+                default:
+                    break;
+            }
+
+            return auxGoma;
+        }
+
 
     }
 }

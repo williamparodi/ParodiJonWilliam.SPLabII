@@ -53,7 +53,6 @@ namespace TpUtiles
         public static bool operator +(Cartuchera<T> cartuchera, T util)
         {
             bool retorno = false;
-            string tickets = "";
             
             if (cartuchera is not null && util is not null)
             {
@@ -63,7 +62,7 @@ namespace TpUtiles
 
                     if(cartuchera.PrecioTotal > 500)
                     {
-                        tickets = cartuchera.listaUtiles.ToString();
+                        
                     }
 
                     retorno = true;
@@ -91,9 +90,35 @@ namespace TpUtiles
 
             return precioTotal;
         }
-        
 
+        public string MuestraCartuchera(List<T> listaUtil)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Lista de utiles : ");
 
+            if(listaUtil is not null)
+            {
+                foreach(T item  in listaUtil)
+                {
+                    if(item is Lapiz)
+                    {
+                        sb.AppendLine(item.ToString());
+                    }
+                    else if(item is Goma)
+                    {
+                        sb.AppendLine(item.ToString());
+                    }
+                    else
+                    {
+                        sb.AppendLine(item.ToString());
+                    }
+                }
+            }
+
+            return sb.ToString();
+        }
+
+      
 
     }
 

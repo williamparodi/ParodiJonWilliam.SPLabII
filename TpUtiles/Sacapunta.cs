@@ -27,6 +27,44 @@ namespace TpUtiles
             set { this.tipoSacapuntas = value; }
         }
 
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Precio : {this.precio} , Marca : {this.marca} , Tipo de sacapuntas : {this.tipoSacapuntas}");
+            return sb.ToString();
+        }
 
+        public ETipoSacapuntas CargaTipoSacapuntas(string tipo)
+        {
+            ETipoSacapuntas auxSacapuntas = new ETipoSacapuntas();
+
+            switch(tipo)
+            {
+                case "Electrico":
+                    auxSacapuntas = ETipoSacapuntas.Electrico;
+                    break;
+                case "Portatil":
+                    auxSacapuntas = ETipoSacapuntas.Portatil;
+                    break;
+                default:
+                    break;
+            }
+
+            return auxSacapuntas;
+        }
+
+        public Sacapunta CargaDatosSacapuntas(string precio,string marca,string tipo)
+        {
+            Sacapunta auxSacapuntas = new Sacapunta();
+
+            double precioASumar;
+
+            precioASumar = double.Parse(precio);
+            auxSacapuntas.precio = precioASumar;
+            auxSacapuntas.marca = marca;
+            auxSacapuntas.CargaTipoSacapuntas(tipo);
+
+            return auxSacapuntas;
+        }
     }
 }

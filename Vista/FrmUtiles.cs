@@ -48,9 +48,18 @@ namespace Vista
                 }
                 else if (cmb_TipoDeUtil.Text == "Goma")
                 {
+                    goma = goma.CargaDatosGoma(txt_Precio.Text, txt_Marca.Text, cmb_Tipo.Text, cmb_Tamanio.Text);
                     if (cartuchera + goma)
                     {
-                        
+                        MessageBox.Show($"Se agrego Goma : {goma}");
+                    }
+                }
+                else
+                {
+                    sacapunta = sacapunta.CargaDatosSacapuntas(txt_Precio.Text, txt_Marca.Text, cmb_Tipo.Text);
+                    if(cartuchera + sacapunta)
+                    {
+                        MessageBox.Show($"Se agrego sacapuntas : {sacapunta}");
                     }
                 }
                 if(cartuchera.PrecioTotal >500)
@@ -77,7 +86,6 @@ namespace Vista
             int index = cmb_TipoDeUtil.SelectedIndex;
             switch (index)
             {
-                
                 case 0: 
                     cmb_Tipo.Items.Add("Normal");
                     cmb_Tipo.Items.Add("Grafito");

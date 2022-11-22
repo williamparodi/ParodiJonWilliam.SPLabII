@@ -42,7 +42,7 @@
             this.lbl_Tipo = new System.Windows.Forms.Label();
             this.cmb_Tipo = new System.Windows.Forms.ComboBox();
             this.lbl_Tamanio = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmb_Tamanio = new System.Windows.Forms.ComboBox();
             this.btn_Salir = new System.Windows.Forms.Button();
             this.lbl_Cartuchera = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -168,13 +168,17 @@
             this.lbl_Tamanio.TabIndex = 12;
             this.lbl_Tamanio.Text = "Tamaño";
             // 
-            // comboBox1
+            // cmb_Tamanio
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(102, 228);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(122, 23);
-            this.comboBox1.TabIndex = 13;
+            this.cmb_Tamanio.FormattingEnabled = true;
+            this.cmb_Tamanio.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.cmb_Tamanio.Location = new System.Drawing.Point(102, 228);
+            this.cmb_Tamanio.Name = "cmb_Tamanio";
+            this.cmb_Tamanio.Size = new System.Drawing.Size(122, 23);
+            this.cmb_Tamanio.TabIndex = 13;
             // 
             // btn_Salir
             // 
@@ -201,7 +205,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lbl_Cartuchera);
             this.Controls.Add(this.btn_Salir);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmb_Tamanio);
             this.Controls.Add(this.lbl_Tamanio);
             this.Controls.Add(this.cmb_Tipo);
             this.Controls.Add(this.lbl_Tipo);
@@ -239,7 +243,7 @@
         private System.Windows.Forms.Label lbl_Tipo;
         private System.Windows.Forms.ComboBox cmb_Tipo;
         private System.Windows.Forms.Label lbl_Tamanio;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmb_Tamanio;
         private System.Windows.Forms.Button btn_Salir;
         private System.Windows.Forms.Label lbl_Cartuchera;
     }
