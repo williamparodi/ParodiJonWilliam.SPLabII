@@ -46,6 +46,7 @@
             this.btn_Salir = new System.Windows.Forms.Button();
             this.btn_VerCartuchera = new System.Windows.Forms.Button();
             this.rtx_Cartuchera = new System.Windows.Forms.RichTextBox();
+            this.lbl_Cartuchera = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_Agregar
@@ -208,11 +209,21 @@
             this.rtx_Cartuchera.TabIndex = 18;
             this.rtx_Cartuchera.Text = "";
             // 
+            // lbl_Cartuchera
+            // 
+            this.lbl_Cartuchera.AutoSize = true;
+            this.lbl_Cartuchera.Location = new System.Drawing.Point(436, 29);
+            this.lbl_Cartuchera.Name = "lbl_Cartuchera";
+            this.lbl_Cartuchera.Size = new System.Drawing.Size(68, 15);
+            this.lbl_Cartuchera.TabIndex = 19;
+            this.lbl_Cartuchera.Text = "Cartuchera ";
+            // 
             // FrmUtiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_Cartuchera);
             this.Controls.Add(this.rtx_Cartuchera);
             this.Controls.Add(this.btn_VerCartuchera);
             this.Controls.Add(this.btn_Salir);
@@ -258,5 +269,6 @@
         private System.Windows.Forms.Button btn_Salir;
         private System.Windows.Forms.Button btn_VerCartuchera;
         private System.Windows.Forms.RichTextBox rtx_Cartuchera;
+        private System.Windows.Forms.Label lbl_Cartuchera;
     }
 }

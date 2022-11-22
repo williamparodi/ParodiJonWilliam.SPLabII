@@ -53,6 +53,7 @@
             this.btn_SerealizaDeserealiza.TabIndex = 1;
             this.btn_SerealizaDeserealiza.Text = "SEREALIZA Y DESEREALIZA";
             this.btn_SerealizaDeserealiza.UseVisualStyleBackColor = true;
+            this.btn_SerealizaDeserealiza.Click += new System.EventHandler(this.btn_SerealizaDeserealiza_Click);
             // 
             // btn_Base
             // 

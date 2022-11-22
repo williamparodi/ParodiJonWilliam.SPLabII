@@ -12,7 +12,6 @@ namespace Vista
 {
     public partial class FrmMenuPrincipal : Form
     {
-        
         public FrmMenuPrincipal()
         {
             InitializeComponent();
@@ -22,6 +21,13 @@ namespace Vista
         {
             FrmUtiles frmUtiles = new FrmUtiles();
             frmUtiles.ShowDialog();
+            this.Close();
+        }
+
+        private void btn_SerealizaDeserealiza_Click(object sender, EventArgs e)
+        {
+            FrmSerealizaDeserealiza frmSerealizaDeserealiza = new FrmSerealizaDeserealiza();
+            frmSerealizaDeserealiza.ShowDialog();
             this.Close();
         }
     }

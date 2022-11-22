@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
@@ -117,6 +118,7 @@ namespace TpUtiles
             {
                 lapizTexto = JsonSerializer.Serialize(lapiz);
             }
+
             return lapizTexto;
         }
 
@@ -131,13 +133,13 @@ namespace TpUtiles
             return lapiz;
         }
 
-        public void SerializaLapizXml(string nombreArchivo, Lapiz lapiz)
+        public void SerializaLapizXml(string nombreArchivo,List<Lapiz> lapiz)
         {
-            if (string.IsNullOrEmpty(nombreArchivo) && lapiz is not null)
+            if (!string.IsNullOrEmpty(nombreArchivo) && lapiz is not null)
             {
                 using (StreamWriter writer = new StreamWriter(nombreArchivo, true))
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(Lapiz));
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<Lapiz>));
                     serializer.Serialize(writer, lapiz);
                 }
             }
@@ -168,6 +170,15 @@ namespace TpUtiles
             return lapiz;
         }
 
+        public static bool operator ==(Lapiz a, Lapiz b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Lapiz a, Lapiz b)
+        {
+            return !(a == b);
+        }
 
 
 
