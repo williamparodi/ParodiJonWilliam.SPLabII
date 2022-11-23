@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfLapiz xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Lapiz>
-    <Precio>10</Precio>
-    <Marca>Faber Castell</Marca>
-    <Color>Azul</Color>
-    <TipoDeLapiz>Normal</TipoDeLapiz>
-  </Lapiz>
-</ArrayOfLapiz>
+<Lapiz xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Precio>36</Precio>
+  <Marca>Plexy</Marca>
+  <Color>Rojo</Color>
+  <TipoDeLapiz>Grafito</TipoDeLapiz>
+</Lapiz>

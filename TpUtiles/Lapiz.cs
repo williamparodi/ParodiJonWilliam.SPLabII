@@ -133,19 +133,24 @@ namespace TpUtiles
             return lapiz;
         }
 
-        public void SerializaLapizXml(string nombreArchivo,List<Lapiz> lapiz)
+        public void SerializaLapizXml(string nombreArchivo,Lapiz lapiz)
         {
-            if (!string.IsNullOrEmpty(nombreArchivo) && lapiz is not null)
+            if (string.IsNullOrEmpty(nombreArchivo) && lapiz is not null)
             {
                 using (StreamWriter writer = new StreamWriter(nombreArchivo, true))
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(List<Lapiz>));
+                    XmlSerializer serializer = new XmlSerializer(typeof(Lapiz));
                     serializer.Serialize(writer, lapiz);
                 }
             }
             else
             {
-                throw new ExceptionArchivo("Error al serializar xml");
+                using (StreamWriter writer = new StreamWriter(nombreArchivo))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(Lapiz));
+                    serializer.Serialize(writer, lapiz);
+                }
+                   // throw new ExceptionArchivo("Error al serializar xml");
             }
 
         }
@@ -170,15 +175,16 @@ namespace TpUtiles
             return lapiz;
         }
 
-        public static bool operator ==(Lapiz a, Lapiz b)
+        public static bool operator == (Lapiz a, Lapiz b)
         {
-            return a.Equals(b);
+            return (a == b);
         }
 
         public static bool operator !=(Lapiz a, Lapiz b)
         {
             return !(a == b);
         }
+     
 
 
 

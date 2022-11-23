@@ -11,6 +11,6 @@ namespace Entidades
     {
         string SerializaLapizJson(Lapiz lapiz);
 
-        void SerializaLapizXml(string nombreArchivo, List<Lapiz> lapiz);
+        void SerializaLapizXml(string nombreArchivo, Lapiz lapiz);
     }  
 }

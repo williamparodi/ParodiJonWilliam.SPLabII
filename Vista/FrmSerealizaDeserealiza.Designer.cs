@@ -50,7 +50,7 @@
             this.dtgv_ListaLapices.RowTemplate.Height = 25;
             this.dtgv_ListaLapices.Size = new System.Drawing.Size(362, 199);
             this.dtgv_ListaLapices.TabIndex = 0;
-            this.dtgv_ListaLapices.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_ListaLapices_CellContentClick);
+            this.dtgv_ListaLapices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_ListaLapices_CellClick);
             // 
             // lbl_ListaLapices
             // 
