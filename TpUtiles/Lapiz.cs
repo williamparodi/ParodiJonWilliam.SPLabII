@@ -110,23 +110,23 @@ namespace TpUtiles
         }
 
         //Serealiza y Deserealiza
-        public string SerializaLapizJson(Lapiz lapiz)
+        public void SerializaLapizJson(Lapiz lapiz)
         {
-            string lapizTexto = "";
+            string lapizTexto;
 
             if (lapiz is not null)
             {
                 lapizTexto = JsonSerializer.Serialize(lapiz);
+                File.WriteAllText("lapiz.json", lapizTexto);
             }
-
-            return lapizTexto;
         }
 
         public Lapiz DeseralizaJsonLapiz(string str)
         {
             Lapiz lapiz = new Lapiz();
-            if (string.IsNullOrEmpty(str))
-            {
+            if (!string.IsNullOrEmpty(str))
+            { 
+                str = File.ReadAllText(str);
                 lapiz = JsonSerializer.Deserialize<Lapiz>(str);
             }
 
@@ -159,7 +159,7 @@ namespace TpUtiles
         {
             Lapiz lapiz = new Lapiz();
 
-            if (string.IsNullOrEmpty(nombreDelArchivo))
+            if (!string.IsNullOrEmpty(nombreDelArchivo))
             {
                 using (StreamReader streamReader = new StreamReader(nombreDelArchivo, true))
                 {

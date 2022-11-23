@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using TpUtiles;
 
@@ -9,15 +10,19 @@ namespace Vista
     public partial class FrmSerealizaDeserealiza : Form
     {
         Cartuchera<Lapiz> cartuchera;
+        List<Lapiz> listaDeserealizado;
         private Lapiz lapiz;
         private int fila;
-        private string path;
+        private string pathXml;
+        private string pathJson;
         public FrmSerealizaDeserealiza()
         {
             InitializeComponent();
             cartuchera = new Cartuchera<Lapiz>();
             lapiz = new Lapiz();
-            path = "";
+            listaDeserealizado = new List<Lapiz>();
+            pathXml = "";
+            pathJson = "";
             cartuchera.ListaUtiles = HardcodeaLista();
         }
 
@@ -25,16 +30,16 @@ namespace Vista
         {
             try
             {
-                if (path == "")
+                if (pathXml == "")
                 {
-                    path = "lapiz.xml";
-                    lapiz.SerializaLapizXml(path, lapiz);
-                    MessageBox.Show("Lapiz serealizado");
+                    pathXml = "lapiz.xml";
+                    lapiz.SerializaLapizXml(pathXml, lapiz);
+                    MessageBox.Show("Lapiz serealizado en formato Xml");
                 }
                 else
                 {
-                    lapiz.SerializaLapizXml(path, lapiz);
-                    MessageBox.Show("Se Actualizo el lapiz serealizado");
+                    lapiz.SerializaLapizXml(pathXml, lapiz);
+                    MessageBox.Show("Se Actualizo el lapiz serealizado en formato Xml");
                 }
 
             }
@@ -52,6 +57,7 @@ namespace Vista
         private void FrmSerealizaDeserealiza_Load(object sender, EventArgs e)
         {
             dtgv_ListaLapices.DataSource = null;
+            dtgv_LapicesDeserealizados.DataSource = null;
             dtgv_ListaLapices.DataSource = cartuchera.ListaUtiles;
         }
 
@@ -76,14 +82,15 @@ namespace Vista
         {
             try
             {
-                if (lapiz is not null)
+                if(!File.Exists("lapiz.json"))
                 {
-                    lapiz.Precio = cartuchera.ListaUtiles[fila].Precio;
-                    lapiz.Color = cartuchera.ListaUtiles[fila].Color;
-                    lapiz.Marca = cartuchera.ListaUtiles[fila].Marca;
-                    lapiz.TipoDeLapiz = cartuchera.ListaUtiles[fila].TipoDeLapiz;
                     lapiz.SerializaLapizJson(lapiz);
-                    MessageBox.Show("Lapiz serealizado en fromato Json");
+                    MessageBox.Show("Lapiz serealizado en formato Json");
+                }
+                else
+                {
+                    lapiz.SerializaLapizJson(lapiz);
+                    MessageBox.Show("Se actualizo el lapiz serealizado en Json");
                 }
             }
             catch (ExceptionArchivo ex)
@@ -109,6 +116,66 @@ namespace Vista
                     lapiz.TipoDeLapiz = cartuchera.ListaUtiles[fila].TipoDeLapiz;
                 }
             }
+        }
+
+        private void btn_DeserealizarJson_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pathJson = "lapiz.json";
+                if (File.Exists(pathJson))
+                {
+                    lapiz = lapiz.DeseralizaJsonLapiz(pathJson);
+                    if (lapiz is not null)
+                    {
+                        listaDeserealizado.Add(lapiz);
+                        MessageBox.Show("Se deserealizo lapiz de formato json");
+                        dtgv_LapicesDeserealizados.DataSource = null;
+                        dtgv_LapicesDeserealizados.DataSource = listaDeserealizado;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Primero debería serializar un lapiz en formato json", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
+        }
+
+        private void btn_DeserealizarXml_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pathJson = "lapiz.xml";
+                if (File.Exists(pathJson))
+                {
+                    lapiz = lapiz.DeserealizaLapizXml(pathJson);
+                    if (lapiz is not null)
+                    {
+                        listaDeserealizado.Add(lapiz);
+                        MessageBox.Show("Se deserealizo lapiz de formato xml");
+                        dtgv_LapicesDeserealizados.DataSource = null;
+                        dtgv_LapicesDeserealizados.DataSource = listaDeserealizado;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Primero debería serializar un lapiz en formato xml", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (ExceptionArchivo ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 

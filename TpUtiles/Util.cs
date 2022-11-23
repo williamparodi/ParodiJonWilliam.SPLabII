@@ -9,7 +9,7 @@ namespace TpUtiles
         public Util()
         {
             this.precio = 0;
-            this.marca = "";
+            this.marca = "Sin marca";
         }
 
         public Util(double precio, string marca)
