@@ -59,7 +59,7 @@ namespace TpUtiles
                 if (cartuchera.Capacidad < 10)
                 {
                     cartuchera.listaUtiles.Add(util);
-
+                    cartuchera.Capacidad++;
                     if(cartuchera.PrecioTotal > 500)
                     {
                         

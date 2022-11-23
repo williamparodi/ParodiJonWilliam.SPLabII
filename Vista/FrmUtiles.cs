@@ -3,6 +3,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Drawing.Printing;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
 using TpUtiles;
@@ -26,10 +27,11 @@ namespace Vista
             goma = new Goma();
             sacapunta = new Sacapunta();
             saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = "Mis Documentos";//mmm
+            carpetaDefalut = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveFileDialog.InitialDirectory = carpetaDefalut;//mmm
             saveFileDialog.Filter = "Archivo de texto|*.txt";
             saveFileDialog.Title = "Save a Text File";
-            saveFileDialog.FileName = "tickets.txt";
+            path = string.Empty;
         }
 
         private void btn_Agregar_Click(object sender, EventArgs e)
@@ -65,6 +67,7 @@ namespace Vista
                 if(cartuchera.PrecioTotal >500)
                 {
                     GuardarTicket();
+                    cartuchera.EventoPrecio += NotificacionPrecio;
                 }
                 //Evento mas de $500
             }
@@ -134,16 +137,25 @@ namespace Vista
         {
             try
             {
+                saveFileDialog.FileName = "tickets.txt";
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (saveFileDialog.FileName != "")
+                    if (string.IsNullOrEmpty(this.path))
                     {
+                        
                         this.path = saveFileDialog.FileName;
-
                         using (StreamWriter streamWriter = new StreamWriter(this.path, true))
                         {
-                            streamWriter.Write(cartuchera.ListaUtiles.ToString());
+                            streamWriter.WriteLine(cartuchera.MuestraCartuchera(cartuchera.ListaUtiles));
                         }
+                    }
+                    else  
+                    {
+                        using (StreamWriter streamWriter = new StreamWriter(this.path))
+                        {
+                            streamWriter.WriteLine(cartuchera.MuestraCartuchera(cartuchera.ListaUtiles));
+                        }
+                        MessageBox.Show("Se agrego informacion al archivo tickets");
                     }
                 }
 
