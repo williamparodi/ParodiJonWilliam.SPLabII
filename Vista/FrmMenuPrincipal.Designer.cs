@@ -72,6 +72,7 @@
             this.btn_Tickets.TabIndex = 3;
             this.btn_Tickets.Text = "TICKETS";
             this.btn_Tickets.UseVisualStyleBackColor = true;
+            this.btn_Tickets.Click += new System.EventHandler(this.btn_Tickets_Click);
             // 
             // FrmMenuPrincipal
             // 

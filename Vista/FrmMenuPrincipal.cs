@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,6 +30,20 @@ namespace Vista
             FrmSerealizaDeserealiza frmSerealizaDeserealiza = new FrmSerealizaDeserealiza();
             frmSerealizaDeserealiza.ShowDialog();
             this.Close();
+        }
+
+        private void btn_Tickets_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                MessageBox.Show(ArchivoTxt.LeeArchivo());
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error); 
+            }
+            
         }
     }
 }

@@ -34,9 +34,6 @@ namespace Entidades
             return text;
         }
 
-        public static void GuardaArchivo(string texto)
-        {
-              
-        }
+      
     }
 }
