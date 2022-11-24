@@ -150,7 +150,7 @@ namespace TpUtiles
                     XmlSerializer serializer = new XmlSerializer(typeof(Lapiz));
                     serializer.Serialize(writer, lapiz);
                 }
-                   // throw new ExceptionArchivo("Error al serializar xml");
+                   
             }
 
         }

@@ -19,6 +19,7 @@ namespace Vista
         private SaveFileDialog saveFileDialog;
         private string path;
         private string carpetaDefalut;
+        private event DelegadoPrecio EventoPrecio;
         public FrmUtiles()
         {
             InitializeComponent();
@@ -67,7 +68,7 @@ namespace Vista
                 if(cartuchera.PrecioTotal >500)
                 {
                     GuardarTicket();
-                    cartuchera.EventoPrecio += NotificacionPrecio;
+                    EventoPrecio += NotificacionPrecio;
                 }
                 //Evento mas de $500
             }

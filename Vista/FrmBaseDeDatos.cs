@@ -20,16 +20,21 @@ namespace Vista
         private int fila; 
         private Cartuchera<Util> cartuchera;
         private List<Util> listaUtilesASubir;
+        private List<Util> listaUtiles;
+        private Lapiz lapiz = new Lapiz();
+        private Goma goma = new Goma();
+        private Sacapunta sacapunta = new Sacapunta();
         public FrmBaseDeDatos()
         {
             InitializeComponent();
             cartuchera = new Cartuchera<Util>();
             listaUtilesASubir = new List<Util>();
+            listaUtiles = new List<Util>();
         }
 
         private void FrmBaseDeDatos_Load(object sender, EventArgs e)
         {
-            cartuchera.ListaUtiles = HardcodeaListaDeVarios();
+            HardcodeaListaDeVarios();
             dtgv_BaseDeDatos.DataSource = null;
             dtgv_BaseDeDatos.DataSource = cartuchera.ListaUtiles;
         }
@@ -63,25 +68,32 @@ namespace Vista
         private void dtgv_BaseDeDatos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             fila = e.RowIndex;
+            
             if(fila != -1)
             {
-                listaUtilesASubir.Add(cartuchera.ListaUtiles[fila]);
+                if(cartuchera.ListaUtiles is not null)
+                {
+                    if (cartuchera.ListaUtiles[fila] is Lapiz)
+                    {
+                        listaUtilesASubir.Add(cartuchera.ListaUtiles[fila]);   
+                    }
+                }
             }
         }
 
-        public List<Util> HardcodeaListaDeVarios()
+        public bool HardcodeaListaDeVarios()
         {
-            List<Util> auxLista = new List<Util>();
-
+            bool retorno = false;
             Lapiz lapiz = new Lapiz(56,"El mejor",EColor.Rojo,ETipoLapiz.Normal);
             Sacapunta sacapunta = new Sacapunta(60, "Faber Castell", ETipoSacapuntas.Electrico);
             Goma goma = new Goma(60,"Gomiya",ETipoGoma.ParaLapiz,ETamanio.Numero1);
 
-            auxLista.Add(sacapunta);
-            auxLista.Add(goma);
-            auxLista.Add(lapiz);
+            if(cartuchera + sacapunta && cartuchera +goma && cartuchera + lapiz)
+            {
+                retorno = true;
+            }
 
-            return auxLista;
+            return retorno;
         }
     }   
 

@@ -90,7 +90,7 @@ namespace Entidades
 
             try
             {
-                command.CommandText = "INSERT INTO UTILES" + "VALUES @descripcion,@precio,@marca,@color,@tipo";
+                command.CommandText = "INSERT INTO LAPICES" + "VALUES @descripcion,@precio,@marca,@color,@tipo";
                 if (lapiz is not null)
                 {
                     command.Parameters.AddWithValue("@descricion", "Lapiz");
@@ -126,7 +126,7 @@ namespace Entidades
 
             try
             {
-                command.CommandText = "INSERT INTO UTILES" + "VALUES @descripcion,@precio,@marca,@tipo,@tamanio";
+                command.CommandText = "INSERT INTO GOMAS" + "VALUES @descripcion,@precio,@marca,@tipo,@tamanio";
                 if (goma is not null)
                 {
                     command.Parameters.AddWithValue("@descricion", "Goma");
@@ -162,7 +162,7 @@ namespace Entidades
 
             try
             {
-                command.CommandText = "INSERT INTO UTILES" + "VALUES @descripcion,@precio,@marca,@tipo";
+                command.CommandText = "INSERT INTO SACAPUNTAS" + "VALUES @descripcion,@precio,@marca,@tipo";
                 if (sacapuntas is not null)
                 {
                     command.Parameters.AddWithValue("@descricion", "Sacapuntas");
