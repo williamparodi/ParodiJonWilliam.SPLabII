@@ -63,6 +63,7 @@
             this.btn_Base.TabIndex = 2;
             this.btn_Base.Text = "BASE DE DATOS";
             this.btn_Base.UseVisualStyleBackColor = true;
+            this.btn_Base.Click += new System.EventHandler(this.btn_Base_Click);
             // 
             // btn_Tickets
             // 

@@ -36,7 +36,6 @@ namespace Vista
         {
             try
             {
-                
                 MessageBox.Show(ArchivoTxt.LeeArchivo());
             }
             catch(Exception ex) 
@@ -44,6 +43,13 @@ namespace Vista
                 MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error); 
             }
             
+        }
+
+        private void btn_Base_Click(object sender, EventArgs e)
+        {
+            FrmBaseDeDatos frmBaseDeDatos = new FrmBaseDeDatos();
+            frmBaseDeDatos.ShowDialog();
+            this.Close();
         }
     }
 }

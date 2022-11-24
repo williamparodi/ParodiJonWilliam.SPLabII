@@ -61,7 +61,7 @@ namespace Vista
             dtgv_ListaLapices.DataSource = cartuchera.ListaUtiles;
         }
 
-        public List<Lapiz> HardcodeaLista()
+        public virtual List<Lapiz> HardcodeaLista()
         {
             Lapiz lapiz1 = new Lapiz(10, "Faber Castell", EColor.Azul, ETipoLapiz.Normal);
             Lapiz lapiz2 = new Lapiz(25, "Larro", EColor.Amarillo, ETipoLapiz.Grafito);

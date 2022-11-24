@@ -28,7 +28,7 @@ namespace Vista
             sacapunta = new Sacapunta();
             saveFileDialog = new SaveFileDialog();
             carpetaDefalut = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            saveFileDialog.InitialDirectory = carpetaDefalut;//mmm
+            saveFileDialog.InitialDirectory = carpetaDefalut;
             saveFileDialog.Filter = "Archivo de texto|*.txt";
             saveFileDialog.Title = "Save a Text File";
             path = string.Empty;
@@ -104,7 +104,7 @@ namespace Vista
             }
         }
 
-        static void NotificacionPrecio(string mensaje)
+        private void NotificacionPrecio(string mensaje)
         {
             MessageBox.Show(mensaje);
         }

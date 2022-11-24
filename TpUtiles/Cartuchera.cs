@@ -43,7 +43,7 @@ namespace TpUtiles
             get { return AcumulaPrecio(this.ListaUtiles); }
             set
             {
-                if(EventoPrecio is not null && AcumulaPrecio(this.ListaUtiles) >500)
+                if(AcumulaPrecio(this.ListaUtiles) >500)
                 {
                     EventoPrecio("Se supero");
                 }
@@ -62,7 +62,7 @@ namespace TpUtiles
                     cartuchera.Capacidad++;
                     if(cartuchera.PrecioTotal > 500)
                     {
-                        
+                        //cartuchera.EventoPrecio += NotificacionPrecio;
                     }
 
                     retorno = true;
@@ -120,9 +120,16 @@ namespace TpUtiles
 
             return sb.ToString();
         }
-
-      
-
+        /*
+        public string MensajePrecio(DelegadoPrecio delegadoPrecio,double precio)
+        {
+            string mensaje;
+            if()
+            {
+                
+            }
+        }
+        */
     }
 
 }
