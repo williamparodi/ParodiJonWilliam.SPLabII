@@ -18,7 +18,7 @@ namespace Vista
     public partial class FrmBaseDeDatos : Form
     {
         private int fila; 
-        private Cartuchera<Util> cartuchera;
+        static  Cartuchera<Util> cartuchera = new Cartuchera<Util>();
        
         public FrmBaseDeDatos()
         {
@@ -101,6 +101,16 @@ namespace Vista
             }
 
             return retorno;
+        }
+
+        private void btn_AgregarUtil_Click(object sender, EventArgs e)
+        {
+            FrmAgregaUtil frmAgregaUtil = new FrmAgregaUtil(cartuchera.ListaUtiles);
+               
+            if(frmAgregaUtil.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("Util agregado a la base", "Se agrego Util", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }   
 

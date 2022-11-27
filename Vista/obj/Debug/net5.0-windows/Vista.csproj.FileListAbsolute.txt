@@ -29,3 +29,4 @@ C:\Users\Willy\source\repos\TpUtiles\Vista\obj\Debug\net5.0-windows\refint\Vista
 C:\Users\Willy\source\repos\TpUtiles\Vista\obj\Debug\net5.0-windows\Vista.pdb
 C:\Users\Willy\source\repos\TpUtiles\Vista\obj\Debug\net5.0-windows\Vista.genruntimeconfig.cache
 C:\Users\Willy\source\repos\TpUtiles\Vista\obj\Debug\net5.0-windows\ref\Vista.dll
+C:\Users\Willy\source\repos\TpUtiles\Vista\obj\Debug\net5.0-windows\Vista.FrmAgregaUtil.resources

@@ -2,5 +2,6 @@
 {
    Numero1,
    Numero2,
-   Numero3
+   Numero3,
+   SinTamanio
 }
