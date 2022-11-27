@@ -10,7 +10,7 @@ namespace TpUtiles
     {
         private ETipoGoma tipoGoma;
         private ETamanio tamanio;
-
+       
         public Goma() : base()
         {
             this.tipoGoma = ETipoGoma.SinTipo;
@@ -22,7 +22,7 @@ namespace TpUtiles
             this.tipoGoma = tipoGoma;
             this.tamanio = tamanio;
         }
-
+  
         public ETipoGoma TipoGoma
         {
             get { return this.tipoGoma; }

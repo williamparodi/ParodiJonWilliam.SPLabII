@@ -83,7 +83,7 @@
             this.cmb_TipoDeUtil.Items.AddRange(new object[] {
             "Lapiz",
             "Goma",
-            "Sacapuntas"});
+            "Lapiz"});
             this.cmb_TipoDeUtil.Location = new System.Drawing.Point(104, 61);
             this.cmb_TipoDeUtil.Name = "cmb_TipoDeUtil";
             this.cmb_TipoDeUtil.Size = new System.Drawing.Size(121, 23);

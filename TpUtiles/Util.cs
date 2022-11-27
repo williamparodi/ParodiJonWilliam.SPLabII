@@ -6,16 +6,23 @@ namespace TpUtiles
     {
         protected double precio;
         protected string marca;
+        protected int id;
         public Util()
         {
             this.precio = 0;
             this.marca = "Sin marca";
+            this.id = 0;   
         }
 
         public Util(double precio, string marca)
         {
             this.precio = precio;
             this.marca = marca; 
+        }
+
+        public Util(int id)
+        {
+            this.id = id;
         }
 
         public double Precio
@@ -36,6 +43,12 @@ namespace TpUtiles
             }
         }
 
+        public int Id
+        {
+            get { return this.id; }
+            set { this.id = value; }
+        }
+     
         public static bool operator == (Util util1, Util util2)
         {
             return util1.Marca == util2.Marca;

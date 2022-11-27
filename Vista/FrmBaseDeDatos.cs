@@ -19,45 +19,58 @@ namespace Vista
     {
         private int fila; 
         private Cartuchera<Util> cartuchera;
-        private List<Util> listaUtilesASubir;
-        private List<Util> listaUtiles;
-        private Lapiz lapiz = new Lapiz();
-        private Goma goma = new Goma();
-        private Sacapunta sacapunta = new Sacapunta();
+       
         public FrmBaseDeDatos()
         {
             InitializeComponent();
             cartuchera = new Cartuchera<Util>();
-            listaUtilesASubir = new List<Util>();
-            listaUtiles = new List<Util>();
         }
 
         private void FrmBaseDeDatos_Load(object sender, EventArgs e)
         {
-            HardcodeaListaDeVarios();
             dtgv_BaseDeDatos.DataSource = null;
-            dtgv_BaseDeDatos.DataSource = cartuchera.ListaUtiles;
+            cmb_TipoDeUtil.SelectedIndex= 0;
         }
 
         private void btn_LeerBase_Click(object sender, EventArgs e)
         {
             try
             {
-                cartuchera.ListaUtiles = UtilDAO.LeerDatos();
-                dtgv_BaseDeDatos.DataSource = cartuchera.ListaUtiles;
+                dtgv_BaseDeDatos.DataSource = UtilDAO.LeerDatosLapiz();
+                dtgv_BaseDeDatos.Refresh();
+                dtgv_BaseDeDatos.Update();
             }
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
 
         private void btn_GuardaEnBase_Click(object sender, EventArgs e)
         {
+            Lapiz lapiz2 = new Lapiz(66,"lalal",EColor.Negro,ETipoLapiz.Grafito);
             try
             {
-                UtilDAO.GuardaDatos(listaUtilesASubir);      
+                switch (cmb_TipoDeUtil.Text)
+                {
+                    case "Lapiz":
+                        UtilDAO.GuardaLapiz(lapiz2);
+                        dtgv_BaseDeDatos.Refresh();
+                        dtgv_BaseDeDatos.Update();
+                        break;
+                    case "Goma":
+                        //UtilDAO.GuardaGoma();
+                        dtgv_BaseDeDatos.Refresh();
+                        dtgv_BaseDeDatos.Update();
+                        break;
+                    case "Sacapunta":
+                        //UtilDAO.GuardaSacapuntas();
+                        dtgv_BaseDeDatos.Refresh();
+                        dtgv_BaseDeDatos.Update();
+                        break;
+                    default:
+                        break;
+                }
             }
             catch(Exception ex ) 
             {
@@ -67,17 +80,11 @@ namespace Vista
 
         private void dtgv_BaseDeDatos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            fila = e.RowIndex;
-            
+            this.fila = e.RowIndex;
+
             if(fila != -1)
             {
-                if(cartuchera.ListaUtiles is not null)
-                {
-                    if (cartuchera.ListaUtiles[fila] is Lapiz)
-                    {
-                        listaUtilesASubir.Add(cartuchera.ListaUtiles[fila]);   
-                    }
-                }
+                
             }
         }
 

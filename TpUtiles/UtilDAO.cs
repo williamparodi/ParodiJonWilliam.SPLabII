@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Linq;
 using TpUtiles;
 
@@ -12,7 +10,6 @@ namespace Entidades
     {
         static SqlConnection conexion;
         static SqlCommand command;
-        static SqlDataReader reader;
         static string conexionString;
         static UtilDAO()
         {
@@ -23,49 +20,29 @@ namespace Entidades
             command.CommandType = System.Data.CommandType.Text;
         }
 
-        public static List<Util> LeerDatos()
+        public static List<Lapiz> LeerDatosLapiz()
         {
-            List<Util> listaUtiles = new List<Util>();
+            List<Lapiz> listaLapiz = new List<Lapiz>();
 
             try
             {
                 conexion.Open();
-                command.CommandText = "SELECT * FROM UTILES";
+                command.CommandText = "SELECT * FROM LAPICES";
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    string descripcion = reader["DESCRIPCION"].ToString();
-                    switch (descripcion)
-                    {
-                        case "Lapiz":
-                            Lapiz lapiz = new Lapiz();
-                            lapiz.Color = (EColor)reader["COLOR"];
-                            lapiz.TipoDeLapiz = (ETipoLapiz)reader["TIPO"];
-                            lapiz.Precio = (double)reader["PRECIO"];
-                            lapiz.Marca = reader["MARCA"].ToString();
-                            listaUtiles.Add(lapiz);
-                            break;
-                        case "Sacapuntas":
-                            Sacapunta sacapunta = new Sacapunta();
-                            sacapunta.TipoSacapuntas = (ETipoSacapuntas)reader["TIPO"];
-                            sacapunta.Marca = reader["MARCA"].ToString();
-                            sacapunta.Precio = (double)reader["PRECIO"];
-                            listaUtiles.Add(sacapunta);
-                            break;
-                        case "Goma":
-                            Goma goma = new Goma();
-                            goma.TipoGoma = (ETipoGoma)reader["TIPO"];
-                            goma.Tamanio = (ETamanio)reader["TAMANIO"];
-                            goma.Precio = (double)reader["PRECIO"];
-                            goma.Marca = reader["MARCA"].ToString();
-                            listaUtiles.Add(goma);
-                            break;
-                        default:
-                            break;
-                    }
+                    Lapiz lapiz = new Lapiz();
+                    string color = reader["COLOR"].ToString();
+                    string tipo = reader["TIPO"].ToString();
+                    lapiz.Color = (EColor)Enum.Parse(typeof(EColor), color);
+                    lapiz.TipoDeLapiz = (ETipoLapiz)Enum.Parse(typeof(ETipoLapiz), tipo);
+                    lapiz.Precio = (double)reader["PRECIO"];
+                    lapiz.Marca = reader["MARCA"].ToString();
+                    lapiz.Id = (int)reader["ID_LAPIZ"];
+                    listaLapiz.Add(lapiz);
                 }
-
+                reader.Close();
             }
             catch (Exception)
             {
@@ -79,34 +56,29 @@ namespace Entidades
                 }
             }
 
-            return listaUtiles;
-
+            return listaLapiz;
         }
 
         public static void GuardaLapiz(Lapiz lapiz)
         {
-            command.Parameters.Clear();
-            conexion.Open();
-
             try
             {
-                command.CommandText = "INSERT INTO LAPICES" + "VALUES @descripcion,@precio,@marca,@color,@tipo";
-                if (lapiz is not null)
-                {
-                    command.Parameters.AddWithValue("@descricion", "Lapiz");
-                    command.Parameters.AddWithValue("@precio", lapiz.Precio);
-                    command.Parameters.AddWithValue("@marca", lapiz.Marca);
-                    command.Parameters.AddWithValue("@color", lapiz.Color);
-                    command.Parameters.AddWithValue("@tipo", lapiz.TipoDeLapiz);
+                command.Parameters.Clear();
+                conexion.Open();
+                command.CommandText = "INSERT INTO LAPICES VALUES (@precio,@marca,@color,@tipo)";
 
-                    if(command.ExecuteNonQuery() == 0)
-                    {
-                        throw new ExepcionesDatos("No se agrego Util");
-                    }
-                }
+                command.Parameters.AddWithValue("@precio", lapiz.Precio);
+                command.Parameters.AddWithValue("@marca", lapiz.Marca);
+                command.Parameters.AddWithValue("@color", (int)lapiz.Color);
+                command.Parameters.AddWithValue("@tipo", (int)lapiz.TipoDeLapiz);
                 
+                if (command.ExecuteNonQuery() == 0)
+                {
+                    throw new ExepcionesDatos("No se agrego Util");
+                }
+
             }
-            catch(Exception) 
+            catch (Exception)
             {
                 throw new ExceptionArchivo("Error al cargar el util a la base");
             }
@@ -119,17 +91,55 @@ namespace Entidades
             }
         }
 
-        public static void GuardaGoma(Goma goma)
+        public static List<Goma> LeerDatosGoma()
         {
-            command.Parameters.Clear();
-            conexion.Open();
+            List<Goma> listaGoma = new List<Goma>();
 
             try
             {
-                command.CommandText = "INSERT INTO GOMAS" + "VALUES @descripcion,@precio,@marca,@tipo,@tamanio";
+                command.Parameters.Clear();
+                conexion.Open();
+                command.CommandText = "SELECT * FROM GOMAS";
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Goma goma = new Goma();
+                    string tamanio = reader["TAMANIO"].ToString();
+                    string tipo = reader["TIPO"].ToString();
+                    goma.Tamanio = (ETamanio)Enum.Parse(typeof(ETamanio), tamanio);
+                    goma.TipoGoma = (ETipoGoma)Enum.Parse(typeof(ETipoGoma), tipo);
+                    goma.Precio = (double)reader["PRECIO"];
+                    goma.Marca = reader["MARCA"].ToString();
+                    goma.Id = (int)reader["ID_GOMA"];
+                    listaGoma.Add(goma);
+                }
+                reader.Close();
+            }
+            catch (Exception)
+            {
+                throw new ExceptionArchivo("Error al leer la base");
+            }
+            finally
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+
+            return listaGoma;
+        }
+
+        public static void GuardaGoma(Goma goma)
+        {
+            try
+            {
+                command.Parameters.Clear();
+                conexion.Open();
+                command.CommandText = "INSERT INTO GOMAS" + "VALUES @precio,@marca,@tipo,@tamanio";
                 if (goma is not null)
                 {
-                    command.Parameters.AddWithValue("@descricion", "Goma");
                     command.Parameters.AddWithValue("@precio", goma.Precio);
                     command.Parameters.AddWithValue("@marca", goma.Marca);
                     command.Parameters.AddWithValue("@tipo", goma.TipoGoma);
@@ -155,21 +165,58 @@ namespace Entidades
             }
         }
 
-        public static void GuardaSacapuntas(Sacapunta sacapuntas)
+        public static List<Sacapunta> LeerDatosSacapuntas()
         {
-            command.Parameters.Clear();
-            conexion.Open();
+            List<Sacapunta> listaSacapuntas = new List<Sacapunta>();
 
             try
             {
+                command.Parameters.Clear();
+                conexion.Open();
+                command.CommandText = "SELECT * FROM SACAPUNTAS";
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Sacapunta sacapunta = new Sacapunta();
+                    string tipo = reader["TIPO"].ToString();
+                    sacapunta.TipoSacapuntas = (ETipoSacapuntas)Enum.Parse(typeof(ETipoSacapuntas),tipo);
+                    sacapunta.Marca = reader["MARCA"].ToString();
+                    sacapunta.Precio = (double)reader["PRECIO"];
+                    sacapunta.Id = (int)reader["ID_SACAPUNTAS"];
+                    listaSacapuntas.Add(sacapunta);
+                }
+                reader.Close();
+            }
+            catch (Exception)
+            {
+                throw new ExceptionArchivo("Error al leer la base");
+            }
+            finally
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+
+            return listaSacapuntas;
+        }
+
+        public static void GuardaSacapuntas(Sacapunta sacapuntas)
+        {
+            try
+            {
+                command.Parameters.Clear();
+                conexion.Open();
                 command.CommandText = "INSERT INTO SACAPUNTAS" + "VALUES @descripcion,@precio,@marca,@tipo";
                 if (sacapuntas is not null)
                 {
-                    command.Parameters.AddWithValue("@descricion", "Sacapuntas");
+                    command.Parameters.AddWithValue("@descricion", "Lapiz");
                     command.Parameters.AddWithValue("@precio", sacapuntas.Precio);
                     command.Parameters.AddWithValue("@marca", sacapuntas.Marca);
                     command.Parameters.AddWithValue("@tipo", sacapuntas.TipoSacapuntas);
-                   
+
                     if (command.ExecuteNonQuery() == 0)
                     {
                         throw new ExepcionesDatos("No se agrego Util");
@@ -192,25 +239,37 @@ namespace Entidades
 
         public static void GuardaDatos(List<Util> listaUtiles)
         {
-            if (listaUtiles is not null && listaUtiles.Any())
+            try
             {
-                foreach(var item in listaUtiles)
+                command.Parameters.Clear();
+                conexion.Open();
+
+                if (listaUtiles is not null && listaUtiles.Any())
                 {
-                    if(item is Lapiz)
+                    foreach (var item in listaUtiles)
                     {
-                        GuardaLapiz((Lapiz)item);
-                    }
-                    else if(item is Goma) 
-                    {
-                        GuardaGoma((Goma)item); 
-                    }
-                    else
-                    {
-                        GuardaSacapuntas((Sacapunta)item);
+                        if (item is Lapiz)
+                        {
+                            GuardaLapiz((Lapiz)item);
+                        }
+                        else if (item is Goma)
+                        {
+                            GuardaGoma((Goma)item);
+                        }
+                        else
+                        {
+                            GuardaSacapuntas((Sacapunta)item);
+                        }
                     }
                 }
             }
+            catch (Exception)
+            {
+                throw new ExceptionArchivo("Error al guardar la lista de utiles en la base");
+            }
+
         }
+
 
 
 

@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -12,7 +13,7 @@ namespace TpUtiles
     {
         private EColor color;
         private ETipoLapiz tipoDeLapiz;
-
+  
         public Lapiz() : base()
         {
             this.color = EColor.SinColor;
@@ -28,7 +29,8 @@ namespace TpUtiles
         {
             this.color = color;
             this.tipoDeLapiz = tipoDelapiz;
-        }
+         
+        }      
 
         //Propiedades
         [JsonConverter(typeof(JsonStringEnumConverter))]
@@ -44,6 +46,8 @@ namespace TpUtiles
             get { return this.tipoDeLapiz; }
             set { this.tipoDeLapiz = value; }
         }
+
+    
 
         //Metodos
         public override string ToString()

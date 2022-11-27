@@ -8,12 +8,13 @@ using System.Text;
 namespace TpUtiles
 {
     public delegate void DelegadoPrecio(string mensaje);
+    
     public class Cartuchera<T> where T : Util
     {
         private int capacidad;
         private List<T> listaUtiles;
-        
-        public  event DelegadoPrecio EventoPrecio;
+        public event DelegadoPrecio EventoPrecio;
+
         public Cartuchera()
         {
             this.capacidad = 0;
@@ -112,7 +113,7 @@ namespace TpUtiles
                     }
                     else
                     {
-                        sb.AppendLine("Util : Sacapuntas ");
+                        sb.AppendLine("Util : Lapiz ");
                         sb.AppendLine(item.ToString());
                     }
                 }
@@ -120,16 +121,7 @@ namespace TpUtiles
 
             return sb.ToString();
         }
-        /*
-        public string MensajePrecio(DelegadoPrecio delegadoPrecio,double precio)
-        {
-            string mensaje;
-            if()
-            {
-                
-            }
-        }
-        */
+     
     }
 
 }
