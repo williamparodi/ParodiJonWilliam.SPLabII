@@ -113,6 +113,8 @@ namespace TpUtiles
             return auxLapiz;
         }
 
+
+
         //Serealiza y Deserealiza
         public void SerializaLapizJson(Lapiz lapiz)
         {

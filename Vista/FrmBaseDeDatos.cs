@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using TpUtiles;
 
@@ -7,9 +8,8 @@ namespace Vista
 {
     public partial class FrmBaseDeDatos : Form
     {
-        private int fila;
         static Cartuchera<Util> cartuchera = new Cartuchera<Util>();
-
+        
         public FrmBaseDeDatos()
         {
             InitializeComponent();
@@ -25,7 +25,7 @@ namespace Vista
         private void btn_LeerBase_Click(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 RefrescaLista();
             }
             catch (Exception ex)
@@ -36,14 +36,21 @@ namespace Vista
 
         private void btn_AgregarUtil_Click(object sender, EventArgs e)
         {
-            FrmAgregaUtil frmAgregaUtil = new FrmAgregaUtil();
-
-            if (frmAgregaUtil.ShowDialog() == DialogResult.OK)
+            try
             {
-                MessageBox.Show("Util agregado a la base", "Se agrego Util", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                RefrescaLista();
-            }
+                FrmAgregaUtil frmAgregaUtil = new FrmAgregaUtil();
 
+                if (frmAgregaUtil.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Util agregado a la base", "Se agrego Util", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefrescaLista();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void btn_Eliminar_Click(object sender, EventArgs e)
@@ -52,11 +59,15 @@ namespace Vista
             {
                 if (dtgv_BaseDeDatos.SelectedRows.Count > 0)
                 {
-                    Util util = (Util)dtgv_BaseDeDatos.CurrentRow.DataBoundItem;
-                    UtilDAO.BorraDatos(util);
-
+                    Util utilABorrar = (Util)dtgv_BaseDeDatos.CurrentRow.DataBoundItem;
+                    UtilDAO.BorraDatos(utilABorrar);
+                   
                     MessageBox.Show("Se elimino el util seleccionado", "Borrado exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RefrescaLista();
+                }
+                else
+                {
+                    throw new Exception("Haga click en un producto para borrar");
                 }
             }
             catch (Exception ex)
@@ -73,10 +84,20 @@ namespace Vista
                 if (dtgv_BaseDeDatos.SelectedRows.Count > 0)
                 {
                     Util util = (Util)dtgv_BaseDeDatos.CurrentRow.DataBoundItem;
-                    //Metodo EDitar
+                   
+                    FrmAgregaUtil frmAgregaUtil = new FrmAgregaUtil(util);
 
-                    MessageBox.Show("Se edito el util seleccionado", "Edicion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (frmAgregaUtil.ShowDialog() == DialogResult.OK)
+                    {
+                        MessageBox.Show("Util modificado en la base", "Se modifico Util", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        RefrescaLista();
+                    }
+
                     RefrescaLista();
+                }
+                else
+                {
+                    throw new Exception("Haga click en un producto para editar");
                 }
             }
             catch (Exception ex)
@@ -87,26 +108,39 @@ namespace Vista
 
         public void RefrescaLista()
         {
-            dtgv_BaseDeDatos.DataSource = UtilDAO.LeerDatosLapiz();
+            LeeDatos(cmb_TipoDeUtil.Text);
             dtgv_BaseDeDatos.Refresh();
             dtgv_BaseDeDatos.Update();
         }
 
-        //No se si borrarla
-        public bool HardcodeaListaDeVarios()
+
+        public void LeeDatos(string texto)
         {
-            bool retorno = false;
-            Lapiz lapiz = new Lapiz(56, "El mejor", EColor.Rojo, ETipoLapiz.Normal);
-            Sacapunta sacapunta = new Sacapunta(60, "Faber Castell", ETipoSacapuntas.Electrico);
-            Goma goma = new Goma(60, "Gomiya", ETipoGoma.ParaLapiz, ETamanio.Numero1);
-
-            if (cartuchera + sacapunta && cartuchera + goma && cartuchera + lapiz)
+            List<Util> list = new List<Util>();
+            try
             {
-                retorno = true;
-            }
+                switch (texto)
+                {
+                    case "Lapiz":
+                        dtgv_BaseDeDatos.DataSource = UtilDAO.LeerDatosLapiz();
+                        break;
+                    case "Goma":
+                        dtgv_BaseDeDatos.DataSource = UtilDAO.LeerDatosGoma();
+                        break;
+                    case "Sacapunta":
+                        dtgv_BaseDeDatos.DataSource = UtilDAO.LeerDatosSacapuntas();
+                        break;
+                    default:
+                        throw new ExceptionArchivo("Error al leer la base");
+                }
 
-            return retorno;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 
+   
 }

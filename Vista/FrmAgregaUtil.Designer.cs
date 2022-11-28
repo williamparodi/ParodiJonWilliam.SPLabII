@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_Aceptar = new System.Windows.Forms.Button();
+            this.btn_Agregar = new System.Windows.Forms.Button();
             this.lbl_Marca = new System.Windows.Forms.Label();
             this.lbl_Util = new System.Windows.Forms.Label();
             this.cmb_TipoDeUtil = new System.Windows.Forms.ComboBox();
@@ -41,17 +41,18 @@
             this.cmb_Color = new System.Windows.Forms.ComboBox();
             this.lbl_Tamanio = new System.Windows.Forms.Label();
             this.cmb_Tamanio = new System.Windows.Forms.ComboBox();
+            this.btn_Modificar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btn_Aceptar
+            // btn_Agregar
             // 
-            this.btn_Aceptar.Location = new System.Drawing.Point(102, 346);
-            this.btn_Aceptar.Name = "btn_Aceptar";
-            this.btn_Aceptar.Size = new System.Drawing.Size(121, 30);
-            this.btn_Aceptar.TabIndex = 0;
-            this.btn_Aceptar.Text = "Aceptar";
-            this.btn_Aceptar.UseVisualStyleBackColor = true;
-            this.btn_Aceptar.Click += new System.EventHandler(this.btn_Aceptar_Click);
+            this.btn_Agregar.Location = new System.Drawing.Point(12, 347);
+            this.btn_Agregar.Name = "btn_Agregar";
+            this.btn_Agregar.Size = new System.Drawing.Size(121, 30);
+            this.btn_Agregar.TabIndex = 0;
+            this.btn_Agregar.Text = "Agregar Nuevo";
+            this.btn_Agregar.UseVisualStyleBackColor = true;
+            this.btn_Agregar.Click += new System.EventHandler(this.btn_Aceptar_Click);
             // 
             // lbl_Marca
             // 
@@ -170,12 +171,23 @@
             this.cmb_Tamanio.Size = new System.Drawing.Size(121, 23);
             this.cmb_Tamanio.TabIndex = 13;
             // 
+            // btn_Modificar
+            // 
+            this.btn_Modificar.Location = new System.Drawing.Point(186, 347);
+            this.btn_Modificar.Name = "btn_Modificar";
+            this.btn_Modificar.Size = new System.Drawing.Size(121, 30);
+            this.btn_Modificar.TabIndex = 14;
+            this.btn_Modificar.Text = "Modificar";
+            this.btn_Modificar.UseVisualStyleBackColor = true;
+            this.btn_Modificar.Click += new System.EventHandler(this.btn_Modificar_Click);
+            // 
             // FrmAgregaUtil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
             this.ClientSize = new System.Drawing.Size(352, 450);
+            this.Controls.Add(this.btn_Modificar);
             this.Controls.Add(this.cmb_Tamanio);
             this.Controls.Add(this.lbl_Tamanio);
             this.Controls.Add(this.cmb_Color);
@@ -188,9 +200,10 @@
             this.Controls.Add(this.cmb_TipoDeUtil);
             this.Controls.Add(this.lbl_Util);
             this.Controls.Add(this.lbl_Marca);
-            this.Controls.Add(this.btn_Aceptar);
+            this.Controls.Add(this.btn_Agregar);
             this.Name = "FrmAgregaUtil";
             this.Text = "FrmAgregaUtil";
+            this.Load += new System.EventHandler(this.FrmAgregaUtil_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,7 +211,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btn_Aceptar;
+        private System.Windows.Forms.Button btn_Agregar;
         private System.Windows.Forms.Label lbl_Marca;
         private System.Windows.Forms.Label lbl_Util;
         private System.Windows.Forms.ComboBox cmb_TipoDeUtil;
@@ -211,5 +224,6 @@
         private System.Windows.Forms.ComboBox cmb_Color;
         private System.Windows.Forms.Label lbl_Tamanio;
         private System.Windows.Forms.ComboBox cmb_Tamanio;
+        private System.Windows.Forms.Button btn_Modificar;
     }
 }
