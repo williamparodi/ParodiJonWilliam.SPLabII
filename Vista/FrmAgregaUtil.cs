@@ -15,11 +15,13 @@ namespace Vista
 {
     public partial class FrmAgregaUtil : Form
     {
-        List<Util> listaUtiles = new List<Util>();
-        public FrmAgregaUtil(List<Util> listaUtiles)
+       
+        public FrmAgregaUtil()
         {
             InitializeComponent();
-            this.listaUtiles = listaUtiles; 
+            cmb_Color.SelectedIndex = 0;
+            cmb_Tamanio.SelectedIndex = 0;
+            cmb_TipoDeUtil.SelectedIndex = 0;
         }
 
         private void btn_Aceptar_Click(object sender, EventArgs e)
@@ -38,14 +40,15 @@ namespace Vista
                     Goma goma = new Goma();
                     goma = goma.CargaDatosGoma(txt_Precio.Text, txt_Marca.Text, cmb_Tipo.Text, cmb_Tamanio.Text);
                     UtilDAO.GuardaGoma(goma);
+                    
                 }
-                else
+                else if(cmb_TipoDeUtil.Text == "Sacapunta")
                 {
                     Sacapunta sacapunta = new Sacapunta();
                     sacapunta = sacapunta.CargaDatosSacapuntas(txt_Precio.Text, txt_Marca.Text, cmb_Tipo.Text);
                     UtilDAO.GuardaSacapuntas(sacapunta);
+                    
                 }
-                UtilDAO.GuardaDatos(listaUtiles);
                 DialogResult = DialogResult.OK;
             }
             catch(Exception ex) 

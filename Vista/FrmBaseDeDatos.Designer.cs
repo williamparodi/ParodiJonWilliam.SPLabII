@@ -30,15 +30,16 @@
         {
             this.btn_LeerBase = new System.Windows.Forms.Button();
             this.dtgv_BaseDeDatos = new System.Windows.Forms.DataGridView();
-            this.btn_GuardaEnBase = new System.Windows.Forms.Button();
             this.cmb_TipoDeUtil = new System.Windows.Forms.ComboBox();
             this.btn_AgregarUtil = new System.Windows.Forms.Button();
+            this.btn_Eliminar = new System.Windows.Forms.Button();
+            this.btn_Editar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_BaseDeDatos)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_LeerBase
             // 
-            this.btn_LeerBase.Location = new System.Drawing.Point(519, 279);
+            this.btn_LeerBase.Location = new System.Drawing.Point(519, 286);
             this.btn_LeerBase.Name = "btn_LeerBase";
             this.btn_LeerBase.Size = new System.Drawing.Size(108, 52);
             this.btn_LeerBase.TabIndex = 0;
@@ -59,17 +60,6 @@
             this.dtgv_BaseDeDatos.RowTemplate.Height = 25;
             this.dtgv_BaseDeDatos.Size = new System.Drawing.Size(615, 231);
             this.dtgv_BaseDeDatos.TabIndex = 1;
-            this.dtgv_BaseDeDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_BaseDeDatos_CellClick);
-            // 
-            // btn_GuardaEnBase
-            // 
-            this.btn_GuardaEnBase.Location = new System.Drawing.Point(239, 279);
-            this.btn_GuardaEnBase.Name = "btn_GuardaEnBase";
-            this.btn_GuardaEnBase.Size = new System.Drawing.Size(108, 52);
-            this.btn_GuardaEnBase.TabIndex = 2;
-            this.btn_GuardaEnBase.Text = "Guardar en Base de Datos";
-            this.btn_GuardaEnBase.UseVisualStyleBackColor = true;
-            this.btn_GuardaEnBase.Click += new System.EventHandler(this.btn_GuardaEnBase_Click);
             // 
             // cmb_TipoDeUtil
             // 
@@ -85,22 +75,43 @@
             // 
             // btn_AgregarUtil
             // 
-            this.btn_AgregarUtil.Location = new System.Drawing.Point(12, 279);
+            this.btn_AgregarUtil.Location = new System.Drawing.Point(12, 286);
             this.btn_AgregarUtil.Name = "btn_AgregarUtil";
-            this.btn_AgregarUtil.Size = new System.Drawing.Size(97, 43);
+            this.btn_AgregarUtil.Size = new System.Drawing.Size(108, 43);
             this.btn_AgregarUtil.TabIndex = 4;
             this.btn_AgregarUtil.Text = "Agregar Util";
             this.btn_AgregarUtil.UseVisualStyleBackColor = true;
             this.btn_AgregarUtil.Click += new System.EventHandler(this.btn_AgregarUtil_Click);
+            // 
+            // btn_Eliminar
+            // 
+            this.btn_Eliminar.Location = new System.Drawing.Point(168, 284);
+            this.btn_Eliminar.Name = "btn_Eliminar";
+            this.btn_Eliminar.Size = new System.Drawing.Size(108, 47);
+            this.btn_Eliminar.TabIndex = 7;
+            this.btn_Eliminar.Text = "Eliminar Seleccionado";
+            this.btn_Eliminar.UseVisualStyleBackColor = true;
+            this.btn_Eliminar.Click += new System.EventHandler(this.btn_Eliminar_Click);
+            // 
+            // btn_Editar
+            // 
+            this.btn_Editar.Location = new System.Drawing.Point(337, 286);
+            this.btn_Editar.Name = "btn_Editar";
+            this.btn_Editar.Size = new System.Drawing.Size(108, 47);
+            this.btn_Editar.TabIndex = 8;
+            this.btn_Editar.Text = "Editar Seleccionado";
+            this.btn_Editar.UseVisualStyleBackColor = true;
+            this.btn_Editar.Click += new System.EventHandler(this.btn_Editar_Click);
             // 
             // FrmBaseDeDatos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_Editar);
+            this.Controls.Add(this.btn_Eliminar);
             this.Controls.Add(this.btn_AgregarUtil);
             this.Controls.Add(this.cmb_TipoDeUtil);
-            this.Controls.Add(this.btn_GuardaEnBase);
             this.Controls.Add(this.dtgv_BaseDeDatos);
             this.Controls.Add(this.btn_LeerBase);
             this.Name = "FrmBaseDeDatos";
@@ -115,8 +126,9 @@
 
         private System.Windows.Forms.Button btn_LeerBase;
         private System.Windows.Forms.DataGridView dtgv_BaseDeDatos;
-        private System.Windows.Forms.Button btn_GuardaEnBase;
         private System.Windows.Forms.ComboBox cmb_TipoDeUtil;
         private System.Windows.Forms.Button btn_AgregarUtil;
+        private System.Windows.Forms.Button btn_Eliminar;
+        private System.Windows.Forms.Button btn_Editar;
     }
 }

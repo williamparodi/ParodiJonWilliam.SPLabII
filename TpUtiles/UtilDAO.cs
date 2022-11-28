@@ -69,8 +69,8 @@ namespace Entidades
 
                 command.Parameters.AddWithValue("@precio", lapiz.Precio);
                 command.Parameters.AddWithValue("@marca", lapiz.Marca);
-                command.Parameters.AddWithValue("@color", (int)lapiz.Color);
-                command.Parameters.AddWithValue("@tipo", (int)lapiz.TipoDeLapiz);
+                command.Parameters.AddWithValue("@color", lapiz.Color);
+                command.Parameters.AddWithValue("@tipo", lapiz.TipoDeLapiz);
                 
                 if (command.ExecuteNonQuery() == 0)
                 {
@@ -89,6 +89,46 @@ namespace Entidades
                     conexion.Close();
                 }
             }
+        }
+
+        public static void BorraDatos(Util util)
+        {
+            try
+            {
+                command.Parameters.Clear();
+                conexion.Open();
+                switch (util)
+                {
+                    case Lapiz:
+                        command.CommandText = $"DELETE FROM LAPICES WHERE ID_LAPIZ = {util.Id}";
+                        command.ExecuteNonQuery();
+                        break;
+                    case Goma:
+                        command.CommandText = $"DELETE FROM GOMAS WHERE ID_GOMA = {util.Id}";
+                        command.ExecuteNonQuery();
+                        break;
+                    case Sacapunta:
+                        command.CommandText = $"DELETE FROM SACAPUNTAS WHERE ID_SACAPUNTA = {util.Id}";
+                        command.ExecuteNonQuery();
+                        break;
+                    default:
+                        throw new ExceptionArchivo("No se pudo borrar");
+                        
+                }
+            }
+            catch(Exception)
+            {
+                throw new ExceptionArchivo("Error al borrar la base");
+            }
+            finally
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+            
+            
         }
 
         public static List<Goma> LeerDatosGoma()
@@ -237,39 +277,43 @@ namespace Entidades
             }
         }
 
-        public static void GuardaDatos(List<Util> listaUtiles)
+        public static void GuardaDatos(Util util)
         {
             try
             {
-                command.Parameters.Clear();
-                conexion.Open();
-
-                if (listaUtiles is not null && listaUtiles.Any())
+                if (util is not null)
                 {
-                    foreach (var item in listaUtiles)
+                    switch (util)
                     {
-                        if (item is Lapiz)
-                        {
-                            GuardaLapiz((Lapiz)item);
-                        }
-                        else if (item is Goma)
-                        {
-                            GuardaGoma((Goma)item);
-                        }
-                        else
-                        {
-                            GuardaSacapuntas((Sacapunta)item);
-                        }
+                        case Lapiz:
+                        GuardaLapiz((Lapiz)util);
+                        break;  
+                        case Goma:
+                        GuardaGoma((Goma)util);
+                        break;
+                        case Sacapunta:
+                        GuardaSacapuntas((Sacapunta)util);
+                        break;
+                        default:
+                            throw new ExceptionArchivo("No se pudo guardar en la base");
                     }
                 }
             }
             catch (Exception)
             {
-                throw new ExceptionArchivo("Error al guardar la lista de utiles en la base");
+                throw new ExceptionArchivo("Error al guardar el util en la base");
             }
-
+            finally
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
         }
 
+
+        
 
 
 
