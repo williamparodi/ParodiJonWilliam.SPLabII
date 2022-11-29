@@ -47,6 +47,7 @@
             this.btn_VerCartuchera = new System.Windows.Forms.Button();
             this.rtx_Cartuchera = new System.Windows.Forms.RichTextBox();
             this.lbl_Cartuchera = new System.Windows.Forms.Label();
+            this.btn_Resaltar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Agregar
@@ -226,11 +227,22 @@
             this.lbl_Cartuchera.TabIndex = 19;
             this.lbl_Cartuchera.Text = "Cartuchera ";
             // 
+            // btn_Resaltar
+            // 
+            this.btn_Resaltar.Location = new System.Drawing.Point(280, 380);
+            this.btn_Resaltar.Name = "btn_Resaltar";
+            this.btn_Resaltar.Size = new System.Drawing.Size(111, 33);
+            this.btn_Resaltar.TabIndex = 20;
+            this.btn_Resaltar.Text = "Resaltar";
+            this.btn_Resaltar.UseVisualStyleBackColor = true;
+            this.btn_Resaltar.Click += new System.EventHandler(this.btn_Resaltar_Click);
+            // 
             // FrmUtiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_Resaltar);
             this.Controls.Add(this.lbl_Cartuchera);
             this.Controls.Add(this.rtx_Cartuchera);
             this.Controls.Add(this.btn_VerCartuchera);
@@ -279,5 +291,6 @@
         private System.Windows.Forms.Button btn_VerCartuchera;
         private System.Windows.Forms.RichTextBox rtx_Cartuchera;
         private System.Windows.Forms.Label lbl_Cartuchera;
+        private System.Windows.Forms.Button btn_Resaltar;
     }
 }

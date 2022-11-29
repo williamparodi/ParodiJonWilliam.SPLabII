@@ -62,7 +62,6 @@ namespace TpUtiles
                     {
                         if (cartuchera.EventoPrecio is not null && cartuchera.EventoTickets is not null)
                         {
-                            EventArgs e = new EventArgs();
                             cartuchera.EventoPrecio.Invoke("Se supero los $500 totales");
                             cartuchera.EventoTickets.Invoke(); 
                         }

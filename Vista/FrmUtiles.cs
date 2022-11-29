@@ -21,8 +21,11 @@ namespace Vista
         private Sacapunta sacapunta;
         private SaveFileDialog saveFileDialog;
         private string path;
+        private string pathFibron;
         private string carpetaDefalut;
-       
+        private int cantidadRestante;
+        Cartuchera<Util> cartucheraFibron = new Cartuchera<Util>();
+        
         public FrmUtiles()
         {
             InitializeComponent();
@@ -36,6 +39,7 @@ namespace Vista
             saveFileDialog.Filter = "Archivo de texto|*.txt";
             saveFileDialog.Title = "Save a Text File";
             path = string.Empty;
+            pathFibron = string.Empty;
             cartuchera.EventoPrecio += NotificacionPrecio;
             cartuchera.EventoTickets += GuardarTicket;
         }
@@ -88,31 +92,7 @@ namespace Vista
         {
             MessageBox.Show(texto);
         }
-        /*
-        private void LeerTicket()
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                try
-                {
-                    if (ofd.ShowDialog() == DialogResult.OK)
-                    {
-                        //obtengo el nombre del archivo
-                        this.path = ofd.FileName;
-
-                        using (StreamReader streamReader = new StreamReader(this.path))
-                        {
-                            this.path = streamReader.ReadToEnd();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MostrarVentanaDeError(ex);
-                }
-            }
-        }*/
-
+      
         private void GuardarTicket()
         {
             try
@@ -122,7 +102,7 @@ namespace Vista
                 {
                     if (string.IsNullOrEmpty(this.path))
                     {
-                        
+           
                         this.path = saveFileDialog.FileName;
                         using (StreamWriter streamWriter = new StreamWriter(this.path, true))
                         {
@@ -156,10 +136,15 @@ namespace Vista
         {
             cmb_TipoDeUtil.SelectedIndex = 0;
             cmb_Tipo.SelectedIndex= 1;
-            if (cmb_TipoDeUtil.Text == "Lapiz")
-            {
-                cmb_TipoDeUtil.MaxDropDownItems = 2;
-            }
+            cantidadRestante = 0;
+            Fibron fibron1 = new Fibron(5,EColor.Rojo);
+            Fibron fibron2 = new Fibron(10, EColor.Azul);
+            Fibron fibron3 = new Fibron(6, EColor.Amarillo);
+            cartucheraFibron.ListaUtiles.Add(fibron1);
+            cartucheraFibron.ListaUtiles.Add(fibron2);
+            cartucheraFibron.ListaUtiles.Add(fibron3);
+            fibron1.EventoSinTinta += NotificacionSinTinta;
+            fibron1.EventoError += EscribeFibron;
 
         }
 
@@ -175,6 +160,62 @@ namespace Vista
             
         }
 
+        
+        private void btn_Resaltar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Fibron fibron = new Fibron();
+                Random random = new Random();
+                int numero = random.Next(1, 10);
+                int index = random.Next(cartucheraFibron.ListaUtiles.Count);
+                fibron = (Fibron)cartucheraFibron.ListaUtiles[index];
+                fibron.Resaltar(numero);
+            }
+            catch(SinTintaException ex) 
+            {
+                MessageBox.Show(ex.Message, "Fibron sin tinta ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
+        }
+
+        private void EscribeFibron(string texto)
+        {
+            try
+            {
+                saveFileDialog.FileName = "errors.txt";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (string.IsNullOrEmpty(this.pathFibron))
+                    {
+                        pathFibron = saveFileDialog.FileName;
+                        using (StreamWriter streamWriter = new StreamWriter(pathFibron, true))
+                        {
+                            streamWriter.WriteLine(texto);
+                        }
+                    }
+                    else
+                    {
+                        using (StreamWriter streamWriter = new StreamWriter(pathFibron))
+                        {
+                            streamWriter.WriteLine(texto);
+                        }
+                        MessageBox.Show("Se agrego informacion al archivo errors");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MostrarVentanaDeError(ex);
+            }
+        }
+
+        public void NotificacionSinTinta(string mensaje)
+        {
+            MessageBox.Show(mensaje);
+        }
+
         private void MostrarVentanaDeError(Exception ex)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -185,6 +226,5 @@ namespace Vista
             MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        
     }
 }
