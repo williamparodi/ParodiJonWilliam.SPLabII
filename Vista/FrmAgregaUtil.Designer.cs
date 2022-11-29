@@ -202,7 +202,7 @@
             this.Controls.Add(this.lbl_Marca);
             this.Controls.Add(this.btn_Agregar);
             this.Name = "FrmAgregaUtil";
-            this.Text = "FrmAgregaUtil";
+            this.Text = "Agrega - Edita ";
             this.Load += new System.EventHandler(this.FrmAgregaUtil_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

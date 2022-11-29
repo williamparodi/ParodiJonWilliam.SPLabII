@@ -20,16 +20,19 @@ namespace Vista
         private Goma goma;
         private Sacapunta sacapunta;
         private SaveFileDialog saveFileDialog;
+        private Fibron fibron;
         private string path;
         private string pathFibron;
         private string carpetaDefalut;
-        private int cantidadRestante;
-        Cartuchera<Util> cartucheraFibron = new Cartuchera<Util>();
+        
+        Cartuchera<Util> cartucheraFibron;
         
         public FrmUtiles()
         {
             InitializeComponent();
             cartuchera = new Cartuchera<Util>();
+            cartucheraFibron = new Cartuchera<Util>();
+            fibron = new Fibron();
             lapiz = new Lapiz();
             goma = new Goma();
             sacapunta = new Sacapunta();
@@ -42,6 +45,7 @@ namespace Vista
             pathFibron = string.Empty;
             cartuchera.EventoPrecio += NotificacionPrecio;
             cartuchera.EventoTickets += GuardarTicket;
+        
         }
 
         private void btn_Agregar_Click(object sender, EventArgs e)
@@ -136,16 +140,7 @@ namespace Vista
         {
             cmb_TipoDeUtil.SelectedIndex = 0;
             cmb_Tipo.SelectedIndex= 1;
-            cantidadRestante = 0;
-            Fibron fibron1 = new Fibron(5,EColor.Rojo);
-            Fibron fibron2 = new Fibron(10, EColor.Azul);
-            Fibron fibron3 = new Fibron(6, EColor.Amarillo);
-            cartucheraFibron.ListaUtiles.Add(fibron1);
-            cartucheraFibron.ListaUtiles.Add(fibron2);
-            cartucheraFibron.ListaUtiles.Add(fibron3);
-            fibron1.EventoSinTinta += NotificacionSinTinta;
-            fibron1.EventoError += EscribeFibron;
-
+            fibron.HarcodeaFibrones(cartucheraFibron);
         }
 
         private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
@@ -165,17 +160,22 @@ namespace Vista
         {
             try
             {
-                Fibron fibron = new Fibron();
+                Fibron fibron1 = new Fibron();
                 Random random = new Random();
                 int numero = random.Next(1, 10);
                 int index = random.Next(cartucheraFibron.ListaUtiles.Count);
-                fibron = (Fibron)cartucheraFibron.ListaUtiles[index];
-                fibron.Resaltar(numero);
+                fibron1 = (Fibron)cartucheraFibron.ListaUtiles[index];
+                MessageBox.Show(fibron1.MuestraCantidadDeTinta(fibron1.CantidadTinta,numero), "Info Tinta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                fibron1.Resaltar(numero);
+                fibron1.EventoSinTinta += NotificacionSinTinta;
+                fibron1.EventoError += EscribeFibron;
+
             }
-            catch(SinTintaException ex) 
+            catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message, "Fibron sin tinta ", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            
             
         }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSerealizaDeserealiza));
             this.dtgv_ListaLapices = new System.Windows.Forms.DataGridView();
             this.lbl_ListaLapices = new System.Windows.Forms.Label();
             this.btn_SerealizarXml = new System.Windows.Forms.Button();
@@ -58,6 +59,7 @@
             // lbl_ListaLapices
             // 
             this.lbl_ListaLapices.AutoSize = true;
+            this.lbl_ListaLapices.BackColor = System.Drawing.Color.SpringGreen;
             this.lbl_ListaLapices.Location = new System.Drawing.Point(113, 25);
             this.lbl_ListaLapices.Name = "lbl_ListaLapices";
             this.lbl_ListaLapices.Size = new System.Drawing.Size(150, 15);
@@ -66,42 +68,46 @@
             // 
             // btn_SerealizarXml
             // 
+            this.btn_SerealizarXml.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_SerealizarXml.Location = new System.Drawing.Point(12, 284);
             this.btn_SerealizarXml.Name = "btn_SerealizarXml";
             this.btn_SerealizarXml.Size = new System.Drawing.Size(88, 54);
             this.btn_SerealizarXml.TabIndex = 2;
             this.btn_SerealizarXml.Text = "Serealizar Lapiz Xml";
-            this.btn_SerealizarXml.UseVisualStyleBackColor = true;
+            this.btn_SerealizarXml.UseVisualStyleBackColor = false;
             this.btn_SerealizarXml.Click += new System.EventHandler(this.btn_SerealizarXml_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button1.Location = new System.Drawing.Point(286, 284);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 54);
             this.button1.TabIndex = 3;
             this.button1.Text = "Serealizar Lapiz Json";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btn_DeserealizarXml
             // 
+            this.btn_DeserealizarXml.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_DeserealizarXml.Location = new System.Drawing.Point(690, 284);
             this.btn_DeserealizarXml.Name = "btn_DeserealizarXml";
             this.btn_DeserealizarXml.Size = new System.Drawing.Size(98, 54);
             this.btn_DeserealizarXml.TabIndex = 4;
             this.btn_DeserealizarXml.Text = "Deseralizar Lapiz Xml";
-            this.btn_DeserealizarXml.UseVisualStyleBackColor = true;
+            this.btn_DeserealizarXml.UseVisualStyleBackColor = false;
             this.btn_DeserealizarXml.Click += new System.EventHandler(this.btn_DeserealizarXml_Click);
             // 
             // btn_DeserealizarJson
             // 
+            this.btn_DeserealizarJson.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_DeserealizarJson.Location = new System.Drawing.Point(434, 284);
             this.btn_DeserealizarJson.Name = "btn_DeserealizarJson";
             this.btn_DeserealizarJson.Size = new System.Drawing.Size(98, 54);
             this.btn_DeserealizarJson.TabIndex = 5;
             this.btn_DeserealizarJson.Text = "Deserealizar Lapiz Json";
-            this.btn_DeserealizarJson.UseVisualStyleBackColor = true;
+            this.btn_DeserealizarJson.UseVisualStyleBackColor = false;
             this.btn_DeserealizarJson.Click += new System.EventHandler(this.btn_DeserealizarJson_Click);
             // 
             // dtgv_LapicesDeserealizados
@@ -119,6 +125,7 @@
             // lbl_ListaDeserealizar
             // 
             this.lbl_ListaDeserealizar.AutoSize = true;
+            this.lbl_ListaDeserealizar.BackColor = System.Drawing.Color.SpringGreen;
             this.lbl_ListaDeserealizar.Location = new System.Drawing.Point(534, 25);
             this.lbl_ListaDeserealizar.Name = "lbl_ListaDeserealizar";
             this.lbl_ListaDeserealizar.Size = new System.Drawing.Size(163, 15);
@@ -129,6 +136,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lbl_ListaDeserealizar);
             this.Controls.Add(this.dtgv_LapicesDeserealizados);
@@ -138,6 +147,7 @@
             this.Controls.Add(this.btn_SerealizarXml);
             this.Controls.Add(this.lbl_ListaLapices);
             this.Controls.Add(this.dtgv_ListaLapices);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmSerealizaDeserealiza";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Serealiza y Deserealiza";

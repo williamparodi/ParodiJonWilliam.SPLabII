@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBaseDeDatos));
             this.btn_LeerBase = new System.Windows.Forms.Button();
             this.dtgv_BaseDeDatos = new System.Windows.Forms.DataGridView();
             this.cmb_TipoDeUtil = new System.Windows.Forms.ComboBox();
@@ -39,12 +40,13 @@
             // 
             // btn_LeerBase
             // 
-            this.btn_LeerBase.Location = new System.Drawing.Point(519, 286);
+            this.btn_LeerBase.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.btn_LeerBase.Location = new System.Drawing.Point(611, 129);
             this.btn_LeerBase.Name = "btn_LeerBase";
             this.btn_LeerBase.Size = new System.Drawing.Size(108, 52);
             this.btn_LeerBase.TabIndex = 0;
-            this.btn_LeerBase.Text = "Leer Base de Datos";
-            this.btn_LeerBase.UseVisualStyleBackColor = true;
+            this.btn_LeerBase.Text = "Refresca Base de Datos";
+            this.btn_LeerBase.UseVisualStyleBackColor = false;
             this.btn_LeerBase.Click += new System.EventHandler(this.btn_LeerBase_Click);
             // 
             // dtgv_BaseDeDatos
@@ -58,11 +60,12 @@
             this.dtgv_BaseDeDatos.Name = "dtgv_BaseDeDatos";
             this.dtgv_BaseDeDatos.ReadOnly = true;
             this.dtgv_BaseDeDatos.RowTemplate.Height = 25;
-            this.dtgv_BaseDeDatos.Size = new System.Drawing.Size(615, 231);
+            this.dtgv_BaseDeDatos.Size = new System.Drawing.Size(557, 229);
             this.dtgv_BaseDeDatos.TabIndex = 1;
             // 
             // cmb_TipoDeUtil
             // 
+            this.cmb_TipoDeUtil.BackColor = System.Drawing.Color.PaleTurquoise;
             this.cmb_TipoDeUtil.FormattingEnabled = true;
             this.cmb_TipoDeUtil.Items.AddRange(new object[] {
             "Lapiz",
@@ -76,38 +79,43 @@
             // 
             // btn_AgregarUtil
             // 
+            this.btn_AgregarUtil.BackColor = System.Drawing.Color.PaleTurquoise;
             this.btn_AgregarUtil.Location = new System.Drawing.Point(12, 286);
             this.btn_AgregarUtil.Name = "btn_AgregarUtil";
             this.btn_AgregarUtil.Size = new System.Drawing.Size(108, 43);
             this.btn_AgregarUtil.TabIndex = 4;
             this.btn_AgregarUtil.Text = "Agregar Util";
-            this.btn_AgregarUtil.UseVisualStyleBackColor = true;
+            this.btn_AgregarUtil.UseVisualStyleBackColor = false;
             this.btn_AgregarUtil.Click += new System.EventHandler(this.btn_AgregarUtil_Click);
             // 
             // btn_Eliminar
             // 
-            this.btn_Eliminar.Location = new System.Drawing.Point(168, 284);
+            this.btn_Eliminar.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.btn_Eliminar.Location = new System.Drawing.Point(238, 284);
             this.btn_Eliminar.Name = "btn_Eliminar";
             this.btn_Eliminar.Size = new System.Drawing.Size(108, 47);
             this.btn_Eliminar.TabIndex = 7;
             this.btn_Eliminar.Text = "Eliminar Seleccionado";
-            this.btn_Eliminar.UseVisualStyleBackColor = true;
+            this.btn_Eliminar.UseVisualStyleBackColor = false;
             this.btn_Eliminar.Click += new System.EventHandler(this.btn_Eliminar_Click);
             // 
             // btn_Editar
             // 
-            this.btn_Editar.Location = new System.Drawing.Point(337, 286);
+            this.btn_Editar.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.btn_Editar.Location = new System.Drawing.Point(461, 284);
             this.btn_Editar.Name = "btn_Editar";
             this.btn_Editar.Size = new System.Drawing.Size(108, 47);
             this.btn_Editar.TabIndex = 8;
             this.btn_Editar.Text = "Editar Seleccionado";
-            this.btn_Editar.UseVisualStyleBackColor = true;
+            this.btn_Editar.UseVisualStyleBackColor = false;
             this.btn_Editar.Click += new System.EventHandler(this.btn_Editar_Click);
             // 
             // FrmBaseDeDatos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btn_Editar);
             this.Controls.Add(this.btn_Eliminar);
@@ -115,6 +123,7 @@
             this.Controls.Add(this.cmb_TipoDeUtil);
             this.Controls.Add(this.dtgv_BaseDeDatos);
             this.Controls.Add(this.btn_LeerBase);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmBaseDeDatos";
             this.Text = "FrmBaseDeDatos";
             this.Load += new System.EventHandler(this.FrmBaseDeDatos_Load);

@@ -1,5 +1,6 @@
 ﻿using TpUtiles;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Entidades
 {
@@ -11,7 +12,7 @@ namespace Entidades
         private EColor color;
         public event DelegadoSinTinta EventoSinTinta;
         public event DelegadoGuardaError EventoError;
-        private int cantidadFaltante;
+     
         public Fibron() : base()
         {
             this.cantidadTinta = 0;
@@ -38,6 +39,7 @@ namespace Entidades
 
         public void Resaltar(int cantidadTinta)
         {
+            int cantidadFaltante;
             if (this.CantidadTinta > cantidadTinta)
             {
                 this.cantidadTinta -= cantidadTinta;
@@ -49,8 +51,9 @@ namespace Entidades
                     cantidadFaltante = cantidadTinta - this.CantidadTinta;
                     EventoSinTinta.Invoke("Evento sin tinta");
                     EventoError.Invoke(MuestraFibronSintinta(this,cantidadFaltante));
+                    throw new SinTintaException("Te quedaste sin tinta");
                 }
-                throw new SinTintaException("Te quedaste sin tinta");
+                
             }
         }
 
@@ -69,6 +72,27 @@ namespace Entidades
             sb.AppendLine(fibron.ToString());
             sb.AppendLine($"Cantidad de tinta faltante : {cantidadDeTintaFaltante}");
             return sb.ToString();
+        }
+
+        public string MuestraCantidadDeTinta(int cantidadFibron, int cantidadAUsar)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Tinta en el Fibron : {cantidadFibron}");
+            sb.AppendLine($"Tinta a Usar : {cantidadAUsar}");
+            return sb.ToString();
+        }
+
+        public void HarcodeaFibrones(Cartuchera<Util> cartuchera)
+        {
+            Fibron fibron1 = new Fibron(5, EColor.Rojo);
+            Fibron fibron2 = new Fibron(10, EColor.Azul);
+            Fibron fibron3 = new Fibron(6, EColor.Amarillo);
+            if(cartuchera is not null)
+            {
+                cartuchera.ListaUtiles.Add(fibron1);
+                cartuchera.ListaUtiles.Add(fibron2);
+                cartuchera.ListaUtiles.Add(fibron3);
+            }
         }
     }
 }

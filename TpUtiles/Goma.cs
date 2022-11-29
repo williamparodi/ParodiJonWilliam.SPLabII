@@ -39,7 +39,7 @@ namespace TpUtiles
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Precio : {this.precio}");
-            sb.AppendLine($", Marca : {this.marca}");
+            sb.AppendLine($"Marca : {this.marca}");
             sb.AppendLine($"Tipo de goma : {this.tipoGoma}");
             sb.AppendLine($"Tamaño : {this.tamanio}");
             return sb.ToString();

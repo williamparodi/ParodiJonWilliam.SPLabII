@@ -52,20 +52,22 @@
             // 
             // btn_Agregar
             // 
+            this.btn_Agregar.BackColor = System.Drawing.Color.LightPink;
             this.btn_Agregar.Location = new System.Drawing.Point(21, 317);
             this.btn_Agregar.Name = "btn_Agregar";
             this.btn_Agregar.Size = new System.Drawing.Size(87, 29);
             this.btn_Agregar.TabIndex = 0;
             this.btn_Agregar.Text = "AGREGAR";
-            this.btn_Agregar.UseVisualStyleBackColor = true;
+            this.btn_Agregar.UseVisualStyleBackColor = false;
             this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
             // 
             // lbl_AgregarUtil
             // 
             this.lbl_AgregarUtil.AutoSize = true;
+            this.lbl_AgregarUtil.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_AgregarUtil.Location = new System.Drawing.Point(53, 24);
             this.lbl_AgregarUtil.Name = "lbl_AgregarUtil";
-            this.lbl_AgregarUtil.Size = new System.Drawing.Size(70, 15);
+            this.lbl_AgregarUtil.Size = new System.Drawing.Size(103, 21);
             this.lbl_AgregarUtil.TabIndex = 1;
             this.lbl_AgregarUtil.Text = "Agregar Util";
             // 
@@ -80,6 +82,7 @@
             // 
             // cmb_TipoDeUtil
             // 
+            this.cmb_TipoDeUtil.BackColor = System.Drawing.Color.LightPink;
             this.cmb_TipoDeUtil.FormattingEnabled = true;
             this.cmb_TipoDeUtil.Items.AddRange(new object[] {
             "Lapiz",
@@ -102,6 +105,7 @@
             // 
             // txt_Marca
             // 
+            this.txt_Marca.BackColor = System.Drawing.Color.LightPink;
             this.txt_Marca.Location = new System.Drawing.Point(104, 101);
             this.txt_Marca.Name = "txt_Marca";
             this.txt_Marca.Size = new System.Drawing.Size(120, 23);
@@ -118,6 +122,7 @@
             // 
             // cmb_Color
             // 
+            this.cmb_Color.BackColor = System.Drawing.Color.LightPink;
             this.cmb_Color.FormattingEnabled = true;
             this.cmb_Color.Items.AddRange(new object[] {
             "Amarillo",
@@ -140,6 +145,7 @@
             // 
             // txt_Precio
             // 
+            this.txt_Precio.BackColor = System.Drawing.Color.LightPink;
             this.txt_Precio.Location = new System.Drawing.Point(102, 266);
             this.txt_Precio.Name = "txt_Precio";
             this.txt_Precio.Size = new System.Drawing.Size(74, 23);
@@ -156,6 +162,7 @@
             // 
             // cmb_Tipo
             // 
+            this.cmb_Tipo.BackColor = System.Drawing.Color.LightPink;
             this.cmb_Tipo.FormattingEnabled = true;
             this.cmb_Tipo.Items.AddRange(new object[] {
             "Normal",
@@ -180,6 +187,7 @@
             // 
             // cmb_Tamanio
             // 
+            this.cmb_Tamanio.BackColor = System.Drawing.Color.LightPink;
             this.cmb_Tamanio.FormattingEnabled = true;
             this.cmb_Tamanio.Items.AddRange(new object[] {
             "Numero1",
@@ -192,26 +200,29 @@
             // 
             // btn_Salir
             // 
+            this.btn_Salir.BackColor = System.Drawing.Color.LightPink;
             this.btn_Salir.Location = new System.Drawing.Point(612, 401);
             this.btn_Salir.Name = "btn_Salir";
             this.btn_Salir.Size = new System.Drawing.Size(138, 34);
             this.btn_Salir.TabIndex = 14;
             this.btn_Salir.Text = "SALIR";
-            this.btn_Salir.UseVisualStyleBackColor = true;
+            this.btn_Salir.UseVisualStyleBackColor = false;
             this.btn_Salir.Click += new System.EventHandler(this.btn_Salir_Click);
             // 
             // btn_VerCartuchera
             // 
+            this.btn_VerCartuchera.BackColor = System.Drawing.Color.LightPink;
             this.btn_VerCartuchera.Location = new System.Drawing.Point(277, 307);
             this.btn_VerCartuchera.Name = "btn_VerCartuchera";
             this.btn_VerCartuchera.Size = new System.Drawing.Size(114, 48);
             this.btn_VerCartuchera.TabIndex = 17;
             this.btn_VerCartuchera.Text = "Ver Cartuchera";
-            this.btn_VerCartuchera.UseVisualStyleBackColor = true;
+            this.btn_VerCartuchera.UseVisualStyleBackColor = false;
             this.btn_VerCartuchera.Click += new System.EventHandler(this.btn_VerCartuchera_Click);
             // 
             // rtx_Cartuchera
             // 
+            this.rtx_Cartuchera.BackColor = System.Drawing.Color.LightPink;
             this.rtx_Cartuchera.Location = new System.Drawing.Point(433, 61);
             this.rtx_Cartuchera.Name = "rtx_Cartuchera";
             this.rtx_Cartuchera.Size = new System.Drawing.Size(285, 223);
@@ -221,26 +232,30 @@
             // lbl_Cartuchera
             // 
             this.lbl_Cartuchera.AutoSize = true;
-            this.lbl_Cartuchera.Location = new System.Drawing.Point(436, 29);
+            this.lbl_Cartuchera.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_Cartuchera.Location = new System.Drawing.Point(530, 24);
             this.lbl_Cartuchera.Name = "lbl_Cartuchera";
-            this.lbl_Cartuchera.Size = new System.Drawing.Size(68, 15);
+            this.lbl_Cartuchera.Size = new System.Drawing.Size(97, 21);
             this.lbl_Cartuchera.TabIndex = 19;
             this.lbl_Cartuchera.Text = "Cartuchera ";
             // 
             // btn_Resaltar
             // 
+            this.btn_Resaltar.BackColor = System.Drawing.Color.LightPink;
             this.btn_Resaltar.Location = new System.Drawing.Point(280, 380);
             this.btn_Resaltar.Name = "btn_Resaltar";
             this.btn_Resaltar.Size = new System.Drawing.Size(111, 33);
             this.btn_Resaltar.TabIndex = 20;
             this.btn_Resaltar.Text = "Resaltar";
-            this.btn_Resaltar.UseVisualStyleBackColor = true;
+            this.btn_Resaltar.UseVisualStyleBackColor = false;
             this.btn_Resaltar.Click += new System.EventHandler(this.btn_Resaltar_Click);
             // 
             // FrmUtiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btn_Resaltar);
             this.Controls.Add(this.lbl_Cartuchera);
@@ -261,6 +276,7 @@
             this.Controls.Add(this.lbl_Util);
             this.Controls.Add(this.lbl_AgregarUtil);
             this.Controls.Add(this.btn_Agregar);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmUtiles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
