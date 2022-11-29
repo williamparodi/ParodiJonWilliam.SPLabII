@@ -38,7 +38,10 @@ namespace TpUtiles
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Precio : {this.precio}, Marca : {this.marca}, Tipo de goma : {this.tipoGoma}, Tamaño : {this.tamanio}");
+            sb.AppendLine($"Precio : {this.precio}");
+            sb.AppendLine($", Marca : {this.marca}");
+            sb.AppendLine($"Tipo de goma : {this.tipoGoma}");
+            sb.AppendLine($"Tamaño : {this.tamanio}");
             return sb.ToString();
         }
 

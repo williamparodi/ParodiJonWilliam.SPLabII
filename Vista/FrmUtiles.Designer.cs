@@ -83,7 +83,7 @@
             this.cmb_TipoDeUtil.Items.AddRange(new object[] {
             "Lapiz",
             "Goma",
-            "Lapiz"});
+            "Sacapunta"});
             this.cmb_TipoDeUtil.Location = new System.Drawing.Point(104, 61);
             this.cmb_TipoDeUtil.Name = "cmb_TipoDeUtil";
             this.cmb_TipoDeUtil.Size = new System.Drawing.Size(121, 23);
@@ -156,6 +156,13 @@
             // cmb_Tipo
             // 
             this.cmb_Tipo.FormattingEnabled = true;
+            this.cmb_Tipo.Items.AddRange(new object[] {
+            "Normal",
+            "Grafito",
+            "ParaTinta",
+            "ParaLapiz",
+            "Portatil",
+            "Electrico"});
             this.cmb_Tipo.Location = new System.Drawing.Point(103, 190);
             this.cmb_Tipo.Name = "cmb_Tipo";
             this.cmb_Tipo.Size = new System.Drawing.Size(121, 23);
@@ -174,9 +181,9 @@
             // 
             this.cmb_Tamanio.FormattingEnabled = true;
             this.cmb_Tamanio.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
+            "Numero1",
+            "Numero2",
+            "Numero3"});
             this.cmb_Tamanio.Location = new System.Drawing.Point(102, 228);
             this.cmb_Tamanio.Name = "cmb_Tamanio";
             this.cmb_Tamanio.Size = new System.Drawing.Size(122, 23);
@@ -190,6 +197,7 @@
             this.btn_Salir.TabIndex = 14;
             this.btn_Salir.Text = "SALIR";
             this.btn_Salir.UseVisualStyleBackColor = true;
+            this.btn_Salir.Click += new System.EventHandler(this.btn_Salir_Click);
             // 
             // btn_VerCartuchera
             // 
@@ -245,6 +253,7 @@
             this.Name = "FrmUtiles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu Utiles";
+            this.Load += new System.EventHandler(this.FrmUtiles_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

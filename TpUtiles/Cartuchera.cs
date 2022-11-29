@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -8,12 +9,13 @@ using System.Text;
 namespace TpUtiles
 {
     public delegate void DelegadoPrecio(string mensaje);
-    
+    public delegate void DelegadoTicket();
     public class Cartuchera<T> where T : Util
     {
         private int capacidad;
         private List<T> listaUtiles;
         public event DelegadoPrecio EventoPrecio;
+        public event DelegadoTicket EventoTickets;
 
         public Cartuchera()
         {
@@ -42,13 +44,7 @@ namespace TpUtiles
         public double PrecioTotal
         {
             get { return AcumulaPrecio(this.ListaUtiles); }
-            set
-            {
-                if(AcumulaPrecio(this.ListaUtiles) >500)
-                {
-                    EventoPrecio("Se supero");
-                }
-            }
+         
         }
 
         public static bool operator +(Cartuchera<T> cartuchera, T util)
@@ -57,16 +53,21 @@ namespace TpUtiles
             
             if (cartuchera is not null && util is not null)
             {
-                if (cartuchera.Capacidad < 10)
+                if (cartuchera.Capacidad < 5)
                 {
                     cartuchera.listaUtiles.Add(util);
                     cartuchera.Capacidad++;
-                    if(cartuchera.PrecioTotal > 500)
-                    {
-                        //cartuchera.EventoPrecio += NotificacionPrecio;
-                    }
 
-                    retorno = true;
+                    if (cartuchera.PrecioTotal > 500)
+                    {
+                        if (cartuchera.EventoPrecio is not null && cartuchera.EventoTickets is not null)
+                        {
+                            EventArgs e = new EventArgs();
+                            cartuchera.EventoPrecio.Invoke("Se supero los $500 totales");
+                            cartuchera.EventoTickets.Invoke(); 
+                        }
+                    }
+                        retorno = true;
                 }
                 else
                 {
@@ -121,7 +122,9 @@ namespace TpUtiles
 
             return sb.ToString();
         }
-     
+        
+        
+                    
     }
 
 }

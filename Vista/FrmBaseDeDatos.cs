@@ -140,6 +140,11 @@ namespace Vista
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefrescaLista();
+        }
     }
 
    

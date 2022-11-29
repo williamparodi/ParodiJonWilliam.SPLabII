@@ -13,7 +13,7 @@ namespace Test_Cartuchera
         {
             //Arrange
             Lapiz lapiz = new Lapiz(100,"Faber Castell",EColor.Rojo,ETipoLapiz.Grafito);
-            Goma goma = new Goma(350,"Pelikan",ETipoGoma.ParaTinta,50);
+            Goma goma = new Goma(350,"Pelikan",ETipoGoma.ParaTinta,ETamanio.Numero3);
             Sacapunta sacapunta = new Sacapunta(100, "El mejor", ETipoSacapuntas.Portatil);
             Cartuchera<Util> cartuchera = new Cartuchera<Util>();
             cartuchera.ListaUtiles.Add(lapiz);

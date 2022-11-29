@@ -72,6 +72,7 @@
             this.cmb_TipoDeUtil.Name = "cmb_TipoDeUtil";
             this.cmb_TipoDeUtil.Size = new System.Drawing.Size(121, 23);
             this.cmb_TipoDeUtil.TabIndex = 3;
+            this.cmb_TipoDeUtil.SelectedIndexChanged += new System.EventHandler(this.cmb_TipoDeUtil_SelectedIndexChanged);
             // 
             // btn_AgregarUtil
             // 

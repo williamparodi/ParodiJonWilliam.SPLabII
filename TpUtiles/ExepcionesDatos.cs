@@ -21,5 +21,15 @@ namespace Entidades
         {
 
         }
+
+        public virtual string MostrarVentanaDeError(Exception ex)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"Error: {ex.Message}");
+            stringBuilder.AppendLine("Detalle:");
+            stringBuilder.AppendLine(ex.StackTrace);
+
+            return stringBuilder.ToString();
+        }
     }
 }

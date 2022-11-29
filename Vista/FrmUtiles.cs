@@ -1,12 +1,15 @@
 ﻿using Entidades;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
+using System.Data;
 using System.Drawing.Printing;
 using System.IO;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
 using TpUtiles;
+using System.Collections.Generic;
 
 namespace Vista
 {
@@ -19,7 +22,7 @@ namespace Vista
         private SaveFileDialog saveFileDialog;
         private string path;
         private string carpetaDefalut;
-        private event DelegadoPrecio EventoPrecio;
+       
         public FrmUtiles()
         {
             InitializeComponent();
@@ -33,6 +36,8 @@ namespace Vista
             saveFileDialog.Filter = "Archivo de texto|*.txt";
             saveFileDialog.Title = "Save a Text File";
             path = string.Empty;
+            cartuchera.EventoPrecio += NotificacionPrecio;
+            cartuchera.EventoTickets += GuardarTicket;
         }
 
         private void btn_Agregar_Click(object sender, EventArgs e)
@@ -47,6 +52,7 @@ namespace Vista
                     if (cartuchera + lapiz)
                     {
                         MessageBox.Show($"Se agrego Lapiz : {lapiz}");
+                        Cartuchera<Util> cartuchera= new Cartuchera<Util>();
                     }
                 }
                 else if (cmb_TipoDeUtil.Text == "Goma")
@@ -65,12 +71,7 @@ namespace Vista
                         MessageBox.Show($"Se agrego sacapuntas : {sacapunta}");
                     }
                 }
-                if(cartuchera.PrecioTotal >500)
-                {
-                    GuardarTicket();
-                    EventoPrecio += NotificacionPrecio;
-                }
-                //Evento mas de $500
+             
             }
             catch (CartucheraLLenaException ex)
             {
@@ -83,33 +84,11 @@ namespace Vista
 
         }
 
-        private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
+        public  void NotificacionPrecio(string texto)
         {
-            int index = cmb_TipoDeUtil.SelectedIndex;
-            switch (index)
-            {
-                case 0: 
-                    cmb_Tipo.Items.Add("Normal");
-                    cmb_Tipo.Items.Add("Grafito");
-                    break;
-                case 1:
-                    cmb_Tipo.Items.Add("ParaTinta");
-                    cmb_Tipo.Items.Add("ParaLapiz");
-                    break;
-                case 2:
-                    cmb_Tipo.Items.Add("Portatil");
-                    cmb_Tipo.Items.Add("Electrico");
-                    break;
-                default:
-                    break;
-            }
+            MessageBox.Show(texto);
         }
-
-        private void NotificacionPrecio(string mensaje)
-        {
-            MessageBox.Show(mensaje);
-        }
-
+        /*
         private void LeerTicket()
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -132,7 +111,7 @@ namespace Vista
                     MostrarVentanaDeError(ex);
                 }
             }
-        }
+        }*/
 
         private void GuardarTicket()
         {
@@ -167,6 +146,35 @@ namespace Vista
             }
         }
 
+        private void btn_VerCartuchera_Click(object sender, EventArgs e)
+        {
+            rtx_Cartuchera.Text= string.Empty;
+            rtx_Cartuchera.Text = cartuchera.MuestraCartuchera(cartuchera.ListaUtiles);
+        }
+
+        private void FrmUtiles_Load(object sender, EventArgs e)
+        {
+            cmb_TipoDeUtil.SelectedIndex = 0;
+            cmb_Tipo.SelectedIndex= 1;
+            if (cmb_TipoDeUtil.Text == "Lapiz")
+            {
+                cmb_TipoDeUtil.MaxDropDownItems = 2;
+            }
+
+        }
+
+        private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btn_Salir_Click(object sender, EventArgs e)
+        {
+            FrmMenuPrincipal frmMenuPrincipal = new FrmMenuPrincipal();
+            frmMenuPrincipal.Show();
+            
+        }
+
         private void MostrarVentanaDeError(Exception ex)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -177,10 +185,6 @@ namespace Vista
             MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void btn_VerCartuchera_Click(object sender, EventArgs e)
-        {
-            rtx_Cartuchera.Text= string.Empty;
-            rtx_Cartuchera.Text = cartuchera.MuestraCartuchera(cartuchera.ListaUtiles);
-        }
+        
     }
 }
