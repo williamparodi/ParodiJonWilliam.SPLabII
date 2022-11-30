@@ -47,9 +47,15 @@ namespace Vista
         
         }
 
+        private void FrmUtiles_Load(object sender, EventArgs e)
+        {
+            cmb_TipoDeUtil.SelectedIndex = 0;
+            cmb_Tipo.SelectedIndex = 1;
+            fibron.HarcodeaFibrones(cartucheraFibron);
+        }
+
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
-          
             try
             {
                 Validaciones.ValidarDatosIngresados(txt_Precio.Text, txt_Marca.Text);
@@ -58,7 +64,7 @@ namespace Vista
                     lapiz = lapiz.CargaDatosLapiz(txt_Precio.Text, txt_Marca.Text, cmb_Color.Text, cmb_Tipo.Text);
                     if (cartuchera + lapiz)
                     {
-                        MessageBox.Show($"Se agrego Lapiz : {lapiz}");
+                        MessageBox.Show($"Se agrego Lapiz : {lapiz}", "Util agregado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Cartuchera<Util> cartuchera= new Cartuchera<Util>();
                     }
                 }
@@ -67,7 +73,7 @@ namespace Vista
                     goma = goma.CargaDatosGoma(txt_Precio.Text, txt_Marca.Text, cmb_Tipo.Text, cmb_Tamanio.Text);
                     if (cartuchera + goma)
                     {
-                        MessageBox.Show($"Se agrego Goma : {goma}");
+                        MessageBox.Show($"Se agrego Goma : {goma}","Util agregado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else
@@ -75,7 +81,7 @@ namespace Vista
                     sacapunta = sacapunta.CargaDatosSacapuntas(txt_Precio.Text, txt_Marca.Text, cmb_Tipo.Text);
                     if(cartuchera + sacapunta)
                     {
-                        MessageBox.Show($"Se agrego sacapuntas : {sacapunta}");
+                        MessageBox.Show($"Se agrego sacapuntas : {sacapunta}","Util agregado" ,MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
              
@@ -135,19 +141,14 @@ namespace Vista
             rtx_Cartuchera.Text = cartuchera.MuestraCartuchera(cartuchera.ListaUtiles);
         }
 
-        private void FrmUtiles_Load(object sender, EventArgs e)
-        {
-            cmb_TipoDeUtil.SelectedIndex = 0;
-            cmb_Tipo.SelectedIndex= 1;
-            fibron.HarcodeaFibrones(cartucheraFibron);
-        }
+       
 
         private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmb_Tipo.DataSource = CargaDatos.CargaTipo(cmb_TipoDeUtil.Text);
             cmb_Tamanio.DataSource = CargaDatos.CargaTamanio(cmb_TipoDeUtil.Text);
             cmb_Color.DataSource = CargaDatos.CargaColor(cmb_TipoDeUtil.Text);
-            //CargaComboBox();
+           
         }
 
         private void btn_Salir_Click(object sender, EventArgs e)
@@ -228,28 +229,7 @@ namespace Vista
             MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public  void CargaComboBox()
-        {
-            List<string> listaTipo = new List<string>();
-            if (cmb_TipoDeUtil.Text == "Lapiz")
-            {
-                listaTipo.Add("Normal");
-                listaTipo.Add("Grafito");
-                cmb_Tipo.DataSource = listaTipo;
-            }
-            else if (cmb_TipoDeUtil.Text == "Goma")
-            {
-                listaTipo.Add("ParaLapiz");
-                listaTipo.Add("ParaTinta");
-                cmb_Tipo.DataSource = listaTipo;
-            }
-            else if (cmb_TipoDeUtil.Text == "Sacapunta")
-            {
-                listaTipo.Add("Portatil");
-                listaTipo.Add("Electrico");
-                cmb_Tipo.DataSource = listaTipo;
-            }
-        }
+       
 
     }
 }

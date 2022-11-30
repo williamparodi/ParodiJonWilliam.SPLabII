@@ -14,11 +14,7 @@ namespace Vista
         Sacapunta sacapunta = new Sacapunta();
         public FrmAgregaUtil()
         {
-            InitializeComponent();
-            cmb_Color.SelectedIndex = 0;
-            cmb_Tamanio.SelectedIndex = 0;
-            cmb_TipoDeUtil.SelectedIndex = 0;
-            
+            InitializeComponent(); 
         }
 
         public FrmAgregaUtil(Util util) : this()
@@ -30,7 +26,8 @@ namespace Vista
 
         private void FrmAgregaUtil_Load(object sender, EventArgs e)
         {
-           
+            cmb_Color.SelectedIndex = 0;
+            cmb_TipoDeUtil.SelectedIndex = 0;
         }
 
         private void btn_Aceptar_Click(object sender, EventArgs e)
@@ -64,15 +61,6 @@ namespace Vista
             }
 
         }
-
-        private void CargaLosCasillerosDeUtil()
-        {
-            txt_Marca.Text = this.util.Marca;
-            txt_Precio.Text = this.util.Precio.ToString();
-            CargaLosCamposSegunTipo();
-        }
-
-
 
         private void btn_Modificar_Click(object sender, EventArgs e)
         {
@@ -136,6 +124,19 @@ namespace Vista
             }
         }
 
+        private void CargaLosCasillerosDeUtil()
+        {
+            txt_Marca.Text = this.util.Marca;
+            txt_Precio.Text = this.util.Precio.ToString();
+            CargaLosCamposSegunTipo();
+        }
+
+        private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmb_Tipo.DataSource = CargaDatos.CargaTipo(cmb_TipoDeUtil.Text);
+            cmb_Tamanio.DataSource = CargaDatos.CargaTamanio(cmb_TipoDeUtil.Text);
+            cmb_Color.DataSource = CargaDatos.CargaColor(cmb_TipoDeUtil.Text);
+        }
     }
 
 }

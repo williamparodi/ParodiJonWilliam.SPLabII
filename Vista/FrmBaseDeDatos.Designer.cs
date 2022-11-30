@@ -69,6 +69,7 @@
             // cmb_TipoDeUtil
             // 
             this.cmb_TipoDeUtil.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.cmb_TipoDeUtil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_TipoDeUtil.FormattingEnabled = true;
             this.cmb_TipoDeUtil.Items.AddRange(new object[] {
             "Lapiz",
@@ -150,6 +151,7 @@
             this.Controls.Add(this.btn_LeerBase);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmBaseDeDatos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmBaseDeDatos";
             this.Load += new System.EventHandler(this.FrmBaseDeDatos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_BaseDeDatos)).EndInit();

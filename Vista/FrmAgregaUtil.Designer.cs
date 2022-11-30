@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregaUtil));
             this.btn_Agregar = new System.Windows.Forms.Button();
             this.lbl_Marca = new System.Windows.Forms.Label();
             this.lbl_Util = new System.Windows.Forms.Label();
@@ -75,6 +76,8 @@
             // 
             // cmb_TipoDeUtil
             // 
+            this.cmb_TipoDeUtil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_TipoDeUtil.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cmb_TipoDeUtil.FormattingEnabled = true;
             this.cmb_TipoDeUtil.Items.AddRange(new object[] {
             "Lapiz",
@@ -84,6 +87,7 @@
             this.cmb_TipoDeUtil.Name = "cmb_TipoDeUtil";
             this.cmb_TipoDeUtil.Size = new System.Drawing.Size(121, 23);
             this.cmb_TipoDeUtil.TabIndex = 3;
+            this.cmb_TipoDeUtil.SelectedIndexChanged += new System.EventHandler(this.cmb_TipoDeUtil_SelectedIndexChanged);
             // 
             // txt_Marca
             // 
@@ -103,6 +107,7 @@
             // 
             // cmb_Tipo
             // 
+            this.cmb_Tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Tipo.FormattingEnabled = true;
             this.cmb_Tipo.Items.AddRange(new object[] {
             "Normal",
@@ -139,6 +144,7 @@
             // 
             // cmb_Color
             // 
+            this.cmb_Color.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Color.FormattingEnabled = true;
             this.cmb_Color.Items.AddRange(new object[] {
             "Rojo",
@@ -161,6 +167,7 @@
             // 
             // cmb_Tamanio
             // 
+            this.cmb_Tamanio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Tamanio.FormattingEnabled = true;
             this.cmb_Tamanio.Items.AddRange(new object[] {
             "Numero1",
@@ -201,7 +208,9 @@
             this.Controls.Add(this.lbl_Util);
             this.Controls.Add(this.lbl_Marca);
             this.Controls.Add(this.btn_Agregar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAgregaUtil";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agrega - Edita ";
             this.Load += new System.EventHandler(this.FrmAgregaUtil_Load);
             this.ResumeLayout(false);
