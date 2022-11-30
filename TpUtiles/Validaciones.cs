@@ -43,7 +43,7 @@ namespace Entidades
                 }
                 else if (marca == string.Empty)
                 {
-                    throw new ExepcionesDatos("Nombre no ingresado");
+                    throw new ExepcionesDatos("Marca no ingresado");
                 }
                 double.Parse(precio);
             }

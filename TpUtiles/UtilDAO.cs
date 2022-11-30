@@ -177,7 +177,7 @@ namespace Entidades
             {
                 command.Parameters.Clear();
                 conexion.Open();
-                command.CommandText = "INSERT INTO GOMAS VALUES (@precio,@marca,@tipo,@tamanio)";
+                command.CommandText = "INSERT INTO GOMAS (PRECIO,MARCA,TIPO,TAMANIO) VALUES (@precio,@marca,@tipo,@tamanio)";
                 if (goma is not null)
                 {
                     command.Parameters.AddWithValue("@precio", goma.Precio);

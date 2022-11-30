@@ -147,10 +147,10 @@
             this.cmb_Color.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Color.FormattingEnabled = true;
             this.cmb_Color.Items.AddRange(new object[] {
-            "Rojo",
-            "Azul",
             "Amarillo",
-            "Negro"});
+            "Negro",
+            "Azul",
+            "Rojo"});
             this.cmb_Color.Location = new System.Drawing.Point(103, 167);
             this.cmb_Color.Name = "cmb_Color";
             this.cmb_Color.Size = new System.Drawing.Size(121, 23);

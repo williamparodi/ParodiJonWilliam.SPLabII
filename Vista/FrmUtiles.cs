@@ -99,7 +99,7 @@ namespace Vista
 
         public  void NotificacionPrecio(string texto)
         {
-            MessageBox.Show(texto);
+            MessageBox.Show(texto,"Evento Precio",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
       
         private void GuardarTicket()
@@ -120,7 +120,7 @@ namespace Vista
                     }
                     else  
                     {
-                        using (StreamWriter streamWriter = new StreamWriter(this.path))
+                        using (StreamWriter streamWriter = new StreamWriter(this.path,true))
                         {
                             streamWriter.WriteLine(cartuchera.MuestraCartuchera(cartuchera.ListaUtiles));
                         }
@@ -140,8 +140,6 @@ namespace Vista
             rtx_Cartuchera.Text= string.Empty;
             rtx_Cartuchera.Text = cartuchera.MuestraCartuchera(cartuchera.ListaUtiles);
         }
-
-       
 
         private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -199,7 +197,7 @@ namespace Vista
                     }
                     else
                     {
-                        using (StreamWriter streamWriter = new StreamWriter(pathFibron))
+                        using (StreamWriter streamWriter = new StreamWriter(pathFibron,true))
                         {
                             streamWriter.WriteLine(texto);
                         }
@@ -216,7 +214,7 @@ namespace Vista
 
         public void NotificacionSinTinta(string mensaje)
         {
-            MessageBox.Show(mensaje);
+            MessageBox.Show(mensaje,"Evento sin Tinta",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
         private void MostrarVentanaDeError(Exception ex)

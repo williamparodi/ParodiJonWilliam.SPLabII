@@ -40,9 +40,9 @@ namespace Entidades
             {
                 if (texto == "Lapiz")
                 {
+                    listaColor.Add("Amarillo");
                     listaColor.Add("Negro");
                     listaColor.Add("Azul");
-                    listaColor.Add("Amarillo");
                     listaColor.Add("Rojo");
                 }
             }
@@ -73,6 +73,6 @@ namespace Entidades
 
             return listaTamanio;
         }
-        //cmb_Tipo.DataSource = listaTipo;
+        
     }
 }

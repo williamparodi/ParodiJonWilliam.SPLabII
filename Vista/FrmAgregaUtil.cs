@@ -21,13 +21,12 @@ namespace Vista
         {
             this.util = util;
             this.id = this.util.Id;
-            CargaLosCasillerosDeUtil();
         }
 
         private void FrmAgregaUtil_Load(object sender, EventArgs e)
         {
-            cmb_Color.SelectedIndex = 0;
             cmb_TipoDeUtil.SelectedIndex = 0;
+            cmb_Tipo.SelectedIndex = 1;
         }
 
         private void btn_Aceptar_Click(object sender, EventArgs e)
@@ -128,7 +127,7 @@ namespace Vista
         {
             txt_Marca.Text = this.util.Marca;
             txt_Precio.Text = this.util.Precio.ToString();
-            CargaLosCamposSegunTipo();
+            //CargaLosCamposSegunTipo();
         }
 
         private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)

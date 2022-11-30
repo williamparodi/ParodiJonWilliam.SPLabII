@@ -183,10 +183,20 @@ namespace Vista
 
         private void btn_CancelarAnimacion_Click(object sender, EventArgs e)
         {
-            
-            this.pic_ImagenBorrar.Image.Dispose();
-            this.pic_ImagenBorrar.Image= null;
-            this.tokenSource.Cancel();
+            try
+            {
+                if (pic_ImagenBorrar is not null)
+                {
+                    this.tokenSource.Cancel();
+                    this.pic_ImagenBorrar.Image.Dispose();
+                    this.pic_ImagenBorrar.Image = null; 
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
     }
 
