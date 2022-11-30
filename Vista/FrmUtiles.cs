@@ -144,7 +144,10 @@ namespace Vista
 
         private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargaComboBox();
+            cmb_Tipo.DataSource = CargaDatos.CargaTipo(cmb_TipoDeUtil.Text);
+            cmb_Tamanio.DataSource = CargaDatos.CargaTamanio(cmb_TipoDeUtil.Text);
+            cmb_Color.DataSource = CargaDatos.CargaColor(cmb_TipoDeUtil.Text);
+            //CargaComboBox();
         }
 
         private void btn_Salir_Click(object sender, EventArgs e)
