@@ -155,7 +155,7 @@ namespace Vista
             
         }
 
-        
+         
         private void btn_Resaltar_Click(object sender, EventArgs e)
         {
             try

@@ -108,7 +108,7 @@ namespace Entidades
                         command.ExecuteNonQuery();
                         break;
                     case Sacapunta:
-                        command.CommandText = $"DELETE FROM SACAPUNTAS WHERE ID_SACAPUNTA = {util.Id}";
+                        command.CommandText = $"DELETE FROM SACAPUNTAS WHERE ID_SACAPUNTAS = {util.Id}";
                         command.ExecuteNonQuery();
                         break;
                     default:

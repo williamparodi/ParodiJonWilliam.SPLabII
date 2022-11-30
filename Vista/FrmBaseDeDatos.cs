@@ -3,23 +3,30 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using TpUtiles;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Vista
 {
     public partial class FrmBaseDeDatos : Form
     {
-        static Cartuchera<Util> cartuchera = new Cartuchera<Util>();
-        
+        CancellationTokenSource tokenSource;
+        CancellationToken token;
         public FrmBaseDeDatos()
         {
+            tokenSource= new CancellationTokenSource();
+            CancellationToken token = tokenSource.Token;
             InitializeComponent();
-            cartuchera = new Cartuchera<Util>();
+            
         }
 
         private void FrmBaseDeDatos_Load(object sender, EventArgs e)
         {
             dtgv_BaseDeDatos.DataSource = null;
             cmb_TipoDeUtil.SelectedIndex = 0;
+            pic_ImagenBorrar.Image = null;
         }
 
         private void btn_LeerBase_Click(object sender, EventArgs e)
@@ -61,9 +68,11 @@ namespace Vista
                 {
                     Util utilABorrar = (Util)dtgv_BaseDeDatos.CurrentRow.DataBoundItem;
                     UtilDAO.BorraDatos(utilABorrar);
-                   
                     MessageBox.Show("Se elimino el util seleccionado", "Borrado exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    RefrescaLista();
+                    Task.Run(() =>
+                    {
+                        MuestraImagen();
+                    },this.token);
                 }
                 else
                 {
@@ -144,6 +153,40 @@ namespace Vista
         private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefrescaLista();
+            
+        }
+
+        public void MuestraImagen()
+        {
+            while (!tokenSource.IsCancellationRequested)// mientras no se pida la cancelacion
+            {
+                Bitmap image = new Bitmap(@"C:\Users\Willy\source\repos\TpUtiles\Vista\Resources\Trash_can_opens.gif");
+                Thread.Sleep(1000);
+                if (this.pic_ImagenBorrar.InvokeRequired)
+                {
+                    Action action = new Action(() =>
+                    {
+                        this.pic_ImagenBorrar.Image = image;
+                    });
+                    this.pic_ImagenBorrar.BeginInvoke(action);
+                }
+                else
+                {
+                    if(this.pic_ImagenBorrar.Image != null)
+                    {
+                        this.pic_ImagenBorrar.Image = image;
+                    }
+                   
+                }
+            }
+        }
+
+        private void btn_CancelarAnimacion_Click(object sender, EventArgs e)
+        {
+            
+            this.pic_ImagenBorrar.Image.Dispose();
+            this.pic_ImagenBorrar.Image= null;
+            this.tokenSource.Cancel();
         }
     }
 
