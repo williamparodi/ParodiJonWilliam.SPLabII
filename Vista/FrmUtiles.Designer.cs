@@ -83,6 +83,7 @@
             // cmb_TipoDeUtil
             // 
             this.cmb_TipoDeUtil.BackColor = System.Drawing.Color.LightPink;
+            this.cmb_TipoDeUtil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_TipoDeUtil.FormattingEnabled = true;
             this.cmb_TipoDeUtil.Items.AddRange(new object[] {
             "Lapiz",
@@ -123,6 +124,7 @@
             // cmb_Color
             // 
             this.cmb_Color.BackColor = System.Drawing.Color.LightPink;
+            this.cmb_Color.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Color.FormattingEnabled = true;
             this.cmb_Color.Items.AddRange(new object[] {
             "Amarillo",
@@ -163,6 +165,7 @@
             // cmb_Tipo
             // 
             this.cmb_Tipo.BackColor = System.Drawing.Color.LightPink;
+            this.cmb_Tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Tipo.FormattingEnabled = true;
             this.cmb_Tipo.Items.AddRange(new object[] {
             "Normal",
@@ -188,6 +191,7 @@
             // cmb_Tamanio
             // 
             this.cmb_Tamanio.BackColor = System.Drawing.Color.LightPink;
+            this.cmb_Tamanio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Tamanio.FormattingEnabled = true;
             this.cmb_Tamanio.Items.AddRange(new object[] {
             "Numero1",

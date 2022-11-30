@@ -24,8 +24,7 @@ namespace Vista
         private string path;
         private string pathFibron;
         private string carpetaDefalut;
-        
-        Cartuchera<Util> cartucheraFibron;
+        private Cartuchera<Util> cartucheraFibron;
         
         public FrmUtiles()
         {
@@ -145,7 +144,7 @@ namespace Vista
 
         private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            CargaComboBox();
         }
 
         private void btn_Salir_Click(object sender, EventArgs e)
@@ -224,6 +223,29 @@ namespace Vista
             stringBuilder.AppendLine(ex.StackTrace);
 
             MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public  void CargaComboBox()
+        {
+            List<string> listaTipo = new List<string>();
+            if (cmb_TipoDeUtil.Text == "Lapiz")
+            {
+                listaTipo.Add("Normal");
+                listaTipo.Add("Grafito");
+                cmb_Tipo.DataSource = listaTipo;
+            }
+            else if (cmb_TipoDeUtil.Text == "Goma")
+            {
+                listaTipo.Add("ParaLapiz");
+                listaTipo.Add("ParaTinta");
+                cmb_Tipo.DataSource = listaTipo;
+            }
+            else if (cmb_TipoDeUtil.Text == "Sacapunta")
+            {
+                listaTipo.Add("Portatil");
+                listaTipo.Add("Electrico");
+                cmb_Tipo.DataSource = listaTipo;
+            }
         }
 
     }
