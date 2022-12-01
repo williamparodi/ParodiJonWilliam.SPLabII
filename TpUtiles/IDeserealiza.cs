@@ -7,11 +7,13 @@ using TpUtiles;
 
 namespace Entidades
 {
-    public interface IDeserealiza
+    public interface IDeserealiza<T> where T : Util
     {
-        Lapiz DeseralizaJsonLapiz(string str);
+        T DeseralizaJsonLapiz(string str);
 
-        Lapiz DeserealizaLapizXml(string nombreDelArchivo);
+        T DeserealizaLapizXml(string nombreDelArchivo);
+
+   
     }
 }
 

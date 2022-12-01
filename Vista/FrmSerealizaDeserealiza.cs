@@ -125,7 +125,7 @@ namespace Vista
                 pathJson = "lapiz.json";
                 if (File.Exists(pathJson))
                 {
-                    lapiz = lapiz.DeseralizaJsonLapiz(pathJson);
+                    lapiz = (Lapiz)lapiz.DeseralizaJsonLapiz(pathJson);
                     if (lapiz is not null)
                     {
                         listaDeserealizado.Add(lapiz);
@@ -153,7 +153,7 @@ namespace Vista
                 pathJson = "lapiz.xml";
                 if (File.Exists(pathJson))
                 {
-                    lapiz = lapiz.DeserealizaLapizXml(pathJson);
+                    lapiz = (Lapiz)lapiz.DeserealizaLapizXml(pathJson);
                     if (lapiz is not null)
                     {
                         listaDeserealizado.Add(lapiz);

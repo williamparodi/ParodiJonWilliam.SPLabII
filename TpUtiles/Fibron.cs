@@ -1,10 +1,14 @@
 ﻿using TpUtiles;
 using System.Text;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using System.Xml.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Entidades
 {
-    public class Fibron : Util
+    public class Fibron : Util, ISerializa<Util>, IDeserealiza<Util>
     {
         public delegate void DelegadoSinTinta(string mensaje);
         public delegate void DelegadoGuardaError(string mensaje);
@@ -30,12 +34,37 @@ namespace Entidades
             get { return this.cantidadTinta; }
             set { this.cantidadTinta = value; }
         }
-
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public EColor Color
         {
             get { return this.color; }
             set { this.color = value; }
         }
+
+        public  EColor CargaColor(string color)
+        {
+            EColor auxColor = new EColor();
+            switch (color)
+            {
+                case "Rojo":
+                    auxColor = EColor.Rojo;
+                    break;
+                case "Azul":
+                    auxColor = EColor.Azul;
+                    break;
+                case "Amarillo":
+                    auxColor = EColor.Amarillo;
+                    break;
+                case "Negro":
+                    auxColor = EColor.Negro;
+                    break;
+                default:
+                    break;
+            }
+
+            return auxColor;
+        }
+
 
         /// <summary>
         /// Si la cantidad de tinta en el fibron es mayor descuenta la cantidad ingresada por parametro, si no lanza dos eventos un sin tinta y 
@@ -120,5 +149,114 @@ namespace Entidades
                 cartuchera.ListaUtiles.Add(fibron3);
             }
         }
+
+        /// <summary>
+        /// Carga los datos del util Lapiz
+        /// </summary>
+        /// <param name="precio"></param>
+        /// <param name="marca"></param>
+        /// <param name="color"></param>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
+        public Util CargaDatosFibron(string color, string cantidad)
+        {
+            int cantidadAsumar = int.Parse(cantidad);
+            Fibron auxFibron = new Fibron();
+
+            auxFibron.CantidadTinta = cantidadAsumar;
+        
+            auxFibron.Color = auxFibron.CargaColor(color);
+           
+
+            return auxFibron;
+        }
+
+
+
+        //Serealiza y Deserealiza
+        /// <summary>
+        /// Serealiza un lapiz a formato Json
+        /// </summary>
+        /// <param name="lapiz"></param>
+        public void SerializaLapizJson(Util Fibron)
+        {
+            string fibronTexto;
+
+            if (Fibron is not null)
+            {
+                fibronTexto = JsonSerializer.Serialize(Fibron);
+                File.WriteAllText("lapiz.json", fibronTexto);
+            }
+        }
+
+        /// <summary>
+        /// Deserealiza un lapiz a objeto Lapiz
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public Util DeseralizaJsonLapiz(string str)
+        {
+            Fibron fibron= new Fibron();
+            if (!string.IsNullOrEmpty(str))
+            {
+                str = File.ReadAllText(str);
+                fibron = JsonSerializer.Deserialize<Fibron>(str);
+            }
+
+            return fibron;
+        }
+
+        /// <summary>
+        /// Serealiza un lapiz a formato Xml
+        /// </summary>
+        /// <param name="nombreArchivo"></param>
+        /// <param name="lapiz"></param>
+        public void SerializaLapizXml(string nombreArchivo, Util fibron)
+        {
+            if (string.IsNullOrEmpty(nombreArchivo) && fibron is not null)
+            {
+                using (StreamWriter writer = new StreamWriter(nombreArchivo, true))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(Fibron));
+                    serializer.Serialize(writer, fibron);
+                }
+            }
+            else
+            {
+                using (StreamWriter writer = new StreamWriter(nombreArchivo))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(Fibron));
+                    serializer.Serialize(writer, fibron);
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Deserealiza un lapiz a objeto Lapiz
+        /// </summary>
+        /// <param name="nombreDelArchivo"></param>
+        /// <returns></returns>
+        /// <exception cref="ExceptionArchivo"></exception>
+        public Util DeserealizaLapizXml(string nombreDelArchivo)
+        {
+            Fibron fibron = new Fibron();
+
+            if (!string.IsNullOrEmpty(nombreDelArchivo))
+            {
+                using (StreamReader streamReader = new StreamReader(nombreDelArchivo, true))
+                {
+                    XmlSerializer deserializer = new XmlSerializer(typeof(Fibron));
+                    fibron = (Fibron)deserializer.Deserialize(streamReader);
+                }
+            }
+            else
+            {
+                throw new ExceptionArchivo("Error al deserealizar xml");
+            }
+
+            return fibron;
+        }
+
     }
 }

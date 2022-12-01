@@ -1,8 +1,5 @@
 ﻿using Entidades;
-using System.Collections.Generic;
 using System.IO;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -10,18 +7,18 @@ using System.Xml.Serialization;
 
 namespace TpUtiles
 {
-    public class Lapiz : Util, ISerializa, IDeserealiza
+    public class Lapiz  : Util, ISerializa<Util>, IDeserealiza<Util>
     {
         private EColor color;
         private ETipoLapiz tipoDeLapiz;
-  
+
         public Lapiz() : base()
         {
             this.color = EColor.SinColor;
             this.tipoDeLapiz = ETipoLapiz.SinTipo;
         }
 
-        public Lapiz(double precio,string marca) : base(precio,marca)
+        public Lapiz(double precio, string marca) : base(precio, marca)
         {
 
         }
@@ -30,8 +27,8 @@ namespace TpUtiles
         {
             this.color = color;
             this.tipoDeLapiz = tipoDelapiz;
-         
-        }      
+
+        }
 
         //Propiedades con el convert de enumerados a jason
         [JsonConverter(typeof(JsonStringEnumConverter))]
@@ -122,10 +119,9 @@ namespace TpUtiles
         /// <param name="color"></param>
         /// <param name="tipo"></param>
         /// <returns></returns>
-        public  Lapiz CargaDatosLapiz(string precio, string marca, string color, string tipo)
+        public Lapiz CargaDatosLapiz(string precio, string marca, string color, string tipo)
         {
             double precioAsumar = double.Parse(precio);
-           
             Lapiz auxLapiz = new Lapiz();
 
             auxLapiz.precio = precioAsumar;
@@ -143,7 +139,7 @@ namespace TpUtiles
         /// Serealiza un lapiz a formato Json
         /// </summary>
         /// <param name="lapiz"></param>
-        public void SerializaLapizJson(Lapiz lapiz)
+        public void SerializaLapizJson(Util lapiz)
         {
             string lapizTexto;
 
@@ -159,11 +155,11 @@ namespace TpUtiles
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public Lapiz DeseralizaJsonLapiz(string str)
+        public Util DeseralizaJsonLapiz(string str)
         {
             Lapiz lapiz = new Lapiz();
             if (!string.IsNullOrEmpty(str))
-            { 
+            {
                 str = File.ReadAllText(str);
                 lapiz = JsonSerializer.Deserialize<Lapiz>(str);
             }
@@ -176,7 +172,7 @@ namespace TpUtiles
         /// </summary>
         /// <param name="nombreArchivo"></param>
         /// <param name="lapiz"></param>
-        public void SerializaLapizXml(string nombreArchivo,Lapiz lapiz)
+        public void SerializaLapizXml(string nombreArchivo, Util lapiz)
         {
             if (string.IsNullOrEmpty(nombreArchivo) && lapiz is not null)
             {
@@ -190,12 +186,11 @@ namespace TpUtiles
             {
                 using (StreamWriter writer = new StreamWriter(nombreArchivo))
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(Lapiz));
+                    XmlSerializer serializer = new XmlSerializer(typeof(Util));
                     serializer.Serialize(writer, lapiz);
                 }
-                   
-            }
 
+            }
         }
 
         /// <summary>
@@ -204,7 +199,7 @@ namespace TpUtiles
         /// <param name="nombreDelArchivo"></param>
         /// <returns></returns>
         /// <exception cref="ExceptionArchivo"></exception>
-        public Lapiz DeserealizaLapizXml(string nombreDelArchivo)
+        public Util DeserealizaLapizXml(string nombreDelArchivo)
         {
             Lapiz lapiz = new Lapiz();
 
@@ -222,7 +217,7 @@ namespace TpUtiles
             }
 
             return lapiz;
-        }        
+        }
 
     }
 }

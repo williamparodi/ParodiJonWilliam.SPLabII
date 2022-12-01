@@ -193,6 +193,9 @@ namespace Vista
                     case "Sacapunta":
                         dtgv_BaseDeDatos.DataSource = UtilDAO.LeerDatosSacapuntas();
                         break;
+                    case "Fibron":
+                        dtgv_BaseDeDatos.DataSource = UtilDAO.LeerDatosFibrones();
+                        break;
                     default:
                         throw new ExceptionArchivo("Error al leer la base");
                 }
@@ -267,7 +270,11 @@ namespace Vista
             }
         }
 
-      
+        private void btn_ContarNombre_Click(object sender, EventArgs e)
+        {
+            int cantidad = Validaciones.ToString(cmb_TipoDeUtil.Text);
+            MessageBox.Show($"Cantidad : {cantidad}");
+        }
     }
 
 

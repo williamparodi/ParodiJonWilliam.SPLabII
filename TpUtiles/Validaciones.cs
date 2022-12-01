@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+using System.Text;
+using TpUtiles;
 
 namespace Entidades
 {
@@ -99,6 +103,17 @@ namespace Entidades
             {
                 throw new ExepcionesDatos(ex.Message);
             }
+        }
+
+        public static int ToString(this string carateres)
+        {
+            int cantidadCaracteres = 0;
+            foreach(var item in carateres.Split())
+            {
+                cantidadCaracteres++;
+            }
+
+            return cantidadCaracteres;
         }
     }
 }

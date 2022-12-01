@@ -36,6 +36,7 @@
             this.btn_Eliminar = new System.Windows.Forms.Button();
             this.btn_Editar = new System.Windows.Forms.Button();
             this.pic_ImagenBorrar = new System.Windows.Forms.PictureBox();
+            this.btn_ContarNombre = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_BaseDeDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_ImagenBorrar)).BeginInit();
             this.SuspendLayout();
@@ -73,7 +74,8 @@
             this.cmb_TipoDeUtil.Items.AddRange(new object[] {
             "Lapiz",
             "Goma",
-            "Sacapunta"});
+            "Sacapunta",
+            "Fibron"});
             this.cmb_TipoDeUtil.Location = new System.Drawing.Point(14, 7);
             this.cmb_TipoDeUtil.Name = "cmb_TipoDeUtil";
             this.cmb_TipoDeUtil.Size = new System.Drawing.Size(121, 23);
@@ -123,6 +125,16 @@
             this.pic_ImagenBorrar.TabIndex = 9;
             this.pic_ImagenBorrar.TabStop = false;
             // 
+            // btn_ContarNombre
+            // 
+            this.btn_ContarNombre.Location = new System.Drawing.Point(657, 61);
+            this.btn_ContarNombre.Name = "btn_ContarNombre";
+            this.btn_ContarNombre.Size = new System.Drawing.Size(107, 41);
+            this.btn_ContarNombre.TabIndex = 10;
+            this.btn_ContarNombre.Text = "Contar Nombre";
+            this.btn_ContarNombre.UseVisualStyleBackColor = true;
+            this.btn_ContarNombre.Click += new System.EventHandler(this.btn_ContarNombre_Click);
+            // 
             // FrmBaseDeDatos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -130,6 +142,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_ContarNombre);
             this.Controls.Add(this.pic_ImagenBorrar);
             this.Controls.Add(this.btn_Editar);
             this.Controls.Add(this.btn_Eliminar);
@@ -158,5 +171,6 @@
         private System.Windows.Forms.Button btn_Eliminar;
         private System.Windows.Forms.Button btn_Editar;
         private System.Windows.Forms.PictureBox pic_ImagenBorrar;
+        private System.Windows.Forms.Button btn_ContarNombre;
     }
 }

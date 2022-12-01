@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using TpUtiles;
+
 
 namespace Entidades
 {
@@ -63,6 +65,43 @@ namespace Entidades
             }
 
             return listaLapiz;
+        }
+
+        public static List<Fibron> LeerDatosFibrones()
+        {
+            List<Fibron> listaFibron = new List<Fibron>();
+
+            try
+            {
+                conexion.Open();
+                command.CommandText = "SELECT * FROM FIBRONES";
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Fibron fibron = new Fibron();
+                    string color = reader["COLOR"].ToString();
+                    string cantidad = reader["CANTIDAD"].ToString();
+                    fibron.Color = (EColor)Enum.Parse(typeof(EColor), color);
+                    fibron.CantidadTinta= (int)Enum.Parse(typeof(int), cantidad);
+                    fibron.Id = (int)reader["ID_LAPIZ"];
+                    listaFibron.Add(fibron);
+                }
+                reader.Close();
+            }
+            catch (Exception)
+            {
+                throw new ExceptionArchivo("Error al leer la base");
+            }
+            finally
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+
+            return listaFibron;
         }
 
         /// <summary>
@@ -190,6 +229,35 @@ namespace Entidades
             }
         }
 
+        public static void GuardaFibron(Fibron fibron)
+        {
+            try
+            {
+                command.Parameters.Clear();
+                conexion.Open();
+                command.CommandText = "INSERT INTO FIBRONES VALUES (@color,@cantidad)";
+                command.Parameters.AddWithValue("@color", fibron.Color);
+                command.Parameters.AddWithValue("@cantidad", fibron.CantidadTinta);
+
+                if (command.ExecuteNonQuery() == 0)
+                {
+                    throw new ExepcionesDatos("No se agrego Util");
+                }
+
+            }
+            catch (Exception)
+            {
+                throw new ExceptionArchivo("Error al cargar el util a la base");
+            }
+            finally
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
         /// <summary>
         /// Guarda los datos del util goma en al base de datos 
         /// </summary>
@@ -292,6 +360,10 @@ namespace Entidades
                         command.CommandText = $"DELETE FROM SACAPUNTAS WHERE ID_SACAPUNTAS = {util.Id}";
                         command.ExecuteNonQuery();
                         break;
+                    case Fibron:
+                        command.CommandText = $"DELETE FROM FIBRONES WHERE ID_SACAPUNTAS = {util.Id}";
+                        command.ExecuteNonQuery();
+                        break;
                     default:
                         throw new ExceptionArchivo("No se pudo borrar");
 
@@ -347,6 +419,40 @@ namespace Entidades
                 }
             }
         }
+
+        public static void ModificarFibron(Fibron fibron)
+        {
+            try
+            {
+                command.Parameters.Clear();
+                conexion.Open();
+                command.CommandText = $"UPDATE FIBRONES SET COLOR = @color, @cantidadtinta WHERE ID_FIBRON = {fibron.Id}";
+                if (fibron is not null)
+                {
+
+                    command.Parameters.AddWithValue("@color", fibron.Color); 
+                    command.Parameters.AddWithValue("@cantidadtinta", fibron.CantidadTinta);
+
+                    if (command.ExecuteNonQuery() == 0)
+                    {
+                        throw new ExepcionesDatos("No se modifico Util");
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                throw new ExceptionArchivo("Error al modificar el util a la base");
+            }
+            finally
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
         /// <summary>
         /// Modifica los datos del util goma pisando los datos por los nuevos en ese mismo id
         /// </summary>
