@@ -308,8 +308,6 @@ namespace Entidades
                     conexion.Close();
                 }
             }
-
-
         }
         
         /// <summary>

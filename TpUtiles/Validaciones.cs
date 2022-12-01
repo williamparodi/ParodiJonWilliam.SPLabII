@@ -49,7 +49,7 @@ namespace Entidades
         /// <param name="precio"></param>
         /// <param name="marca"></param>
         /// <exception cref="ExepcionesDatos"></exception>
-        public static void ValidarDatosIngresados(string precio, string marca)
+        public static void ValidarDatosIngresados(this string precio, string marca)
         {
             try
             {
@@ -73,5 +73,32 @@ namespace Entidades
             }
         }
 
+        public static void ValidarDatosIngresados(this string precio, string marca, string numero)
+        {
+            try
+            {
+                if (precio == string.Empty)
+                {
+                    throw new ExepcionesDatos("Precio no ingresado");
+                }
+                else if (marca == string.Empty)
+                {
+                    throw new ExepcionesDatos("Marca no ingresado");
+                }
+                else if(numero == string.Empty)
+                {
+                    throw new ExepcionesDatos("El numero no es el correcto");
+                }
+                double.Parse(precio);
+            }
+            catch (FormatException ex)
+            {
+                throw new ExepcionesDatos("Dato no valido", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new ExepcionesDatos(ex.Message);
+            }
+        }
     }
 }
