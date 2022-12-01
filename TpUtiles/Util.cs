@@ -48,7 +48,12 @@ namespace TpUtiles
             get { return this.id; }
             set { this.id = value; }
         }
-     
+        /// <summary>
+        /// Sobrecarga del operador = si son igules las marcas es true.
+        /// </summary>
+        /// <param name="util1"></param>
+        /// <param name="util2"></param>
+        /// <returns></returns>
         public static bool operator == (Util util1, Util util2)
         {
             return util1.Marca == util2.Marca;

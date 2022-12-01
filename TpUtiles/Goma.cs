@@ -35,6 +35,10 @@ namespace TpUtiles
             set { this.tamanio = value; }
         }
 
+        /// <summary>
+        ///Sobrecarga del metodo ToString devuelve un string con los datos del util "Goma" 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -45,6 +49,14 @@ namespace TpUtiles
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Carga  los datos del util goma
+        /// </summary>
+        /// <param name="precio"></param>
+        /// <param name="marca"></param>
+        /// <param name="tipo"></param>
+        /// <param name="tamanio"></param>
+        /// <returns></returns>
         public  Goma CargaDatosGoma(string precio,string marca,string tipo,string tamanio)
         {
             Goma auxGoma = new Goma();
@@ -59,6 +71,11 @@ namespace TpUtiles
             return auxGoma;   
         }
 
+        /// <summary>
+        /// Devulve un enumerado tipo denpendiendo del texto pasado por parametro
+        /// </summary>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
         public ETipoGoma CargaTipoGoma(string tipo)
         {
             ETipoGoma auxGoma = new ETipoGoma();
@@ -78,6 +95,11 @@ namespace TpUtiles
             return auxGoma;
         }
 
+        /// <summary>
+        /// Devulve un enumerado tamanio denpendiendo del texto pasado por parametro
+        /// </summary>
+        /// <param name="tamanio"></param>
+        /// <returns></returns>
         public ETamanio CargaTamanio(string tamanio) 
         {
             ETamanio auxGoma = new ETamanio();

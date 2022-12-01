@@ -37,6 +37,12 @@ namespace Entidades
             set { this.color = value; }
         }
 
+        /// <summary>
+        /// Si la cantidad de tinta en el fibron es mayor descuenta la cantidad ingresada por parametro, si no lanza dos eventos un sin tinta y 
+        /// otro que va a mostrar el fibron y cuanta tinta falataba, ademas tambien lanza una excepcion "SinTinta" . 
+        /// </summary>
+        /// <param name="cantidadTinta"></param>
+        /// <exception cref="SinTintaException"></exception>
         public void Resaltar(int cantidadTinta)
         {
             int cantidadFaltante;
@@ -57,6 +63,10 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Se sobreecarga el metodo To string para mostrar los datos del fibron.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -66,6 +76,12 @@ namespace Entidades
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Devuelve un string con el fibron y la tinta que faltaba.
+        /// </summary>
+        /// <param name="fibron"></param>
+        /// <param name="cantidadDeTintaFaltante"></param>
+        /// <returns></returns>
         public string MuestraFibronSintinta(object fibron, int cantidadDeTintaFaltante)
         {
             StringBuilder sb = new StringBuilder();
@@ -74,6 +90,12 @@ namespace Entidades
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Devuelve un string con la cantidad de tinta que se necesita y la que contiene el fibron 
+        /// </summary>
+        /// <param name="cantidadFibron"></param>
+        /// <param name="cantidadAUsar"></param>
+        /// <returns></returns>
         public string MuestraCantidadDeTinta(int cantidadFibron, int cantidadAUsar)
         {
             StringBuilder sb = new StringBuilder();
@@ -82,6 +104,10 @@ namespace Entidades
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Se Cargan unos tres fibrones con datos en una lista
+        /// </summary>
+        /// <param name="cartuchera"></param>
         public void HarcodeaFibrones(Cartuchera<Util> cartuchera)
         {
             Fibron fibron1 = new Fibron(5, EColor.Rojo);

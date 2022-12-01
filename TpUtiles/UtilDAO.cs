@@ -13,13 +13,19 @@ namespace Entidades
         static string conexionString;
         static UtilDAO()
         {
-            conexionString = "Server=.;Database=UTILES_DB;Trusted_Connection=True;";
+            conexionString = "Server=.;Database=BaseTP;Trusted_Connection=True;";
+            //conexionString = "Server=.;Database=UTILES_DB;Trusted_Connection=True;";
             command = new SqlCommand();
             conexion = new SqlConnection(conexionString);
             command.Connection = conexion;
             command.CommandType = System.Data.CommandType.Text;
         }
 
+        /// <summary>
+        /// Lee los datos del lapiz desde la base de datos. 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="ExceptionArchivo"></exception>
         public static List<Lapiz> LeerDatosLapiz()
         {
             List<Lapiz> listaLapiz = new List<Lapiz>();
@@ -59,78 +65,11 @@ namespace Entidades
             return listaLapiz;
         }
 
-        public static void GuardaLapiz(Lapiz lapiz)
-        {
-            try
-            {
-                command.Parameters.Clear();
-                conexion.Open();
-                command.CommandText = "INSERT INTO LAPICES VALUES (@precio,@marca,@tipo,@color)";
-
-                command.Parameters.AddWithValue("@precio", lapiz.Precio);
-                command.Parameters.AddWithValue("@marca", lapiz.Marca);
-                command.Parameters.AddWithValue("@color", lapiz.Color);
-                command.Parameters.AddWithValue("@tipo", lapiz.TipoDeLapiz);
-
-                if (command.ExecuteNonQuery() == 0)
-                {
-                    throw new ExepcionesDatos("No se agrego Util");
-                }
-
-            }
-            catch (Exception)
-            {
-                throw new ExceptionArchivo("Error al cargar el util a la base");
-            }
-            finally
-            {
-                if (conexion.State == System.Data.ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
-            }
-        }
-
-        public static void BorraDatos(Util util)
-        {
-            try
-            {
-                command.Parameters.Clear();
-                conexion.Open();
-                switch (util)
-                {
-                    case Lapiz:
-                        command.CommandText = $"DELETE FROM LAPICES WHERE ID_LAPIZ = {util.Id}";
-                        command.ExecuteNonQuery();
-                        break;
-                    case Goma:
-                        command.CommandText = $"DELETE FROM GOMAS WHERE ID_GOMA = {util.Id}";
-                        command.ExecuteNonQuery();
-                        break;
-                    case Sacapunta:
-                        command.CommandText = $"DELETE FROM SACAPUNTAS WHERE ID_SACAPUNTAS = {util.Id}";
-                        command.ExecuteNonQuery();
-                        break;
-                    default:
-                        throw new ExceptionArchivo("No se pudo borrar");
-
-                }
-            }
-            catch (Exception)
-            {
-                throw new ExceptionArchivo("Error al borrar la base");
-            }
-            finally
-            {
-                if (conexion.State == System.Data.ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
-            }
-
-
-        }
-
+        /// <summary>
+        /// Lee los datos desde la base de datos del util goma 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="ExceptionArchivo"></exception>
         public static List<Goma> LeerDatosGoma()
         {
             List<Goma> listaGoma = new List<Goma>();
@@ -171,40 +110,11 @@ namespace Entidades
             return listaGoma;
         }
 
-        public static void GuardaGoma(Goma goma)
-        {
-            try
-            {
-                command.Parameters.Clear();
-                conexion.Open();
-                command.CommandText = "INSERT INTO GOMAS (PRECIO,MARCA,TIPO,TAMANIO) VALUES (@precio,@marca,@tipo,@tamanio)";
-                if (goma is not null)
-                {
-                    command.Parameters.AddWithValue("@precio", goma.Precio);
-                    command.Parameters.AddWithValue("@marca", goma.Marca);
-                    command.Parameters.AddWithValue("@tipo", goma.TipoGoma);
-                    command.Parameters.AddWithValue("@tamanio", goma.Tamanio);
-
-                    if (command.ExecuteNonQuery() == 0)
-                    {
-                        throw new ExepcionesDatos("No se agrego Util");
-                    }
-                }
-
-            }
-            catch (Exception)
-            {
-                throw new ExceptionArchivo("Error al cargar el util a la base");
-            }
-            finally
-            {
-                if (conexion.State == System.Data.ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
-            }
-        }
-
+        /// <summary>
+        /// Lee los datos del sacapunta desde la base de datos
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="ExceptionArchivo"></exception>
         public static List<Sacapunta> LeerDatosSacapuntas()
         {
             List<Sacapunta> listaSacapuntas = new List<Sacapunta>();
@@ -243,6 +153,87 @@ namespace Entidades
             return listaSacapuntas;
         }
 
+        /// <summary>
+        /// Guarda los datos del lapiz en la base de datos 
+        /// </summary>
+        /// <param name="lapiz"></param>
+        /// <exception cref="ExceptionArchivo"></exception>
+        public static void GuardaLapiz(Lapiz lapiz)
+        {
+            try
+            {
+                command.Parameters.Clear();
+                conexion.Open();
+                command.CommandText = "INSERT INTO LAPICES VALUES (@precio,@marca,@tipo,@color)";
+
+                command.Parameters.AddWithValue("@precio", lapiz.Precio);
+                command.Parameters.AddWithValue("@marca", lapiz.Marca);
+                command.Parameters.AddWithValue("@color", lapiz.Color);
+                command.Parameters.AddWithValue("@tipo", lapiz.TipoDeLapiz);
+
+                if (command.ExecuteNonQuery() == 0)
+                {
+                    throw new ExepcionesDatos("No se agrego Util");
+                }
+
+            }
+            catch (Exception)
+            {
+                throw new ExceptionArchivo("Error al cargar el util a la base");
+            }
+            finally
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Guarda los datos del util goma en al base de datos 
+        /// </summary>
+        /// <param name="goma"></param>
+        /// <exception cref="ExceptionArchivo"></exception>
+        public static void GuardaGoma(Goma goma)
+        {
+            try
+            {
+                command.Parameters.Clear();
+                conexion.Open();
+                command.CommandText = "INSERT INTO GOMAS (PRECIO,MARCA,TIPO,TAMANIO) VALUES (@precio,@marca,@tipo,@tamanio)";
+                if (goma is not null)
+                {
+                    command.Parameters.AddWithValue("@precio", goma.Precio);
+                    command.Parameters.AddWithValue("@marca", goma.Marca);
+                    command.Parameters.AddWithValue("@tipo", goma.TipoGoma);
+                    command.Parameters.AddWithValue("@tamanio", goma.Tamanio);
+
+                    if (command.ExecuteNonQuery() == 0)
+                    {
+                        throw new ExepcionesDatos("No se agrego Util");
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                throw new ExceptionArchivo("Error al cargar el util a la base");
+            }
+            finally
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Guarda en al base de datos los datosd el util sacapunta 
+        /// </summary>
+        /// <param name="sacapuntas"></param>
+        /// <exception cref="ExceptionArchivo"></exception>
         public static void GuardaSacapuntas(Sacapunta sacapuntas)
         {
             try
@@ -276,31 +267,39 @@ namespace Entidades
             }
         }
 
-        public static void GuardaDatos(Util util)
+        /// <summary>
+        /// Borra los datos de la base de datos dependiendo del util 
+        /// </summary>
+        /// <param name="util"></param>
+        /// <exception cref="ExceptionArchivo"></exception>
+        public static void BorraDatos(Util util)
         {
             try
             {
-                if (util is not null)
+                command.Parameters.Clear();
+                conexion.Open();
+                switch (util)
                 {
-                    switch (util)
-                    {
-                        case Lapiz:
-                            GuardaLapiz((Lapiz)util);
-                            break;
-                        case Goma:
-                            GuardaGoma((Goma)util);
-                            break;
-                        case Sacapunta:
-                            GuardaSacapuntas((Sacapunta)util);
-                            break;
-                        default:
-                            throw new ExceptionArchivo("No se pudo guardar en la base");
-                    }
+                    case Lapiz:
+                        command.CommandText = $"DELETE FROM LAPICES WHERE ID_LAPIZ = {util.Id}";
+                        command.ExecuteNonQuery();
+                        break;
+                    case Goma:
+                        command.CommandText = $"DELETE FROM GOMAS WHERE ID_GOMA = {util.Id}";
+                        command.ExecuteNonQuery();
+                        break;
+                    case Sacapunta:
+                        command.CommandText = $"DELETE FROM SACAPUNTAS WHERE ID_SACAPUNTAS = {util.Id}";
+                        command.ExecuteNonQuery();
+                        break;
+                    default:
+                        throw new ExceptionArchivo("No se pudo borrar");
+
                 }
             }
             catch (Exception)
             {
-                throw new ExceptionArchivo("Error al guardar el util en la base");
+                throw new ExceptionArchivo("Error al borrar la base");
             }
             finally
             {
@@ -309,43 +308,15 @@ namespace Entidades
                     conexion.Close();
                 }
             }
+
+
         }
         
-        public static void Modificar(Util util)
-        {
-            try
-            {
-                if (util is not null)
-                {
-                    switch (util)
-                    {
-                        case Lapiz:
-                            ModificarLapiz((Lapiz)util);
-                            break;
-                        case Goma:
-                            ModificarGoma((Goma)util);
-                            break;
-                        case Sacapunta:
-                            ModificarSacapuntas((Sacapunta)util);
-                            break;
-                        default:
-                            throw new ExceptionArchivo("No se pudo modificar  la base");
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw new ExceptionArchivo("Error al modificar el util en la base");
-            }
-            finally
-            {
-                if (conexion.State == System.Data.ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
-            }
-        }
-
+        /// <summary>
+        /// Modifica los datos del sacapunta pisando los datos por los nuevos en ese mismo id 
+        /// </summary>
+        /// <param name="sacapunta"></param>
+        /// <exception cref="ExceptionArchivo"></exception>
         public static void ModificarSacapuntas(Sacapunta sacapunta)
         {
             try
@@ -378,7 +349,11 @@ namespace Entidades
                 }
             }
         }
-
+        /// <summary>
+        /// Modifica los datos del util goma pisando los datos por los nuevos en ese mismo id
+        /// </summary>
+        /// <param name="goma"></param>
+        /// <exception cref="ExceptionArchivo"></exception>
         public static void ModificarGoma(Goma goma)
         {
             try
@@ -413,6 +388,11 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Modifica los datos del lapiz pisando los datos por los nuevos en ese mismo id
+        /// </summary>
+        /// <param name="lapiz"></param>
+        /// <exception cref="ExceptionArchivo"></exception>
         public static void ModificarLapiz(Lapiz lapiz)
         {
             try
@@ -446,119 +426,6 @@ namespace Entidades
                 }
             }
         }
-
-        public static Lapiz LeeLapizPorId(int id)
-        {
-            Lapiz lapiz= new Lapiz();
-
-            try
-            {
-                conexion.Open();
-                command.CommandText = $"SELECT * FROM LAPICES WHERE ID_LAPIZ = {id}";
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string color = reader["COLOR"].ToString();
-                    string tipo = reader["TIPO"].ToString();
-                    lapiz.Color = (EColor)Enum.Parse(typeof(EColor), color);
-                    lapiz.TipoDeLapiz = (ETipoLapiz)Enum.Parse(typeof(ETipoLapiz), tipo);
-                    lapiz.Precio = (double)reader["PRECIO"];
-                    lapiz.Marca = reader["MARCA"].ToString();
-                    lapiz.Id = (int)reader["ID_LAPIZ"];
-                }
-                reader.Close();
-            }
-            catch (Exception)
-            {
-                throw new ExceptionArchivo("Error al leer la base");
-            }
-            finally
-            {
-                if (conexion.State == System.Data.ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
-            }
-
-            return lapiz;
-        }
-
-        public static Goma LeeGomaPorId(int id)
-        {
-            Goma goma = new Goma();
-
-            try
-            {
-                command.Parameters.Clear();
-                conexion.Open();
-                command.CommandText = $"SELECT * FROM GOMAS WHERE ID_GOMA = {id}";
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string tamanio = reader["TAMANIO"].ToString();
-                    string tipo = reader["TIPO"].ToString();
-                    goma.Tamanio = (ETamanio)Enum.Parse(typeof(ETamanio), tamanio);
-                    goma.TipoGoma = (ETipoGoma)Enum.Parse(typeof(ETipoGoma), tipo);
-                    goma.Precio = (double)reader["PRECIO"];
-                    goma.Marca = reader["MARCA"].ToString();
-                    goma.Id = (int)reader["ID_GOMA"];
-                }
-                reader.Close();
-            }
-            catch (Exception)
-            {
-                throw new ExceptionArchivo("Error al leer la base");
-            }
-            finally
-            {
-                if (conexion.State == System.Data.ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
-            }
-
-            return goma;
-        }
-
-        public static Sacapunta LeeSacapuntaPorId(int id)
-        {
-            Sacapunta sacapunta = new Sacapunta();
-            try
-            {
-                command.Parameters.Clear();
-                conexion.Open();
-                command.CommandText = $"SELECT * FROM SACAPUNTAS WHERE ID_SACAPUNTA = {id}";
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string tipo = reader["TIPO"].ToString();
-                    sacapunta.TipoSacapuntas = (ETipoSacapuntas)Enum.Parse(typeof(ETipoSacapuntas), tipo);
-                    sacapunta.Marca = reader["MARCA"].ToString();
-                    sacapunta.Precio = (double)reader["PRECIO"];
-                    sacapunta.Id = (int)reader["ID_SACAPUNTAS"];
-                }
-                reader.Close();
-            }
-            catch (Exception)
-            {
-                throw new ExceptionArchivo("Error al leer la base");
-            }
-            finally
-            {
-                if (conexion.State == System.Data.ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
-            }
-
-            return sacapunta;
-        }
-
-    
-
 
     }
 }

@@ -4,6 +4,12 @@ namespace Entidades
 {
     public static class CargaDatos 
     {
+        /// <summary>
+        /// Devuelve una lista de strings cargada con los tipos de util dependiendo del texto ingresado
+        /// </summary>
+        /// <param name="texto"></param>
+        /// <returns></returns>
+        /// <exception cref="ExepcionesDatos"></exception>
         public static List<string> CargaTipo(string texto)
         {
             List<string> listaTipo = new List<string>();
@@ -33,6 +39,12 @@ namespace Entidades
             return listaTipo;
         }
 
+        /// <summary>
+        /// Devulve una lista de strings con los colores cargados si el texto es "Lapiz"
+        /// </summary>
+        /// <param name="texto"></param>
+        /// <returns></returns>
+        /// <exception cref="ExepcionesDatos"></exception>
         public static List<string> CargaColor(string texto)
         {
             List<string> listaColor = new List<string>();
@@ -54,6 +66,12 @@ namespace Entidades
             return listaColor;
         }
 
+        /// <summary>
+        /// Devuelve una lista de strings con los tamanios cargados si el texto es "Goma"
+        /// </summary>
+        /// <param name="texto"></param>
+        /// <returns></returns>
+        /// <exception cref="ExepcionesDatos"></exception>
         public static List<string> CargaTamanio(string texto)
         {
             List<string> listaTamanio = new List<string>();

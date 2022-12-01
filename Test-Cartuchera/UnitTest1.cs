@@ -1,6 +1,5 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Entidades;
-using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TpUtiles;
 
 namespace Test_Cartuchera
@@ -12,8 +11,8 @@ namespace Test_Cartuchera
         public void AcumulaPrecio_DeberiaRetorarPrecioTotal()
         {
             //Arrange
-            Lapiz lapiz = new Lapiz(100,"Faber Castell",EColor.Rojo,ETipoLapiz.Grafito);
-            Goma goma = new Goma(350,"Pelikan",ETipoGoma.ParaTinta,ETamanio.Numero3);
+            Lapiz lapiz = new Lapiz(100, "Faber Castell", EColor.Rojo, ETipoLapiz.Grafito);
+            Goma goma = new Goma(350, "Pelikan", ETipoGoma.ParaTinta, ETamanio.Numero3);
             Sacapunta sacapunta = new Sacapunta(100, "El mejor", ETipoSacapuntas.Portatil);
             Cartuchera<Util> cartuchera = new Cartuchera<Util>();
             cartuchera.ListaUtiles.Add(lapiz);
@@ -25,7 +24,7 @@ namespace Test_Cartuchera
             double actual = cartuchera.AcumulaPrecio(cartuchera.ListaUtiles);
 
             //Assert
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
 
         }
 
@@ -38,7 +37,7 @@ namespace Test_Cartuchera
 
             //Act
             bool actual = false;
-            if(cartuchera + lapiz)
+            if (cartuchera + lapiz)
             {
                 actual = true;
             }
@@ -56,11 +55,13 @@ namespace Test_Cartuchera
             cartuchera.Capacidad = 10;
 
             //Act
-            if(cartuchera + lapiz )
+
+            if (cartuchera + lapiz)
             {
 
             }
+
         }
-        
+
     }
 }

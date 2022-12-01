@@ -27,6 +27,10 @@ namespace TpUtiles
             set { this.tipoSacapuntas = value; }
         }
 
+        /// <summary>
+        /// SobreCarga del metodo ToString con los datos del util "sacapunta"
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -36,6 +40,11 @@ namespace TpUtiles
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Carga el enumerado dependiendo del texto pasado por parametro
+        /// </summary>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
         public ETipoSacapuntas CargaTipoSacapuntas(string tipo)
         {
             ETipoSacapuntas auxSacapuntas = new ETipoSacapuntas();
@@ -54,7 +63,13 @@ namespace TpUtiles
 
             return auxSacapuntas;
         }
-
+        /// <summary>
+        /// Carga los datos del util sacapunta
+        /// </summary>
+        /// <param name="precio"></param>
+        /// <param name="marca"></param>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
         public Sacapunta CargaDatosSacapuntas(string precio,string marca,string tipo)
         {
             Sacapunta auxSacapuntas = new Sacapunta();

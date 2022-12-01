@@ -12,6 +12,12 @@ namespace Entidades
     public static class ArchivoTxt
     {
         public static string path = "tickets.txt";
+
+        /// <summary>
+        /// Lee el archivo y pone como por default la carpeta mis documentos para guardarlo 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="ExceptionArchivo"></exception>
         public static string LeeArchivo()
         {
             string text = "";

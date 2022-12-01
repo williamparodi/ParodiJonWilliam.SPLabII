@@ -41,12 +41,23 @@ namespace TpUtiles
             set { listaUtiles = value; }
         }
 
+        /// <summary>
+        /// Propiedad que devuelve el valor del precio acumulado en la lista
+        /// </summary>
         public double PrecioTotal
         {
             get { return AcumulaPrecio(this.ListaUtiles); }
          
         }
 
+        /// <summary>
+        /// Sobrecarga del operador + que lanza dos eventos uno si supera los $500 totales de la lista y otro que lanza uno para luego guardar en txt
+        /// Ademas si la capacidad de la cartuchera es incrementada cada vez q se agrega un util al ser 5 o mayor a 5 lanza una excepcion
+        /// </summary>
+        /// <param name="cartuchera"></param>
+        /// <param name="util"></param>
+        /// <returns></returns>
+        /// <exception cref="CartucheraLLenaException"></exception>
         public static bool operator +(Cartuchera<T> cartuchera, T util)
         {
             bool retorno = false;
@@ -77,6 +88,11 @@ namespace TpUtiles
             return retorno;
         }
 
+        /// <summary>
+        /// Devuelve el precio acumulado en la lista pasada por parametro
+        /// </summary>
+        /// <param name="listaUtiles"></param>
+        /// <returns></returns>
         public double AcumulaPrecio(List<T> listaUtiles)
         {
             double precioTotal = 0;
@@ -92,6 +108,11 @@ namespace TpUtiles
             return precioTotal;
         }
 
+        /// <summary>
+        /// Retorna un stringo con los datos la cartuchera dependendiendo de que tipo es el item 
+        /// </summary>
+        /// <param name="listaUtil"></param>
+        /// <returns></returns>
         public string MuestraCartuchera(List<T> listaUtil)
         {
             StringBuilder sb = new StringBuilder();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -32,7 +33,7 @@ namespace TpUtiles
          
         }      
 
-        //Propiedades
+        //Propiedades con el convert de enumerados a jason
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public EColor Color
         {
@@ -48,6 +49,10 @@ namespace TpUtiles
         }
 
         //Metodos
+        /// <summary>
+        /// Sobrecarga del metodo ToString devuelve los datos del util lapiz
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -57,7 +62,11 @@ namespace TpUtiles
             sb.AppendLine($"Tipo de Lapiz: {this.TipoDeLapiz}");
             return sb.ToString();
         }
-
+        /// <summary>
+        ///  Devulve un enumerado color denpendiendo del texto pasado por parametro
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
         public virtual EColor CargaColor(string color)
         {
             EColor auxColor = new EColor();
@@ -82,6 +91,11 @@ namespace TpUtiles
             return auxColor;
         }
 
+        /// <summary>
+        ///  Devulve un enumerado tipo denpendiendo del texto pasado por parametro
+        /// </summary>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
         public ETipoLapiz CargaTipoLapiz(string tipo)
         {
             ETipoLapiz auxLapiz = new ETipoLapiz();
@@ -100,6 +114,14 @@ namespace TpUtiles
             return auxLapiz;
         }
 
+        /// <summary>
+        /// Carga los datos del util Lapiz
+        /// </summary>
+        /// <param name="precio"></param>
+        /// <param name="marca"></param>
+        /// <param name="color"></param>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
         public  Lapiz CargaDatosLapiz(string precio, string marca, string color, string tipo)
         {
             double precioAsumar = double.Parse(precio);
@@ -117,6 +139,10 @@ namespace TpUtiles
 
 
         //Serealiza y Deserealiza
+        /// <summary>
+        /// Serealiza un lapiz a formato Json
+        /// </summary>
+        /// <param name="lapiz"></param>
         public void SerializaLapizJson(Lapiz lapiz)
         {
             string lapizTexto;
@@ -128,6 +154,11 @@ namespace TpUtiles
             }
         }
 
+        /// <summary>
+        /// Deserealiza un lapiz a objeto Lapiz
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public Lapiz DeseralizaJsonLapiz(string str)
         {
             Lapiz lapiz = new Lapiz();
@@ -140,6 +171,11 @@ namespace TpUtiles
             return lapiz;
         }
 
+        /// <summary>
+        /// Serealiza un lapiz a formato Xml
+        /// </summary>
+        /// <param name="nombreArchivo"></param>
+        /// <param name="lapiz"></param>
         public void SerializaLapizXml(string nombreArchivo,Lapiz lapiz)
         {
             if (string.IsNullOrEmpty(nombreArchivo) && lapiz is not null)
@@ -162,6 +198,12 @@ namespace TpUtiles
 
         }
 
+        /// <summary>
+        /// Deserealiza un lapiz a objeto Lapiz
+        /// </summary>
+        /// <param name="nombreDelArchivo"></param>
+        /// <returns></returns>
+        /// <exception cref="ExceptionArchivo"></exception>
         public Lapiz DeserealizaLapizXml(string nombreDelArchivo)
         {
             Lapiz lapiz = new Lapiz();
@@ -180,19 +222,7 @@ namespace TpUtiles
             }
 
             return lapiz;
-        }
-
-        public static bool operator == (Lapiz a, Lapiz b)
-        {
-            return (a == b);
-        }
-
-        public static bool operator !=(Lapiz a, Lapiz b)
-        {
-            return !(a == b);
-        }
-     
-        
+        }        
 
     }
 }

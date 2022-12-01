@@ -24,6 +24,11 @@ namespace Vista
             
         }
 
+        /// <summary>
+        /// Evento de carga de form 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmBaseDeDatos_Load(object sender, EventArgs e)
         {
             dtgv_BaseDeDatos.DataSource = null;
@@ -31,11 +36,17 @@ namespace Vista
             pic_ImagenBorrar.Image = null;
         }
 
+        /// <summary>
+        /// Lee la base de datos 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_LeerBase_Click(object sender, EventArgs e)
         {
             try
             { 
                 RefrescaLista();
+                CancelaImagen();
             }
             catch (Exception ex)
             {
@@ -43,6 +54,11 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Abre un form y agrega util a la base de datos con los datos ingresados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_AgregarUtil_Click(object sender, EventArgs e)
         {
             try
@@ -63,6 +79,11 @@ namespace Vista
             
         }
 
+        /// <summary>
+        /// Elimina un util elegido en el datagrid y se muestra una imagen. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Eliminar_Click(object sender, EventArgs e)
         {
             try
@@ -87,6 +108,11 @@ namespace Vista
 
         }
 
+        /// <summary>
+        /// Boton editar que lleva a otro form en el cual se editan los datos del util elegido en el Datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Editar_Click(object sender, EventArgs e)
         {
             try
@@ -116,6 +142,30 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Evento cuando se cambia el combobox se refresca la info del datagrid y cancela la imagen 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefrescaLista();
+            CancelaImagen();
+        }
+
+        /// <summary>
+        /// Cancela la muestra de la imagen cuando se hace clik en cualquier lugar del form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrmBaseDeDatos_Click(object sender, EventArgs e)
+        {
+            CancelaImagen();
+        }
+
+        /// <summary>
+        ///Lee y refresca la info de la base de datos en el Datagrid 
+        /// </summary>
         public void RefrescaLista()
         {
             LeeDatos(cmb_TipoDeUtil.Text);
@@ -123,7 +173,10 @@ namespace Vista
             dtgv_BaseDeDatos.Update();
         }
 
-
+        /// <summary>
+        /// Pone los datos en el data grid traidos de la base de datos
+        /// </summary>
+        /// <param name="texto"></param>
         public void LeeDatos(string texto)
         {
             List<Util> list = new List<Util>();
@@ -151,12 +204,10 @@ namespace Vista
             }
         }
 
-        private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefrescaLista();
-            CancelaImagen();
-        }
-
+        /// <summary>
+        /// Muestra la imagen siempre y cuando no este cancelada por el token 
+        /// </summary>
+        /// <param name="imagen"></param>
         public void MuestraImagen(Bitmap imagen)
         {
             while (!tokenSource.IsCancellationRequested)// mientras no se pida la cancelacion
@@ -182,6 +233,10 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Inicia una la tarea de mostrar la imagen que se le pasa por parametro
+        /// </summary>
+        /// <param name="imagen"></param>
         private void ActivaImagen(Bitmap imagen)
         {
             tokenSource = new CancellationTokenSource();
@@ -193,6 +248,9 @@ namespace Vista
 
         }
 
+        /// <summary>
+        /// Cancela la ejecucion de la imagen y la pone en null
+        /// </summary>
         private void CancelaImagen()
         {
             try
@@ -208,6 +266,8 @@ namespace Vista
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+      
     }
 
 

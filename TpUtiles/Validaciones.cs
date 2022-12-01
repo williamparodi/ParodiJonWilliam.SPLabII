@@ -9,6 +9,11 @@ namespace Entidades
 
         }
 
+        /// <summary>
+        /// Devuelve true si el string pasado por parametro no es nulo o vacio 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static bool ValidarString(string str)
         {
             bool validar = false;
@@ -21,6 +26,11 @@ namespace Entidades
             return validar;
         }
 
+        /// <summary>
+        /// Valida que el string pasado por parametro no sea nulo, vacio y que se pueda pasear a double
+        /// </summary>
+        /// <param name="numero"></param>
+        /// <returns></returns>        
         public static bool ValidarNumero(string numero)
         {
             bool validar = false;
@@ -33,6 +43,12 @@ namespace Entidades
             return validar;
         }
 
+        /// <summary>
+        /// Valida dos string uqe no sean vacios y lanza las excepciones correspondientes 
+        /// </summary>
+        /// <param name="precio"></param>
+        /// <param name="marca"></param>
+        /// <exception cref="ExepcionesDatos"></exception>
         public static void ValidarDatosIngresados(string precio, string marca)
         {
             try

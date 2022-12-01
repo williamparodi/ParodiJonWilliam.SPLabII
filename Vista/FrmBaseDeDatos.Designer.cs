@@ -142,6 +142,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmBaseDeDatos";
             this.Load += new System.EventHandler(this.FrmBaseDeDatos_Load);
+            this.Click += new System.EventHandler(this.FrmBaseDeDatos_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_BaseDeDatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_ImagenBorrar)).EndInit();
             this.ResumeLayout(false);
