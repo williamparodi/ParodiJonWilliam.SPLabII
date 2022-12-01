@@ -14,6 +14,7 @@ namespace Vista
     {
         CancellationTokenSource tokenSource;
         CancellationToken token;
+        Bitmap image = new Bitmap(@"C:\Users\Willy\source\repos\TpUtiles\Vista\Resources\Trash_can_opens.gif");
         public FrmBaseDeDatos()
         {
             tokenSource= new CancellationTokenSource();
@@ -69,10 +70,8 @@ namespace Vista
                     Util utilABorrar = (Util)dtgv_BaseDeDatos.CurrentRow.DataBoundItem;
                     UtilDAO.BorraDatos(utilABorrar);
                     MessageBox.Show("Se elimino el util seleccionado", "Borrado exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Task.Run(() =>
-                    {
-                        MuestraImagen();
-                    },this.token);
+                    ActivaImagen();
+                    RefrescaLista();
                 }
                 else
                 {
@@ -156,11 +155,10 @@ namespace Vista
             
         }
 
-        public void MuestraImagen()
+        public void MuestraImagenBorrar()
         {
             while (!tokenSource.IsCancellationRequested)// mientras no se pida la cancelacion
             {
-                Bitmap image = new Bitmap(@"C:\Users\Willy\source\repos\TpUtiles\Vista\Resources\Trash_can_opens.gif");
                 Thread.Sleep(1000);
                 if (this.pic_ImagenBorrar.InvokeRequired)
                 {
@@ -181,24 +179,35 @@ namespace Vista
             }
         }
 
-        private void btn_CancelarAnimacion_Click(object sender, EventArgs e)
+        private void ActivaImagen()
+        {
+            tokenSource = new CancellationTokenSource();
+            CancellationToken token = tokenSource.Token;
+            Task.Run(() =>
+            {
+                MuestraImagenBorrar();
+            }, this.token);
+
+        }
+
+        private void CancelaImagen()
         {
             try
             {
                 if (pic_ImagenBorrar is not null)
                 {
                     this.tokenSource.Cancel();
-                    this.pic_ImagenBorrar.Image.Dispose();
-                    this.pic_ImagenBorrar.Image = null; 
+                    //this.pic_ImagenBorrar.Image.Dispose();
+                    this.pic_ImagenBorrar.Image = null;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
         }
     }
+
 
    
 }

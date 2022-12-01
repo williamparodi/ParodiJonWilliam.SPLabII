@@ -65,7 +65,7 @@ namespace Entidades
             {
                 command.Parameters.Clear();
                 conexion.Open();
-                command.CommandText = "INSERT INTO LAPICES VALUES (@precio,@marca,@color,@tipo)";
+                command.CommandText = "INSERT INTO LAPICES VALUES (@precio,@marca,@tipo,@color)";
 
                 command.Parameters.AddWithValue("@precio", lapiz.Precio);
                 command.Parameters.AddWithValue("@marca", lapiz.Marca);

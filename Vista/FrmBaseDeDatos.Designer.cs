@@ -36,7 +36,6 @@
             this.btn_Eliminar = new System.Windows.Forms.Button();
             this.btn_Editar = new System.Windows.Forms.Button();
             this.pic_ImagenBorrar = new System.Windows.Forms.PictureBox();
-            this.btn_CancelarAnimacion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_BaseDeDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_ImagenBorrar)).BeginInit();
             this.SuspendLayout();
@@ -124,16 +123,6 @@
             this.pic_ImagenBorrar.TabIndex = 9;
             this.pic_ImagenBorrar.TabStop = false;
             // 
-            // btn_CancelarAnimacion
-            // 
-            this.btn_CancelarAnimacion.Location = new System.Drawing.Point(656, 426);
-            this.btn_CancelarAnimacion.Name = "btn_CancelarAnimacion";
-            this.btn_CancelarAnimacion.Size = new System.Drawing.Size(123, 23);
-            this.btn_CancelarAnimacion.TabIndex = 10;
-            this.btn_CancelarAnimacion.Text = "Cancelar Animacion";
-            this.btn_CancelarAnimacion.UseVisualStyleBackColor = true;
-            this.btn_CancelarAnimacion.Click += new System.EventHandler(this.btn_CancelarAnimacion_Click);
-            // 
             // FrmBaseDeDatos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -141,7 +130,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btn_CancelarAnimacion);
             this.Controls.Add(this.pic_ImagenBorrar);
             this.Controls.Add(this.btn_Editar);
             this.Controls.Add(this.btn_Eliminar);
@@ -169,6 +157,5 @@
         private System.Windows.Forms.Button btn_Eliminar;
         private System.Windows.Forms.Button btn_Editar;
         private System.Windows.Forms.PictureBox pic_ImagenBorrar;
-        private System.Windows.Forms.Button btn_CancelarAnimacion;
     }
 }

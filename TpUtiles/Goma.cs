@@ -84,13 +84,13 @@ namespace TpUtiles
 
             switch(tamanio) 
             {
-                case "1":
+                case "Numero1":
                     auxGoma = ETamanio.Numero1;
                     break;
-                case "2":
+                case "Numero2":
                     auxGoma = ETamanio.Numero2;
                     break;
-                case "3":
+                case "Numero3":
                     auxGoma = ETamanio.Numero3;
                     break;
                 default:
