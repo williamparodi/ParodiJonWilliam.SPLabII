@@ -14,7 +14,8 @@ namespace Vista
     {
         CancellationTokenSource tokenSource;
         CancellationToken token;
-        Bitmap image = new Bitmap(@"C:\Users\Willy\source\repos\TpUtiles\Vista\Resources\Trash_can_opens.gif");
+        Bitmap imageBorrar = new Bitmap(@"C:\Users\Willy\source\repos\TpUtiles\Vista\Resources\Trash_can_opens.gif");
+        Bitmap imageAgregar = new Bitmap(@"C:\Users\Willy\source\repos\TpUtiles\Vista\Resources\red-01.gif");
         public FrmBaseDeDatos()
         {
             tokenSource= new CancellationTokenSource();
@@ -50,6 +51,7 @@ namespace Vista
 
                 if (frmAgregaUtil.ShowDialog() == DialogResult.OK)
                 {
+                    ActivaImagen(imageAgregar);
                     MessageBox.Show("Util agregado a la base", "Se agrego Util", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RefrescaLista();
                 }
@@ -70,7 +72,7 @@ namespace Vista
                     Util utilABorrar = (Util)dtgv_BaseDeDatos.CurrentRow.DataBoundItem;
                     UtilDAO.BorraDatos(utilABorrar);
                     MessageBox.Show("Se elimino el util seleccionado", "Borrado exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ActivaImagen();
+                    ActivaImagen(imageBorrar);
                     RefrescaLista();
                 }
                 else
@@ -152,10 +154,10 @@ namespace Vista
         private void cmb_TipoDeUtil_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefrescaLista();
-            
+            CancelaImagen();
         }
 
-        public void MuestraImagenBorrar()
+        public void MuestraImagen(Bitmap imagen)
         {
             while (!tokenSource.IsCancellationRequested)// mientras no se pida la cancelacion
             {
@@ -164,7 +166,8 @@ namespace Vista
                 {
                     Action action = new Action(() =>
                     {
-                        this.pic_ImagenBorrar.Image = image;
+                        this.pic_ImagenBorrar.Image = imagen;
+                        //this.pic_ImagenBorrar.Image = imageBorrar;
                     });
                     this.pic_ImagenBorrar.BeginInvoke(action);
                 }
@@ -172,20 +175,20 @@ namespace Vista
                 {
                     if(this.pic_ImagenBorrar.Image != null)
                     {
-                        this.pic_ImagenBorrar.Image = image;
+                        this.pic_ImagenBorrar.Image = imagen;
                     }
                    
                 }
             }
         }
 
-        private void ActivaImagen()
+        private void ActivaImagen(Bitmap imagen)
         {
             tokenSource = new CancellationTokenSource();
             CancellationToken token = tokenSource.Token;
             Task.Run(() =>
             {
-                MuestraImagenBorrar();
+                MuestraImagen(imagen);
             }, this.token);
 
         }
@@ -194,10 +197,9 @@ namespace Vista
         {
             try
             {
-                if (pic_ImagenBorrar is not null)
+                if (this.pic_ImagenBorrar is not null)
                 {
                     this.tokenSource.Cancel();
-                    //this.pic_ImagenBorrar.Image.Dispose();
                     this.pic_ImagenBorrar.Image = null;
                 }
             }
